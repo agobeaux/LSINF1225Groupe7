@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+    <string name="app_name">MiniPoll</string>
+
+    <!-- Login Activity -->
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="signup">Sign up</string>
+    <string name="newtominipoll">New to MiniPoll ?</string>
+
+    <!-- Account Creation Activity -->
+    <string name="createyouraccount">Create your account</string>
+    <string name="confirmpassword">Confirm password</string>
+    <string name="createaccount">Create account</string>
+
+    <!-- Profile Creation Activity -->
+    <string name="firstname">First name</string>
+    <string name="lastname">Last name</string>
+    <string name="mailaddress">Mail address</string>
+    <string name="createyourprofile">Create your profile</string>
+    <string name="confirm">Confirm</string>
+
+</resources>
