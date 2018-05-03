@@ -14,6 +14,6 @@ public class ProfileCreationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_creation);
         ImageButton profileImage = (ImageButton) findViewById(R.id.imageButton4);
-        profileImage.setImageResource(R.drawable.ic_launcher_background);
+        profileImage.setImageResource(R.drawable.profile_placeholder);
     }
 }
