@@ -4,6 +4,9 @@ public class Choice {
     private boolean isPicture;
     private String title;
 
+    /**
+     * Constructeur
+     */
     public Choice(boolean isPicture,String title) {
         this.isPicture = isPicture;
         this.title = title;
