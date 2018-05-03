@@ -71,6 +71,11 @@ public class User {
         return false;
     }
 
+    public static User FindUserWithString(String login){
+        //to update
+        return null;
+    }
+
     // === Get === //
 
     public static User getConnectedUser() {
