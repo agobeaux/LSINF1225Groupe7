@@ -3,6 +3,8 @@ package be.groupe7lsinf1225.minipoll.object;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import android.util.SparseArray;
+
 import java.util.ArrayList;
 
 
@@ -19,6 +21,7 @@ public class User {
     private static final String DB_COLUMN_BESTFRIEND = "BESTFRIEND";
     private static final String DB_TABLE = "USER";
 
+    private static SparseArray<User> userSparseArray = new SparseArray<>();
 
     private String best_friend = null;
 
@@ -77,7 +80,56 @@ public class User {
         return false;
     }
 
-    public static User FindUserWithString(String username){
+    // Toute la partie en commentaire n'est pas fonctionnelle tant que la base de données n'est pas
+    // liée (avec un db. et MySQLiteHelper)
+ /*
+    public static ArrayList<User> getUtilisateurs() {
+        // Récupération du  SQLiteHelper et de la base de données.
+        // C'est ça le lien avec la base de données
+        // SQLiteDatabase db = MySQLiteHelper.get().getReadableDatabase();
+
+        // Colonnes à récupérer
+        String[] colonnes = {DB_COLUMN_LOGIN, DB_COLUMN_FIRST_NAME, DB_COLUMN_PASSWORD};
+
+        // Requête de selection (SELECT)
+        Cursor cursor = db.query(DB_TABLE, colonnes, null, null, null, null, null);
+
+        // Placement du curseur sur la première ligne.
+        cursor.moveToFirst();
+
+        // Initialisation la liste des utilisateurs.
+        ArrayList<User> users = new ArrayList<>();
+
+        // Tant qu'il y a des lignes.
+        while (!cursor.isAfterLast()) {
+            // Récupération des informations de l'utilisateur pour chaque ligne.
+            int uId = cursor.getInt(0);
+            String uNom = cursor.getString(1);
+            String uPassword = cursor.getString(2);
+
+            // Vérification pour savoir s'il y a déjà une instance de cet utilisateur.
+            User user = User.userSparseArray.get(uId);
+            if (user == null) {
+                // Si pas encore d'instance, création d'une nouvelle instance.
+                user = new User(uId, uNom, uPassword);
+            }
+
+            // Ajout de l'utilisateur à la liste.
+            users.add(user);
+
+            // Passe à la ligne suivante.
+            cursor.moveToNext();
+        }
+
+        // Fermeture du curseur et de la base de données.
+        cursor.close();
+        db.close();
+
+        return users;
+    }
+    */
+
+    public static User FindUserWithString(String login){
         //to update
         // Récupération du  SQLiteHelper et de la base de données.
         SQLiteDatabase db = MySQLiteHelper.get().getReadableDatabase();
