@@ -1,16 +1,23 @@
 package be.groupe7lsinf1225.minipoll.object;
 
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+
 import java.util.ArrayList;
+
+
+import be.groupe7lsinf1225.minipoll.MySQLiteHelper;
 
 public class User {
 
-    private static final String DB_COLUMN_ID = "u_id";
-    private static final String DB_COLUMN_FIRST_NAME = "u_first_name";
-    private static final String DB_COLUMN_LAST_NAME = "u_last_name";
-    private static final String DB_COLUMN_LOGIN = "u_login";
-    private static final String DB_COLUMN_PASSWORD = "u_password";
-    private static final String DB_COLUMN_EMAIL = "u_email";
-    private static final String DB_TABLE = "users";
+    private static final String DB_COLUMN_LOGIN = "LOGIN";
+    private static final String DB_COLUMN_LASTNAME = "LASTNAME";
+    private static final String DB_COLUMN_FIRSTNAME = "FIRSTNAME";
+    private static final String DB_COLUMN_PASSWORD = "PASSWORD";
+    private static final String DB_COLUMN_EMAIL = "EMAIL";
+    private static final String DB_COLUMN_PICTURE = "PICTURE";
+    private static final String DB_COLUMN_BESTFRIEND = "BESTFRIEND";
+    private static final String DB_TABLE = "USER";
 
 
     private String best_friend = null;
@@ -30,7 +37,6 @@ public class User {
      */
     private ArrayList<Integer> poll_created = null;
 
-    private final int id;
     private String first_name;
     private String last_name;
     private String login;
@@ -41,8 +47,8 @@ public class User {
     /**
      * Constructeur (accessible uniquement dans cette classe, instanciable en dehors via getUsers)
      */
-    private User(int uid, String ufirst_name, String ulast_name, String ulogin, String upassword, String uemail, String ubest_friend) {
-        this.id = uid;
+    private User(String ufirst_name, String ulast_name, String ulogin, String upassword, String uemail, String ubest_friend) {
+
         this.first_name = ufirst_name;
         this.last_name = ulast_name;
         this.login = ulogin;
@@ -71,9 +77,48 @@ public class User {
         return false;
     }
 
-    public static User FindUserWithString(String login){
+    public static User FindUserWithString(String username){
         //to update
+        // Récupération du  SQLiteHelper et de la base de données.
+        SQLiteDatabase db = MySQLiteHelper.get().getReadableDatabase();
+
+        // Colonnes à récupérer
+        String[] colonnes = {DB_COLUMN_LOGIN};
+
+        // Requête de selection (SELECT)
+        Cursor cursor = db.query(DB_TABLE, colonnes, null, null, null, null, null);
+
+        // Placement du curseur sur la première ligne.
+        cursor.moveToFirst();
+
+        // Tant qu'il y a des lignes.
+        while (!cursor.isAfterLast()) {
+            // Récupération des informations de l'utilisateur pour chaque ligne.
+            String login = cursor.getString(0);
+
+            // Vérification pour savoir s'il y a déjà une instance de cet utilisateur.
+
+            if (login.equals(username)) {
+                // Si l'user existe
+                String password = cursor.getString(1);
+                User user = new User(null,null,login,password,null, null);
+                cursor.close();
+                db.close();
+                return user;
+
+            }
+
+            // Passe à la ligne suivante.
+            cursor.moveToNext();
+        }
+
+        // Fermeture du curseur et de la base de données.
+        cursor.close();
+        db.close();
+
         return null;
+
+
     }
 
     // === Get === //
@@ -82,9 +127,6 @@ public class User {
         return User.connected_user;
     }
 
-    public int getId() {
-        return id;
-    }
 
     public String getFirstName() {
         return first_name;
