@@ -8,6 +8,7 @@
     <string name="login">Login</string>
     <string name="signup">Sign up</string>
     <string name="newtominipoll">New to MiniPoll ?</string>
+    <string name="user_not_found">user not found ?</string>
 
     <!-- Account Creation Activity -->
     <string name="createyouraccount">Create your account</string>
