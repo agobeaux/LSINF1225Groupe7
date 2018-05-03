@@ -1,9 +1,11 @@
-package be.groupe7lsinf1225.minipoll;
+package be.groupe7lsinf1225.minipoll.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+
+import be.groupe7lsinf1225.minipoll.R;
 
 public class ProfileCreationActivity extends AppCompatActivity {
 

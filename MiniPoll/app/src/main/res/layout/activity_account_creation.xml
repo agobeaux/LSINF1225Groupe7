@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="be.groupe7lsinf1225.minipoll.AccountCreationActivity">
+    tools:context="be.groupe7lsinf1225.minipoll.activity.AccountCreationActivity">
 
     <TextView
         android:id="@+id/textView3"
