@@ -8,6 +8,9 @@ abstract class Poll {
     private ArrayList<String> visible;
     private boolean state;
 
+    /**
+     * Fonction close
+     */
     public void close() {
         this.state = true;
     }
