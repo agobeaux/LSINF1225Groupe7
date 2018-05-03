@@ -65,7 +65,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
      */
     public static MySQLiteHelper get() {
         if (instance == null) {
-            return new MySQLiteHelper(MiniPollApp.getContext());
+            return new MySQLiteHelper(AppMiniPoll.getContext());
         }
         return instance;
     }
@@ -119,7 +119,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
     private void initDatabase(SQLiteDatabase db) {
         try {
             // Ouverture du fichier sql.
-            Scanner scan = new Scanner(MiniPollApp.getContext().getAssets().open(DATABASE_SQL_FILENAME));
+            Scanner scan = new Scanner(AppMiniPoll.getContext().getAssets().open(DATABASE_SQL_FILENAME));
             scan.useDelimiter(Pattern.compile(";"));
             while (scan.hasNext()) {
                 String sqlQuery = scan.next();
