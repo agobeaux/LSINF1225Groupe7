@@ -26,10 +26,11 @@
         android:id="@+id/linearLayout"
         android:layout_width="159dp"
         android:layout_height="48dp"
-        android:layout_marginBottom="48dp"
+        android:layout_marginBottom="16dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent">
@@ -46,9 +47,10 @@
         android:id="@+id/linearLayout2"
         android:layout_width="305dp"
         android:layout_height="198dp"
-        android:layout_marginBottom="28dp"
+        android:layout_marginBottom="8dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintHorizontal_bias="0.506"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent">
 
@@ -97,12 +99,11 @@
         android:id="@+id/imageButton4"
         android:layout_width="178dp"
         android:layout_height="163dp"
-        android:layout_marginBottom="28dp"
+        android:src="@drawable/profile_placeholder"
         android:scaleType="fitXY"
+
         app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:srcCompat="@drawable/profile_placeholder" />
+        app:layout_constraintRight_toRightOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

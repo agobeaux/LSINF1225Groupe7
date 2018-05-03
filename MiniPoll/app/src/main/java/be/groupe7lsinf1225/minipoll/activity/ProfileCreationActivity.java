@@ -21,7 +21,7 @@ public class ProfileCreationActivity extends Activity implements TextView.OnEdit
         setContentView(R.layout.activity_profile_creation);
 
         ImageButton profileImage = findViewById(R.id.imageButton4);
-        profileImage.setImageResource(R.drawable.ic_launcher_background);
+        profileImage.setImageResource(R.drawable.profile_placeholder);
 
         EditText firstnameEditText = findViewById(R.id.FirstName);
         firstnameEditText.setOnEditorActionListener(this);
