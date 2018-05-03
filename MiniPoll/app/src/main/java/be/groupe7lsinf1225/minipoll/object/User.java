@@ -124,6 +124,11 @@ public class User {
     }
     */
 
+    public static User FindUserWithString(String login){
+        //to update
+        return null;
+    }
+
     // === Get === //
 
     public static User getConnectedUser() {
