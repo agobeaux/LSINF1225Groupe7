@@ -28,7 +28,7 @@ public class User {
     /**
      * Contient tous les id des poll créés par ce User
      */
-    private ArrayList<int> poll_created = null;
+    private ArrayList<Integer> poll_created = null;
 
     private final int id;
     private String first_name;
@@ -41,7 +41,7 @@ public class User {
     /**
      * Constructeur (accessible uniquement dans cette classe, instanciable en dehors via getUsers)
      */
-    private static User(int uid, String ufirst_name, String ulast_name, String ulogin, String upassword, String uemail, String ubest_friend) {
+    private User(int uid, String ufirst_name, String ulast_name, String ulogin, String upassword, String uemail, String ubest_friend) {
         this.id = uid;
         this.first_name = ufirst_name;
         this.last_name = ulast_name;
@@ -54,8 +54,7 @@ public class User {
     /**
      * Déconnecte le User
      */
-    public static void logout()
-    {
+    public static void logout() {
         User.connected_user = null;
         // + tout ce qu'il y aura à couper quand on se déconnecte (ex dans le muusic_player : couper
         // la musique)
@@ -64,51 +63,37 @@ public class User {
     /**
      * Connecte le User si le mot de passe entré est le bon
      */
-    public boolean login(String passwordWritten)
-    {
-        if(this.password.equals(passwordWritten))
-        {
+    public boolean login(String passwordWritten) {
+        if(this.password.equals(passwordWritten)) {
             User.connected_user = this;
             return true;
         }
         return false;
     }
 
-    /**
-     *
-     * @return
-     */
-
-
     // === Get === //
 
-    public static User getConnectedUser()
-    {
+    public static User getConnectedUser() {
         return User.connected_user;
     }
 
-    public int getId()
-    {
+    public int getId() {
         return id;
     }
 
-    public String getFirstName()
-    {
+    public String getFirstName() {
         return first_name;
     }
 
-    public String getLastName()
-    {
+    public String getLastName() {
         return last_name;
     }
 
-    public String getLogin()
-    {
+    public String getLogin() {
         return login;
     }
 
-    public String getEmail()
-    {
+    public String getEmail() {
         return email;
     }
 }
