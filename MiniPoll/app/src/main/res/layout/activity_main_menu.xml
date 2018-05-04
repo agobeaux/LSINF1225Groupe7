@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="be.groupe7lsinf1225.minipoll.activity.MainMenuActivity">
+
+
+    <GridLayout
+        android:layout_width="316dp"
+        android:layout_height="397dp"
+        android:layout_marginBottom="4dp"
+        android:columnCount="2"
+        android:rowCount="3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
+
+        <ImageButton
+            android:id="@+id/imageButton5"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+
+            android:layout_column="0"
+            android:layout_gravity="start|top"
+            android:layout_row="2"
+            android:scaleType="fitXY"
+            android:src="@drawable/menu_helpafriend" />
+        <!--<Button
+            android:id="@+id/button5"
+            android:layout_column="1"
+            android:layout_row="1"
+            android:layout_gravity="left|top"
+            android:text="Button" />
+-->
+        <ImageButton
+            android:id="@+id/imageButton6"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+
+            android:layout_column="0"
+            android:layout_gravity="start|top"
+            android:layout_row="0"
+            android:scaleType="fitXY"
+            android:src="@drawable/menu_profile"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="0dp" />
+
+        <ImageButton
+            android:id="@+id/imageButton7"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+
+            android:layout_column="1"
+            android:layout_gravity="end|top"
+            android:layout_row="1"
+            android:scaleType="fitXY"
+            android:src="@drawable/menu_quiz"
+            tools:layout_editor_absoluteX="130dp"
+            tools:layout_editor_absoluteY="130dp" />
+
+        <ImageButton
+            android:id="@+id/imageButton8"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:layout_column="1"
+
+            android:layout_gravity="end|top"
+            android:layout_row="0"
+            android:scaleType="fitXY"
+            android:src="@drawable/menu_friends"
+            app:layout_constraintRight_toRightOf="parent"
+            tools:layout_editor_absoluteY="0dp" />
+
+        <ImageButton
+            android:id="@+id/imageButton9"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+
+            android:layout_column="0"
+            android:layout_gravity="start|top"
+            android:layout_row="1"
+            android:scaleType="fitXY"
+            android:src="@drawable/menu_agreements"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="0dp" />
+
+        <ImageButton
+            android:id="@+id/imageButton10"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+
+            android:layout_column="1"
+            android:layout_gravity="end|top"
+            android:layout_row="2"
+            android:scaleType="fitXY"
+            android:src="@drawable/menu_poll"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="301dp" />
+    </GridLayout>
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/mainmenu"
+        android:textSize="30sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:layout_editor_absoluteY="46dp" />
+
+    <Button
+        android:id="@+id/button3"
+        style="@style/Widget.AppCompat.Button.Borderless.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/logout"
+        android:textAllCaps="false"
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="@string/logout" />
+
+</android.support.constraint.ConstraintLayout>

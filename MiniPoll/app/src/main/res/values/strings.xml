@@ -21,5 +21,10 @@
     <string name="mailaddress">Mail address</string>
     <string name="createyourprofile">Create your profile</string>
     <string name="confirm">Confirm</string>
+    <string name="optionalpicture">Optional picture</string>
+
+    <!-- Main Menu Activity -->
+    <string name="mainmenu">Main menu</string>
+    <string name="logout">Log out</string>
 
 </resources>
