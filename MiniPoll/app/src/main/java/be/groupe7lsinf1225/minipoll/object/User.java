@@ -130,7 +130,6 @@ public class User {
     */
 
     public static User FindUserWithString(String username){
-        //to update
         // Récupération du  SQLiteHelper et de la base de données.
         SQLiteDatabase db = MySQLiteHelper.get().getReadableDatabase();
 
