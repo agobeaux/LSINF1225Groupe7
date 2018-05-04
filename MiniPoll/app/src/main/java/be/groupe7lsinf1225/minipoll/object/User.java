@@ -49,14 +49,18 @@ public class User {
     /**
      * Constructeur (accessible uniquement dans cette classe, instanciable en dehors via getUsers)
      */
-    private User(String ufirst_name, String ulast_name, String ulogin, String upassword, String uemail, String ubest_friend, String upicture) {
-        this.first_name = ufirst_name;
-        this.last_name = ulast_name;
-        this.login = ulogin;
-        this.password = upassword;
-        this.email = uemail;
-        this.best_friend = ubest_friend;
-        this.picture = upicture;
+    private User(String login, String password){
+        this.login = login;
+        this.password = password;
+    }
+    private User(String login, String password, String first_name, String last_name, String email, String best_friend, String picture) {
+        this.first_name = first_name;
+        this.last_name = last_name;
+        this.login = login;
+        this.password = password;
+        this.email = email;
+        this.best_friend = best_friend;
+        this.picture = picture;
     }
 
     /**
@@ -79,54 +83,35 @@ public class User {
         return false;
     }
 
-    // Toute la partie en commentaire n'est pas fonctionnelle tant que la base de données n'est pas
-    // liée (avec un db. et MySQLiteHelper)
 
-    public static ArrayList<User> getUsers() {
+    public static User getUser(String login) {
         // Récupération du  SQLiteHelper et de la base de données.
         // C'est ça le lien avec la base de données
         SQLiteDatabase db = MySQLiteHelper.get().getReadableDatabase();
 
         // Colonnes à récupérer
-        String[] colonnes = {DB_COLUMN_LOGIN,DB_COLUMN_PASSWORD,DB_COLUMN_LASTNAME,DB_COLUMN_FIRSTNAME,DB_COLUMN_PICTURE,DB_COLUMN_EMAIL,DB_COLUMN_BEST_FRIEND};
+        String[] columns = {DB_COLUMN_LOGIN,DB_COLUMN_PASSWORD};
+        String[] valuesWhere = {login};
 
         // Requête de selection (SELECT)
-        Cursor cursor = db.query(DB_TABLE, colonnes, null, null, null, null, null);
+        Cursor cursor = db.query(DB_TABLE, columns, DB_COLUMN_LOGIN, valuesWhere, null, null, null);
 
         // Placement du curseur sur la première ligne.
         cursor.moveToFirst();
 
-        // Initialisation la liste des utilisateurs.
-        ArrayList<User> users = new ArrayList<>();
+        String password = cursor.getString(1);
 
-        // Tant qu'il y a des lignes.
-        while (!cursor.isAfterLast()) {
-            // Récupération des informations de l'utilisateur pour chaque ligne.
-            String login = cursor.getString(0);
-            String password = cursor.getString(1);
-            String last_name = cursor.getString(2);
-            String first_name = cursor.getString(3);
-            String picture = cursor.getString(4);
-            String email = cursor.getString(5);
-            String best_friend = cursor.getString(6);
-
-
-            User user = new User(first_name,last_name,login,password,email,best_friend,picture);
-
-            // Ajout de l'utilisateur à la liste.
-            users.add(user);
-
-            // Passe à la ligne suivante.
-            cursor.moveToNext();
-        }
+        User user = new User(login,password);
 
         // Fermeture du curseur et de la base de données.
         cursor.close();
         db.close();
 
-        return users;
+        return user;
     }
 
+/* Normalement la méthode getUser() a été adaptée pour faire ca et l'ajout d'un constructeur plus
+   simple permet que cela fonctionne
 
     public static User FindUserWithString(String username){
         // Récupération du  SQLiteHelper et de la base de données.
@@ -170,7 +155,7 @@ public class User {
 
 
     }
-
+*/
     // === Get === //
 
     public static User getConnectedUser() {
