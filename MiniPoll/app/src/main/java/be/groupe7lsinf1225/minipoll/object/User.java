@@ -152,7 +152,7 @@ public class User {
             if (login.equals(username)) {
                 // Si l'user existe
                 String password = cursor.getString(1);
-                User user = new User(null,null,login,password,null, null);
+                User user = new User(null,null,login,password,null, null,null);
                 cursor.close();
                 db.close();
                 return user;
