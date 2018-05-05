@@ -50,7 +50,7 @@ public class LoginActivity extends Activity implements TextView.OnEditorActionLi
         EditText passwordEditText = findViewById(R.id.Password);
         String password = passwordEditText.getText().toString();
 
-        User user = User.FindUserWithString(username);
+        User user = User.getUser(username);
 
         if(user != null) {
             if (user.login(password)) {
