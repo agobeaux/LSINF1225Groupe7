@@ -18,11 +18,12 @@
         </activity>
         <activity
             android:name=".activity.AccountCreationActivity"
-            android:parentActivityName=".activity.LoginActivity"></activity>
+            android:parentActivityName=".activity.LoginActivity" />
         <activity
             android:name=".activity.ProfileCreationActivity"
-            android:parentActivityName=".activity.AccountCreationActivity"></activity>
-        <activity android:name=".activity.MainMenuActivity"></activity>
+            android:parentActivityName=".activity.AccountCreationActivity" />
+        <activity android:name=".activity.MainMenuActivity" />
+        <activity android:name=".activity.ProfileConsultationActivity"></activity>
     </application>
 
 </manifest>

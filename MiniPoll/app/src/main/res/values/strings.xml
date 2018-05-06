@@ -27,4 +27,8 @@
     <string name="mainmenu">Main menu</string>
     <string name="logout">Log out</string>
 
+    <!-- Profile Consultation Activity -->
+    <string name="modifypicture">Modify picture</string>
+    <string name="profile">Profile</string>
+
 </resources>

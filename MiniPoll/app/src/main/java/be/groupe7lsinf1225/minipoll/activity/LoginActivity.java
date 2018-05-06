@@ -54,7 +54,7 @@ public class LoginActivity extends Activity implements TextView.OnEditorActionLi
 
         if(user != null) {
             if (user.login(password)) {
-                Intent intent = new Intent(this, ProfileCreationActivity.class);
+                Intent intent = new Intent(this, MainMenuActivity.class);
                 startActivity(intent);
             }
             else{
