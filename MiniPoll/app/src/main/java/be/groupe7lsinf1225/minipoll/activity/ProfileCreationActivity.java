@@ -48,17 +48,18 @@ public class ProfileCreationActivity extends Activity implements TextView.OnEdit
             AppMiniPoll.notifyShort(R.string.wrong_email);
         }
         else {
-            Intent intent = new Intent(this, MainMenuActivity.class);
+            Intent intent = new Intent(this, LoginActivity.class);
             String username = intent.getStringExtra("username");
             String password = intent.getStringExtra("password");
             //creation account
+            AppMiniPoll.notifyShort(R.string.sign_up);
             startActivity(intent);
         }
     }
 
     public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
         if (actionId == EditorInfo.IME_ACTION_DONE) {
-            //creat account
+            createProfile(v);
             return true;
         }
         return false;
