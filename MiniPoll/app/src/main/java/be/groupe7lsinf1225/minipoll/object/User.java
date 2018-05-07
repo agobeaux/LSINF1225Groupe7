@@ -70,7 +70,7 @@ public class User {
      */
     public static void logout() {
         User.connected_user = null;
-        // + tout ce qu'il y aura à couper quand on se déconnecte (ex dans le muusic_player : couper
+        // + tout ce qu'il y aura à couper quand on se déconnecte (ex dans le music_player : couper
         // la musique)
     }
 

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import be.groupe7lsinf1225.minipoll.R;
+import be.groupe7lsinf1225.minipoll.object.User;
 
 public class MainMenuActivity extends AppCompatActivity {
 
@@ -13,6 +14,11 @@ public class MainMenuActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
+    }
+
+    public void logout(View view) {
+        User.logout();
+        finish();
     }
 
     public void consultProfile(View view) {
