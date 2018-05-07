@@ -3,6 +3,7 @@ package be.groupe7lsinf1225.minipoll.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 
 import be.groupe7lsinf1225.minipoll.AppMiniPoll;
 import be.groupe7lsinf1225.minipoll.R;
+import be.groupe7lsinf1225.minipoll.object.User;
 
 public class ProfileCreationActivity extends Activity implements TextView.OnEditorActionListener {
 
@@ -48,11 +50,16 @@ public class ProfileCreationActivity extends Activity implements TextView.OnEdit
             AppMiniPoll.notifyShort(R.string.wrong_email);
         }
         else {
+            Log.e("createProfile","1");
             Intent intent = new Intent(this, LoginActivity.class);
-            String username = intent.getStringExtra("username");
-            String password = intent.getStringExtra("password");
-            //creation account
-            AppMiniPoll.notifyShort(R.string.sign_up);
+            Intent oldIntent = getIntent();
+            String username = oldIntent.getStringExtra("username");
+            String password = oldIntent.getStringExtra("password");
+
+            if(!User.putUser(username,password,firstname,lastname,mailaddress)){
+                AppMiniPoll.notifyLong(R.string.error_sign_up);
+            }
+
             startActivity(intent);
         }
     }
