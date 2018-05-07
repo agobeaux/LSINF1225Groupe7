@@ -44,7 +44,7 @@ public class ProfileCreationActivity extends Activity implements TextView.OnEdit
         if (firstname.equals("") || lastname.equals("") || mailaddress.equals("")) {
             AppMiniPoll.notifyShort(R.string.not_completed);
         }
-        else if (!mailaddress.contains("@")) {
+        else if (!mailaddress.contains("@") || !mailaddress.contains(".")) {
             AppMiniPoll.notifyShort(R.string.wrong_email);
         }
         else {
