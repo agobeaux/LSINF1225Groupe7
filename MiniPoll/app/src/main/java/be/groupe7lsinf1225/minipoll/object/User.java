@@ -115,7 +115,7 @@ public class User {
 
         return user;
     }
-    
+
     // === Get === //
 
     public static User getConnectedUser() {
