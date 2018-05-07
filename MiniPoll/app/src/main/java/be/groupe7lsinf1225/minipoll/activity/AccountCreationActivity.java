@@ -30,6 +30,17 @@ public class AccountCreationActivity extends Activity implements TextView.OnEdit
         confirmpasswordEditText.setOnEditorActionListener(this);
     }
 
+    protected void onResume() {
+        super.onResume();
+
+        // On efface le mot de passe qui était écrit quand on se déconnecte.
+        EditText passwordEditText = findViewById(R.id.Password);
+        passwordEditText.setText("");
+        EditText confirmpasswordEditText = findViewById(R.id.ConfirmPassword);
+        confirmpasswordEditText.setText("");
+
+    }
+
     /** Called when the user taps the Send button */
     public void createAccount(View view) {
         EditText usernameEditText = findViewById(R.id.Username);
@@ -49,7 +60,8 @@ public class AccountCreationActivity extends Activity implements TextView.OnEdit
             AppMiniPoll.notifyLong(R.string.password_wrong_length);
         }
         else if(!password.equals(confirmpassword)){
-            //notification : Wrong confirmPassword
+            passwordEditText.setText("");
+            confirmpasswordEditText.setText("");
             AppMiniPoll.notifyShort(R.string.confirm_failed);
         }
         else if(User.getUser(username) != null){
