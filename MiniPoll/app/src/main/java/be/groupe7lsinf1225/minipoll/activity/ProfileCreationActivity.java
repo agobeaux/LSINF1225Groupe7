@@ -11,6 +11,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import be.groupe7lsinf1225.minipoll.AppMiniPoll;
 import be.groupe7lsinf1225.minipoll.R;
 
 public class ProfileCreationActivity extends Activity implements TextView.OnEditorActionListener {
@@ -40,9 +41,11 @@ public class ProfileCreationActivity extends Activity implements TextView.OnEdit
         String mailaddress = mailaddressEditText.getText().toString();
         //missing photo
 
-        if(firstname.equals("")||lastname.equals("")||mailaddress.equals("")){
-            /*robustess to upgrade*/
-            //notification : Missing entry
+        if (firstname.equals("") || lastname.equals("") || mailaddress.equals("")) {
+            AppMiniPoll.notifyShort(R.string.not_completed);
+        }
+        else if (!mailaddress.contains("@")) {
+            AppMiniPoll.notifyShort(R.string.wrong_email);
         }
         else {
             Intent intent = new Intent(this, MainMenuActivity.class);
