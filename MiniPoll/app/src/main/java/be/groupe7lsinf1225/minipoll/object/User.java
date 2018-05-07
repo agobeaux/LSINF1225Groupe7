@@ -3,6 +3,7 @@ package be.groupe7lsinf1225.minipoll.object;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import android.util.Log;
 import android.util.SparseArray;
 
 import java.util.ArrayList;
@@ -92,14 +93,19 @@ public class User {
         // Colonnes à récupérer
         String[] columns = {DB_COLUMN_LOGIN,DB_COLUMN_PASSWORD};
         String[] valuesWhere = {login};
+        String selection = DB_COLUMN_LOGIN + " = ?";
 
         // Requête de selection (SELECT)
-        Cursor cursor = db.query(DB_TABLE, columns, DB_COLUMN_LOGIN, valuesWhere, null, null, null);
+        Cursor cursor = db.query(DB_TABLE, columns, selection, valuesWhere, null, null, null);
 
+        if(cursor.getCount() <= 0){
+            return null;
+        }
         // Placement du curseur sur la première ligne.
         cursor.moveToFirst();
 
         String password = cursor.getString(1);
+
 
         User user = new User(login,password);
 
@@ -109,53 +115,7 @@ public class User {
 
         return user;
     }
-
-/* Normalement la méthode getUser() a été adaptée pour faire ca et l'ajout d'un constructeur plus
-   simple permet que cela fonctionne
-
-    public static User FindUserWithString(String username){
-        // Récupération du  SQLiteHelper et de la base de données.
-        SQLiteDatabase db = MySQLiteHelper.get().getReadableDatabase();
-
-        // Colonnes à récupérer
-        String[] colonnes = {DB_COLUMN_LOGIN};
-
-        // Requête de selection (SELECT)
-        Cursor cursor = db.query(DB_TABLE, colonnes, null, null, null, null, null);
-
-        // Placement du curseur sur la première ligne.
-        cursor.moveToFirst();
-
-        // Tant qu'il y a des lignes.
-        while (!cursor.isAfterLast()) {
-            // Récupération des informations de l'utilisateur pour chaque ligne.
-            String login = cursor.getString(0);
-
-            // Vérification pour savoir s'il y a déjà une instance de cet utilisateur.
-
-            if (login.equals(username)) {
-                // Si l'user existe
-                String password = cursor.getString(1);
-                User user = new User(null,null,login,password,null, null,null);
-                cursor.close();
-                db.close();
-                return user;
-
-            }
-
-            // Passe à la ligne suivante.
-            cursor.moveToNext();
-        }
-
-        // Fermeture du curseur et de la base de données.
-        cursor.close();
-        db.close();
-
-        return null;
-
-
-    }
-*/
+    
     // === Get === //
 
     public static User getConnectedUser() {

@@ -3,12 +3,14 @@ package be.groupe7lsinf1225.minipoll.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import be.groupe7lsinf1225.minipoll.AppMiniPoll;
 import be.groupe7lsinf1225.minipoll.R;
 import be.groupe7lsinf1225.minipoll.object.User;
 
@@ -21,6 +23,7 @@ public class LoginActivity extends Activity implements TextView.OnEditorActionLi
         setContentView(R.layout.activity_login);
 
         setTitle(R.string.app_name);
+
 
         EditText usernameEditText = findViewById(R.id.Username);
         usernameEditText.setOnEditorActionListener(this);
@@ -59,10 +62,12 @@ public class LoginActivity extends Activity implements TextView.OnEditorActionLi
             }
             else{
                 //notification : Wrong Password
+                AppMiniPoll.notifyShort(R.string.wrong_password);
             }
         }
         else{
             //notification : Username doesn't exist
+            AppMiniPoll.notifyShort(R.string.user_not_found);
         }
     }
 

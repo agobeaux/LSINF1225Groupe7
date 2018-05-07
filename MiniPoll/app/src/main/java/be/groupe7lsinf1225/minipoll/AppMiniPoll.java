@@ -1,6 +1,7 @@
 package be.groupe7lsinf1225.minipoll;
 
 import android.app.Application;
+import android.util.Log;
 import android.view.Gravity;
 import android.widget.Toast;
 
