@@ -14,4 +14,9 @@ public class MainMenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
     }
+
+    public void consultProfile(View view) {
+        Intent intent = new Intent(this, ProfileConsultationActivity.class);
+        startActivity(intent);
+    }
 }

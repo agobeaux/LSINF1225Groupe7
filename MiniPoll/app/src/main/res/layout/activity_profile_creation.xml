@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorBackground"
     tools:context="be.groupe7lsinf1225.minipoll.activity.ProfileCreationActivity">
 
     <TextView
@@ -39,7 +40,7 @@
             android:id="@+id/Confirm"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="createAccount"
+            android:onClick="createProfile"
             android:text="@string/confirm" />
     </LinearLayout>
 

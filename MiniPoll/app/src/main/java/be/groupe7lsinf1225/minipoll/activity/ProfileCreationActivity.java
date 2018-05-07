@@ -31,7 +31,7 @@ public class ProfileCreationActivity extends Activity implements TextView.OnEdit
         mailaddressEditText.setOnEditorActionListener(this);
     }
 
-    public void createAccount(View view) {
+    public void createProfile(View view) {
         EditText firstnameEditText = findViewById(R.id.FirstName);
         String firstname = firstnameEditText.getText().toString();
         EditText lastnameEditText = findViewById(R.id.LastName);
@@ -45,7 +45,7 @@ public class ProfileCreationActivity extends Activity implements TextView.OnEdit
             //notification : Missing entry
         }
         else {
-            Intent intent = new Intent(this, LoginActivity.class);
+            Intent intent = new Intent(this, MainMenuActivity.class);
             String username = intent.getStringExtra("username");
             String password = intent.getStringExtra("password");
             //creation account

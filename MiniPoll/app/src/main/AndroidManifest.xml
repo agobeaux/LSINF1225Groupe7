@@ -23,7 +23,10 @@
             android:name=".activity.ProfileCreationActivity"
             android:parentActivityName=".activity.AccountCreationActivity"/>
         <activity
-            android:name=".activity.MainMenuActivity"/>
+            android:name=".activity.MainMenuActivity"
+            android:parentActivityName=".activity.LoginActivity" />
+        <activity
+            android:name=".activity.ProfileConsultationActivity"/>
     </application>
 
 </manifest>
