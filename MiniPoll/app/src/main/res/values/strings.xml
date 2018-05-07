@@ -15,6 +15,11 @@
     <string name="createyouraccount">Create your account</string>
     <string name="confirmpassword">Confirm password</string>
     <string name="createaccount">Create account</string>
+    <string name="confirm_failed">The two passwords are different</string>
+    <string name="username_already_used">Username already used</string>
+    <string name="not_completed">Please complete all fields</string>
+    <string name="username_wrong_length">Your username must be more than 5 and less than 14 characters long</string>
+    <string name="password_wrong_length">Your password must be more than 5 and less than 14 characters long</string>
 
     <!-- Profile Creation Activity -->
     <string name="firstname">First name</string>

@@ -3,13 +3,17 @@ package be.groupe7lsinf1225.minipoll.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import be.groupe7lsinf1225.minipoll.AppMiniPoll;
+import be.groupe7lsinf1225.minipoll.MySQLiteHelper;
 import be.groupe7lsinf1225.minipoll.R;
+import be.groupe7lsinf1225.minipoll.object.User;
 
 public class AccountCreationActivity extends Activity implements TextView.OnEditorActionListener {
 
@@ -35,8 +39,21 @@ public class AccountCreationActivity extends Activity implements TextView.OnEdit
         EditText confirmpasswordEditText = findViewById(R.id.ConfirmPassword);
         String confirmpassword = confirmpasswordEditText.getText().toString();
 
-        if(!password.equals(confirmpassword)){
+        if (username.equals("") || password.equals("") || confirmpassword.equals("")) {
+            AppMiniPoll.notifyShort(R.string.not_completed);
+        }
+        else if (username.length() <= 5 || username.length() >= 14) {
+            AppMiniPoll.notifyLong(R.string.username_wrong_length);
+        }
+        else if (password.length() <= 5 || password.length() >= 14) {
+            AppMiniPoll.notifyLong(R.string.password_wrong_length);
+        }
+        else if(!password.equals(confirmpassword)){
             //notification : Wrong confirmPassword
+            AppMiniPoll.notifyShort(R.string.confirm_failed);
+        }
+        else if(User.getUser(username) != null){
+            AppMiniPoll.notifyShort(R.string.username_already_used);
         }
         else {
             Intent intent = new Intent(this, ProfileCreationActivity.class);
