@@ -24,7 +24,58 @@ public class UpdateProfileActivity extends Activity implements TextView.OnEditor
         setContentView(R.layout.activity_update_profile);
 
         ImageButton profileImage = findViewById(R.id.picture_update);
-        profileImage.setImageResource(R.drawable.profile_placeholder);
+
+        String picture = getIntent().getStringExtra("picture");
+
+        if(picture == null)
+        {
+            profileImage.setImageResource(R.drawable.profile_placeholder);
+        }
+        else {
+            switch (picture) {
+                case "1":
+                    profileImage.setImageResource(R.drawable.caterpie);
+                    break;
+                case "2":
+                    profileImage.setImageResource(R.drawable.charmander);
+                    break;
+                case "3":
+                    profileImage.setImageResource(R.drawable.eevee);
+                    break;
+                case "4":
+                    profileImage.setImageResource(R.drawable.gyarados);
+                    break;
+                case "5":
+                    profileImage.setImageResource(R.drawable.machop);
+                    break;
+                case "6":
+                    profileImage.setImageResource(R.drawable.pidgey);
+                    break;
+                case "7":
+                    profileImage.setImageResource(R.drawable.pikachu);
+                    break;
+                case "8":
+                    profileImage.setImageResource(R.drawable.rattata);
+                    break;
+                case "9":
+                    profileImage.setImageResource(R.drawable.squirtle);
+                    break;
+                case "10":
+                    profileImage.setImageResource(R.drawable.treecko);
+                    break;
+                case "11":
+                    profileImage.setImageResource(R.drawable.snorlax);
+                    break;
+                case "12":
+                    profileImage.setImageResource(R.drawable.zapdos);
+                    break;
+                default:
+                    profileImage.setImageResource(R.drawable.profile_placeholder);
+                    break;
+            }
+        }
+
+
 
         EditText firstnameEditText = findViewById(R.id.first_name_update);
         firstnameEditText.setOnEditorActionListener(this);
@@ -45,6 +96,8 @@ public class UpdateProfileActivity extends Activity implements TextView.OnEditor
         lastnameEditText.setText(user.getLastName());
         mailaddressEditText.setText(user.getEmail());
         usernameEditText.setText(user.getLogin());
+
+
 
     }
     public void profileUpdate(View v){
@@ -96,6 +149,14 @@ public class UpdateProfileActivity extends Activity implements TextView.OnEditor
             startActivity(intent);
         }
 
+    }
+    public void pictureUpdateLayout(View v) {
+        setContentView(R.layout.activity_update_profile_picture);
+    }
+    public void pictureUpdate(View v){
+        Intent intent = new Intent(this,UpdateProfileActivity.class);
+        intent.putExtra("picture",v.getContentDescription());
+        startActivity(intent);
     }
 
     @Override

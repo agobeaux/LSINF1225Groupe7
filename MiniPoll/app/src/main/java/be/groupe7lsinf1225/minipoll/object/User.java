@@ -49,7 +49,7 @@ public class User {
     private int picture;
 
     /**
-     * Constructeur (accessible uniquement dans cette classe, instanciable en dehors via getUsers)
+     * Constructeur (accessible uniquement dans cette classe, instanciable en dehors via getUser)
      */
     private User(String login, String password){
         this.login = login;
@@ -162,22 +162,11 @@ public class User {
 
         String username = cursor.getString(0);
         String password = cursor.getString(1);
-        Log.e("getInfos","Je passe");
         String first_name = cursor.getString(3);
-
-        if(first_name.equals("PikaChu22")) {
-            Log.e("Pika","First name is Pika");
-        }
-        else if(first_name.equals("ChuPika22")){
-            Log.e("Pika","First name is Chu");
-        }
-        Log.e("getInfos","Je suis passé");
-
-
         String last_name = cursor.getString(2);
         String email = cursor.getString(4);
 
-        User user = new User(username,password,first_name,last_name,null,email,-1);
+        User user = new User(username,password,first_name,last_name,email,null,-1);
 
         cursor.close();
         db.close();

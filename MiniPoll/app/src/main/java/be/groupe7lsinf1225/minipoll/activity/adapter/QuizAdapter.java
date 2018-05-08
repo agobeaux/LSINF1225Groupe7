@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import be.groupe7lsinf1225.minipoll.R;
 import be.groupe7lsinf1225.minipoll.object.Quiz;
 
-public class QuizAdapter extends BaseAdapter {
+public abstract class QuizAdapter extends BaseAdapter {
 
     /**
      * Permet d'instancier un fichier xml de layout dans une vue.
@@ -52,7 +52,9 @@ public class QuizAdapter extends BaseAdapter {
     }
 
 
-    public View getView(int i, View convertView, ViewGroup viewGroup) {
+
+    public View getView(int i, View view, View convertView, ViewGroup viewGroup) {
+
         if (convertView == null) {
             //convertView = mInflater.inflate(R.layout.collected_friend_row, viewGroup, false);
         }
