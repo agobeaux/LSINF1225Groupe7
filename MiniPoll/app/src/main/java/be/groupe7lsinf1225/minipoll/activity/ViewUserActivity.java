@@ -3,7 +3,7 @@ package be.groupe7lsinf1225.minipoll.activity;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -27,7 +27,7 @@ public class ViewUserActivity extends Activity {
 
         al = User.getAllUser();
 
-        arrayAdapter = new ViewUserAdapter(this, al );
+        arrayAdapter = new ViewUserAdapter(this, al);
 
         SwipeFlingAdapterView flingContainer = findViewById(R.id.view_user_frame);
 
@@ -36,18 +36,12 @@ public class ViewUserActivity extends Activity {
 
             @Override
             public void removeFirstObjectInAdapter() {
-                // this is the simplest way to delete an object from the Adapter (/AdapterView)
-                Log.d("LIST", "removed object!");
                 al.remove(0);
                 arrayAdapter.notifyDataSetChanged();
             }
 
             @Override
             public void onLeftCardExit(Object dataObject) {
-                //Do something on the left!
-                //You also have access to the original object.
-                //If you want to use it just cast it (String) dataObject
-                al.add(al.get(0));
                 makeToast(ViewUserActivity.this, "Bye Bye!");
             }
 
@@ -58,15 +52,12 @@ public class ViewUserActivity extends Activity {
 
             @Override
             public void onAdapterAboutToEmpty(int itemsInAdapter) {
-                // Ask for more data here
                 al.add(new User("No More User","","","","","",-1));
                 arrayAdapter.notifyDataSetChanged();
-                Log.d("LIST", "notified");
             }
 
             @Override
             public void onScroll(float scrollProgressPercent) {
-
             }
         });
 
@@ -78,6 +69,10 @@ public class ViewUserActivity extends Activity {
                 makeToast(ViewUserActivity.this, "Clicked!");
             }
         });
+    }
+
+    public void addfriend(View view){
+        makeToast(ViewUserActivity.this, "addfriend!");
     }
 
     static void makeToast(Context ctx, String s){
