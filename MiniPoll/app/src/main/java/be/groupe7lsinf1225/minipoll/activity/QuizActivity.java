@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ListView;
 
 import java.util.ArrayList;
 
@@ -24,29 +25,37 @@ public class QuizActivity extends AppCompatActivity implements AdapterView.OnIte
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
         loadQuizzes();
+        ListView myListView = findViewById(R.id.show_listView_Quizzes);
+        myQuizAdapter = new QuizAdapter(this, quizzes);
+        myListView.setAdapter(myQuizAdapter);
+        myListView.setOnItemClickListener(this);
     }
 
     private void loadQuizzes(){
         SQLiteDatabase db = MySQLiteHelper.get().getReadableDatabase();
 
-        String[] columns = {"LOGIN","IDQUIZ"};
-        String[] valuesWhere = {User.getConnectedUser().getLogin()};
-        String selection = "LOGIN" + " = ?";
+        String[] columns1 = {"LOGIN","IDQUIZ"};
+        String[] valuesWhere1 = {User.getConnectedUser().getLogin()};
+        String selection1 = "LOGIN" + " = ?";
 
-        Cursor cursor = db.query("VIEW_QUIZ", columns, selection, valuesWhere, null, null, null);
+        Cursor cursor1 = db.query("VIEW_QUIZ", columns1, selection1, valuesWhere1, null, null, null);
 
-        cursor.moveToFirst();
+        cursor1.moveToFirst();
 
-        ArrayList<Quiz> quizzes = new ArrayList<>();
+        while (!cursor1.isAfterLast()) {
+            String[] columns2 = {"IDQUIZ","TITLE", "AUTHOR", "CLOSED"};
+            String[] valuesWhere2 = {String.valueOf(cursor1.getInt(1))};
+            String selection2 = "IDQUIZ" + " = ?";
 
-        while (!cursor.isAfterLast()) {
+            Cursor cursor2 = db.query("QUIZ", columns2, selection2, valuesWhere2, null, null, null);
+            Quiz locQuiz = new Quiz(cursor2.getString(1),cursor2.getString(3).equals("true"),cursor2.getString(2));
+            cursor2.close();
+            quizzes.add(locQuiz);
 
-
-            cursor.moveToNext();
+            cursor1.moveToNext();
         }
-
-
-
+        cursor1.close();
+        db.close();
     }
 
     @Override

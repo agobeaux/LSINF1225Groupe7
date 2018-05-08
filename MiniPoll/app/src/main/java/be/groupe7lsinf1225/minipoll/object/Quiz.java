@@ -6,7 +6,7 @@ public class Quiz extends Poll {
     private String author;
     private boolean state;
 
-    public Quiz(String title, String status, String author){
+    public Quiz(String title, boolean state, String author){
         this.title = title;
         this.state = state;
         this.author = author;
