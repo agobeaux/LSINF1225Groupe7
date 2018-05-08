@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBackground"
-    tools:context="be.groupe7lsinf1225.minipoll.activity.QuizActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
     <android.support.constraint.ConstraintLayout
@@ -14,67 +12,53 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/Topic"
+            android:id="@+id/show_row_topic"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/topic"
+            android:background="#9E9E9E"
             android:textAlignment="center"
             android:textAllCaps="false"
             android:textColor="@android:color/black"
             android:textSize="20sp"
-            android:textStyle="bold"
 
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/LimitDate"
+            app:layout_constraintEnd_toStartOf="@+id/show_row_limitdate"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
 
-            android:background="#9E9E9E" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/LimitDate"
+            android:id="@+id/show_row_limitdate"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/limitdate"
+            android:background="#9E9E9E"
             android:textAlignment="center"
             android:textAllCaps="false"
             android:textColor="@android:color/black"
             android:textSize="20sp"
-            android:textStyle="bold"
 
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/CreatedBy"
-            app:layout_constraintStart_toEndOf="@+id/Topic"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/show_row_createdby"
+            app:layout_constraintStart_toEndOf="@+id/show_row_topic"
 
-            android:background="#9E9E9E" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/CreatedBy"
+            android:id="@+id/show_row_createdby"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/createdby"
+            android:background="#9E9E9E"
             android:textAlignment="center"
             android:textAllCaps="false"
             android:textColor="@android:color/black"
             android:textSize="20sp"
-            android:textStyle="bold"
 
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/LimitDate"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/show_row_limitdate"
 
-            android:background="#9E9E9E" />
+            app:layout_constraintTop_toTopOf="parent" />
 
     </android.support.constraint.ConstraintLayout>
-
-    <ListView
-        android:id="@+id/show_listView"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/LayoutTitles" />
 
 </android.support.constraint.ConstraintLayout>
