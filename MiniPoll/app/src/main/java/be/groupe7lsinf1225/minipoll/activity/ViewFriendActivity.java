@@ -27,8 +27,7 @@ public class ViewFriendActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_user);
 
-        //al = User.getAllFriend(User.getConnectedUser().getLogin());
-        al = new ArrayList<>();
+        al = User.getConnectedUser().getAllFriend();
 
         arrayAdapter = new ViewFriendAdapter(this, al);
 

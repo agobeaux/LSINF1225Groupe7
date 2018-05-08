@@ -32,7 +32,7 @@ public class ViewFriendAdapter extends ArrayAdapter {
           textViewusername.setText(friend.get(position).getLogin());
 
         ImageButton bestfriendbutton = newView.findViewById(R.id.view_friend_bestfriend_button);
-        if(User.getConnectedUser().getbestfriend().equals(friend.get(position).getLogin())) {
+        if(friend.get(position).getLogin().equals(User.getConnectedUser().getbestfriend())) {
             bestfriendbutton.setImageResource(R.drawable.default_profile);
         }
         else {
