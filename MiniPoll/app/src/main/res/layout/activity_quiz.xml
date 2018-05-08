@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBackground"
-    tools:context="be.groupe7lsinf1225.minipoll.object.QuizActivity">
+    tools:context="be.groupe7lsinf1225.minipoll.activity.QuizActivity">
 
 
     <android.support.constraint.ConstraintLayout

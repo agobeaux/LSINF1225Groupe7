@@ -27,7 +27,7 @@
             android:name=".activity.MainMenuActivity"
             android:parentActivityName=".activity.LoginActivity" />
         <activity
-            android:name=".object.QuizActivity"
+            android:name=".activity.QuizActivity"
             android:parentActivityName=".activity.MainMenuActivity" />
         </activity>
     </application>
