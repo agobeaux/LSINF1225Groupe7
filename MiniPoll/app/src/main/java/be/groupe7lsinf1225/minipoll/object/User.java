@@ -46,7 +46,7 @@ public class User {
     private String login;
     private String password;
     private String email;
-    private String picture;
+    private int picture;
 
     /**
      * Constructeur (accessible uniquement dans cette classe, instanciable en dehors via getUsers)
@@ -224,5 +224,9 @@ public class User {
 
     public String getEmail() {
         return email;
+    }
+
+    public int getPicture() {
+        return picture;
     }
 }

@@ -58,6 +58,9 @@ public class ProfileCreationActivity extends Activity implements TextView.OnEdit
             if(!User.putUser(username,password,firstname,lastname,mailaddress)){
                 AppMiniPoll.notifyLong(R.string.error_sign_up);
             }
+            else{
+                AppMiniPoll.notifyShort(R.string.sign_up);
+            }
 
             startActivity(intent);
         }

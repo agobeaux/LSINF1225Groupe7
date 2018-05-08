@@ -49,4 +49,14 @@
     <string name="modifypicture">Modify picture</string>
     <string name="profile">Profile</string>
 
+    <!-- Quiz Activity -->
+    <string name="topic">Topic</string>
+    <string name="limitdate">Limit date</string>
+    <string name="createdby">Created by</string>
+
+    <!-- Gestion Friend Activity -->
+    <string name="title_activity_gestion_friend">GestionFriendActivity</string>
+    <string name="title_activity_scrolling">ScrollingActivity</string>
+    <string name="action_settings">Settings</string>
+
 </resources>
