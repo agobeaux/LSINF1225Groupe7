@@ -32,6 +32,15 @@
     <string name="sign_up">You sucessfully sign up</string>
     <string name="error_sign_up">Sign up failed, please try again later</string>
 
+    <!-- Profile Update Activity -->
+    <string name="update_profile">Update your profile</string>
+    <string name="old_password">Old password</string>
+    <string name="old_password_precision">Only if you change your actual password</string>
+    <string name="new_password">New or actual password</string>
+    <string name="not_completed_required">Please complete all required fields</string>
+    <string name="wrong_old_password">Wrong old password</string>
+    <string name="error_update_profile">Update failed, please try again later</string>
+
     <!-- Main Menu Activity -->
     <string name="mainmenu">Main menu</string>
     <string name="logout">Log out</string>

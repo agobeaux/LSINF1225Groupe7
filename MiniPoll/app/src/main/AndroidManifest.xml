@@ -3,7 +3,7 @@
     package="be.groupe7lsinf1225.minipoll">
 
     <application
-        android:name="be.groupe7lsinf1225.minipoll.AppMiniPoll"
+        android:name=".AppMiniPoll"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -13,18 +13,20 @@
         <activity android:name=".activity.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".activity.AccountCreationActivity"
-            android:parentActivityName=".activity.LoginActivity"/>
+            android:parentActivityName=".activity.LoginActivity" />
         <activity
             android:name=".activity.ProfileCreationActivity"
-            android:parentActivityName=".activity.AccountCreationActivity"/>
+            android:parentActivityName=".activity.AccountCreationActivity" />
         <activity
             android:name=".activity.MainMenuActivity"
             android:parentActivityName=".activity.LoginActivity" />
+        <activity android:name=".activity.UpdateProfileActivity"></activity>
     </application>
 
 </manifest>
