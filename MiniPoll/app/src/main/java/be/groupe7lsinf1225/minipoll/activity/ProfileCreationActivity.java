@@ -50,8 +50,7 @@ public class ProfileCreationActivity extends Activity implements TextView.OnEdit
             AppMiniPoll.notifyShort(R.string.wrong_email);
         }
         else {
-            Log.e("createProfile","1");
-            Intent intent = new Intent(this, MainMenuActivity.class);
+            Intent intent = new Intent(this, LoginActivity.class);
             Intent oldIntent = getIntent();
             String username = oldIntent.getStringExtra("username");
             String password = oldIntent.getStringExtra("password");

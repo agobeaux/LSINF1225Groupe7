@@ -100,8 +100,8 @@
         android:id="@+id/imageButton4"
         android:layout_width="178dp"
         android:layout_height="163dp"
-        android:src="@drawable/profile_placeholder"
         android:scaleType="fitXY"
+        android:src="@drawable/profile_placeholder"
 
         app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
         app:layout_constraintLeft_toLeftOf="parent"

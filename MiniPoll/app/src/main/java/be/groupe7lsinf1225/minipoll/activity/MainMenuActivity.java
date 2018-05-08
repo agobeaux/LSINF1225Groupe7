@@ -23,11 +23,12 @@ public class MainMenuActivity extends AppCompatActivity {
 
     public void logout(View view) {
         User.logout();
-        finish();
+        Intent intent = new Intent(this,LoginActivity.class);
+        startActivity(intent);
     }
 
     public void consultProfile(View view) {
-        //Intent intent = new Intent(this, ProfileConsultationActivity.class);
-        //startActivity(intent);
+        Intent intent = new Intent(this, UpdateProfileActivity.class);
+        startActivity(intent);
     }
 }
