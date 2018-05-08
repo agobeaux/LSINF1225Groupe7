@@ -51,13 +51,16 @@ public class ProfileCreationActivity extends Activity implements TextView.OnEdit
         }
         else {
             Log.e("createProfile","1");
-            Intent intent = new Intent(this, LoginActivity.class);
+            Intent intent = new Intent(this, MainMenuActivity.class);
             Intent oldIntent = getIntent();
             String username = oldIntent.getStringExtra("username");
             String password = oldIntent.getStringExtra("password");
 
             if(!User.putUser(username,password,firstname,lastname,mailaddress)){
                 AppMiniPoll.notifyLong(R.string.error_sign_up);
+            }
+            else{
+                AppMiniPoll.notifyShort(R.string.sign_up);
             }
 
             startActivity(intent);
