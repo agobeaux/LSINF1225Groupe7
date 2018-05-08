@@ -29,8 +29,14 @@ public class ViewUserAdapter extends ArrayAdapter {
         TextView textViewusername = newView.findViewById(R.id.view_user_username);
           textViewusername.setText(user.get(position).getLogin());
 
-        ImageButton addbutton = newView.findViewById(R.id.view_user_add_button);
-          addbutton.setImageResource(R.drawable.ic_add_button);
+          boolean friend=true;
+          if(friend) {
+              ImageButton addbutton = newView.findViewById(R.id.view_user_add_button);
+              addbutton.setImageResource(R.drawable.ic_add_button);
+          }
+          else{
+
+          }
 
         TextView textViewfirstname = newView.findViewById(R.id.view_user_first_name);
           textViewfirstname.setText(user.get(position).getFirstName());

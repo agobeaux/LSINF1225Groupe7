@@ -55,12 +55,14 @@ public class User {
         this.login = login;
         this.password = password;
     }
-    private User(String login, String password, String first_name, String last_name, String email) {
+    public User(String login, String password, String first_name, String last_name, String email,String bestfriend,int picture) {
         this.first_name = first_name;
         this.last_name = last_name;
         this.login = login;
         this.password = password;
         this.email = email;
+        this.best_friend = bestfriend;
+        this.picture = picture;
     }
 
     /**
@@ -81,6 +83,25 @@ public class User {
             return true;
         }
         return false;
+    }
+
+    public static ArrayList<User> getAllUser() {
+        ArrayList<User> users = new ArrayList<>();
+        SQLiteDatabase db = MySQLiteHelper.get().getReadableDatabase();
+        String[] columns = {DB_COLUMN_LOGIN,DB_COLUMN_PASSWORD,DB_COLUMN_FIRSTNAME,DB_COLUMN_LASTNAME,DB_COLUMN_EMAIL,DB_COLUMN_BEST_FRIEND,DB_COLUMN_PICTURE};
+
+        Cursor cursor = db.query(DB_TABLE, columns, null, null, null, null, null);
+
+        cursor.moveToFirst();
+
+        while (!cursor.isAfterLast()){
+            users.add(new User(cursor.getString(0),cursor.getString(1),cursor.getString(2),cursor.getString(3),cursor.getString(4),cursor.getString(5),-1));
+            cursor.moveToNext();
+        }
+
+        cursor.close();
+        db.close();
+        return users;
     }
 
     public boolean goodPassword(String passwordWritten) {
@@ -152,7 +173,7 @@ public class User {
         String last_name = cursor.getString(2);
         String email = cursor.getString(4);
 
-        User user = new User(username,password,first_name,last_name,email);
+        User user = new User(username,password,first_name,last_name,null,email,-1);
 
         cursor.close();
         db.close();
@@ -199,7 +220,7 @@ public class User {
 
         db.close();
 
-        User user = new User(username,password,first_name,last_name,mailaddress);
+        User user = new User(username,password,first_name,last_name,null,mailaddress,-1);
         User.connected_user = user;
     }
 

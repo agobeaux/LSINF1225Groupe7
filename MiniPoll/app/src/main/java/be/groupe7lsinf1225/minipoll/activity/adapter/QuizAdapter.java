@@ -52,9 +52,11 @@ public abstract class QuizAdapter extends BaseAdapter {
     }
 
 
+
     public View getView(int i, View view, View convertView, ViewGroup viewGroup) {
+
         if (convertView == null) {
-            convertView = mInflater.inflate(R.layout.collected_friend_row, viewGroup, false);
+            //convertView = mInflater.inflate(R.layout.collected_friend_row, viewGroup, false);
         }
         TextView topic = convertView.findViewById(R.id.show_row_topic);
         TextView limitdate = convertView.findViewById(R.id.show_row_limitdate);
