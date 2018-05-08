@@ -1,5 +1,6 @@
 package be.groupe7lsinf1225.minipoll.object;
 
+import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
@@ -69,7 +70,7 @@ public class User {
      */
     public static void logout() {
         User.connected_user = null;
-        // + tout ce qu'il y aura à couper quand on se déconnecte (ex dans le muusic_player : couper
+        // + tout ce qu'il y aura à couper quand on se déconnecte (ex dans le music_player : couper
         // la musique)
     }
 
@@ -114,6 +115,26 @@ public class User {
         db.close();
 
         return user;
+    }
+
+    public static boolean putUser(String username, String password, String first_name, String last_name, String email){
+        SQLiteDatabase db = MySQLiteHelper.get().getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(DB_COLUMN_LOGIN, username);
+        values.put(DB_COLUMN_PASSWORD, password);
+        values.put(DB_COLUMN_FIRSTNAME, first_name);
+        values.put(DB_COLUMN_LASTNAME, last_name);
+        values.put(DB_COLUMN_EMAIL, email);
+
+        int result = (int) db.insert(DB_TABLE,null,values);
+        if(result == -1){
+            // erreur dans l'écriture dans la base de données
+            db.close();
+            return false;
+        }
+        db.close();
+        return true;
     }
 
     // === Get === //

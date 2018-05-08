@@ -3,6 +3,7 @@ package be.groupe7lsinf1225.minipoll.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 
 import be.groupe7lsinf1225.minipoll.AppMiniPoll;
 import be.groupe7lsinf1225.minipoll.R;
+import be.groupe7lsinf1225.minipoll.object.User;
 
 public class ProfileCreationActivity extends Activity implements TextView.OnEditorActionListener {
 
@@ -44,18 +46,24 @@ public class ProfileCreationActivity extends Activity implements TextView.OnEdit
         if (firstname.equals("") || lastname.equals("") || mailaddress.equals("")) {
             AppMiniPoll.notifyShort(R.string.not_completed);
         }
-        else if (!mailaddress.contains("@")) {
+        else if (!mailaddress.contains("@") || !mailaddress.contains(".")) {
             AppMiniPoll.notifyShort(R.string.wrong_email);
         }
         else {
-            String username = getIntent().getStringExtra("username");
-            String password = getIntent().getStringExtra("password");
-            //creation account
-            firstnameEditText.setText(username);
-            lastnameEditText.setText(password);
-            AppMiniPoll.notifyShort(R.string.sign_up);
+            Log.e("createProfile","1");
             Intent intent = new Intent(this, MainMenuActivity.class);
-            //startActivity(intent);
+            Intent oldIntent = getIntent();
+            String username = oldIntent.getStringExtra("username");
+            String password = oldIntent.getStringExtra("password");
+
+            if(!User.putUser(username,password,firstname,lastname,mailaddress)){
+                AppMiniPoll.notifyLong(R.string.error_sign_up);
+            }
+            else{
+                AppMiniPoll.notifyShort(R.string.sign_up);
+            }
+
+            startActivity(intent);
         }
     }
 

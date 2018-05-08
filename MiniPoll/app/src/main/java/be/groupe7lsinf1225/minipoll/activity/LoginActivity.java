@@ -55,6 +55,7 @@ public class LoginActivity extends Activity implements TextView.OnEditorActionLi
 
         User user = User.getUser(username);
 
+
         if(user != null) {
             if (user.login(password)) {
                 Intent intent = new Intent(this, MainMenuActivity.class);

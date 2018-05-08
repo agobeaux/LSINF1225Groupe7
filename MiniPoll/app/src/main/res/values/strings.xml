@@ -28,8 +28,9 @@
     <string name="createyourprofile">Create your profile</string>
     <string name="confirm">Confirm</string>
     <string name="optionalpicture">Optional picture</string>
-    <string name="wrong_email">Invalid E-mail address</string>
+    <string name="wrong_email">Invalid e-mail address</string>
     <string name="sign_up">You sucessfully sign up</string>
+    <string name="error_sign_up">Sign up failed, please try again later</string>
 
     <!-- Main Menu Activity -->
     <string name="mainmenu">Main menu</string>

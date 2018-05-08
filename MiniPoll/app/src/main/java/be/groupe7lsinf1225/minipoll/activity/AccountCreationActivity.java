@@ -53,10 +53,10 @@ public class AccountCreationActivity extends Activity implements TextView.OnEdit
         if (username.equals("") || password.equals("") || confirmpassword.equals("")) {
             AppMiniPoll.notifyShort(R.string.not_completed);
         }
-        else if (username.length() <= 5 || username.length() >= 14) {
+        else if (username.length() < 5 || username.length() > 14) {
             AppMiniPoll.notifyLong(R.string.username_wrong_length);
         }
-        else if (password.length() <= 5 || password.length() >= 14) {
+        else if (password.length() < 5 || password.length() > 14) {
             AppMiniPoll.notifyLong(R.string.password_wrong_length);
         }
         else if(!password.equals(confirmpassword)){
