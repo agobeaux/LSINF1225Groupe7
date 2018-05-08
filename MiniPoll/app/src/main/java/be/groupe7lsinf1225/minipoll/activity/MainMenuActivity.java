@@ -27,6 +27,12 @@ public class MainMenuActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    /** Called when the user taps the quiz image button */
+    public void quiz(View view) {
+        Intent intent = new Intent(this, QuizActivity.class);
+        startActivity(intent);
+    }
+
     public void consultProfile(View view) {
         Intent intent = new Intent(this, UpdateProfileActivity.class);
         startActivity(intent);
