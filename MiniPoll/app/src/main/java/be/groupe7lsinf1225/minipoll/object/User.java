@@ -45,7 +45,7 @@ public class User {
     private String login;
     private String password;
     private String email;
-    private String picture;
+    private int picture;
 
     /**
      * Constructeur (accessible uniquement dans cette classe, instanciable en dehors via getUsers)
@@ -54,7 +54,7 @@ public class User {
         this.login = login;
         this.password = password;
     }
-    private User(String login, String password, String first_name, String last_name, String email, String best_friend, String picture) {
+    public User(String login, String password, String first_name, String last_name, String email, String best_friend, int picture) {
         this.first_name = first_name;
         this.last_name = last_name;
         this.login = login;
@@ -137,5 +137,9 @@ public class User {
 
     public String getEmail() {
         return email;
+    }
+
+    public int getPicture() {
+        return picture;
     }
 }

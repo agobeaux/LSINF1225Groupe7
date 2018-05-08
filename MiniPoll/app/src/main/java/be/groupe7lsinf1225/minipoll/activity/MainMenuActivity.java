@@ -15,6 +15,10 @@ public class MainMenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main_menu);
     }
 
+    public void friendlist(View view){
+        Intent intent = new Intent(this, GestionFriendActivity.class);
+        startActivity(intent);
+    }
     public void consultProfile(View view) {
         //Intent intent = new Intent(this, ProfileConsultationActivity.class);
         //startActivity(intent);
