@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -26,15 +25,7 @@ public class ViewUserActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_user);
 
-        al = new ArrayList<>();
-        al.add(new User("LoL1","","first1","last1","coucou1@com","",-1));
-        al.add(new User("LoL2","","first2","last2","coucou2@com","",-1));
-        al.add(new User("LoL3","","first3","last3","coucou3@com","",-1));
-        al.add(new User("LoL4","","first4","last4","coucou4@com","",-1));
-        al.add(new User("LoL5","","first5","last5","coucou5@com","",-1));
-        al.add(new User("LoL6","","first6","last6","coucou6@com","",-1));
-        al.add(new User("LoL7","","first7","last7","coucou7@com","",-1));
-        al.add(new User("LoL8","","first8","last8","coucou8@com","",-1));
+        al = User.getAllUser();
 
         arrayAdapter = new ViewUserAdapter(this, al );
 
@@ -57,27 +48,25 @@ public class ViewUserActivity extends Activity {
                 //You also have access to the original object.
                 //If you want to use it just cast it (String) dataObject
                 al.add(al.get(0));
-                makeToast(ViewUserActivity.this, "Left!");
+                makeToast(ViewUserActivity.this, "Bye Bye!");
             }
 
             @Override
             public void onRightCardExit(Object dataObject) {
-                makeToast(ViewUserActivity.this, "Right!");
+                makeToast(ViewUserActivity.this, "I'm gone!");
             }
 
             @Override
             public void onAdapterAboutToEmpty(int itemsInAdapter) {
                 // Ask for more data here
-                al.add(new User("LoLX","","firstX","lastX","coucou@com","",-1));
+                al.add(new User("No More User","","","","","",-1));
                 arrayAdapter.notifyDataSetChanged();
                 Log.d("LIST", "notified");
             }
 
             @Override
             public void onScroll(float scrollProgressPercent) {
-                //View view = flingContainer.getSelectedView();
-                //view.findViewById(R.id.item_swipe_right_indicator).setAlpha(scrollProgressPercent < 0 ? -scrollProgressPercent : 0);
-                //view.findViewById(R.id.item_swipe_left_indicator).setAlpha(scrollProgressPercent > 0 ? scrollProgressPercent : 0);
+
             }
         });
 
