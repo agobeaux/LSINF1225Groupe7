@@ -60,14 +60,17 @@ public class QuizAdapter extends BaseAdapter {
             //convertView = mInflater.inflate(R.layout.collected_friend_row, viewGroup, false);
         }
         TextView topic = convertView.findViewById(R.id.show_row_topic);
-        TextView limitdate = convertView.findViewById(R.id.show_row_limitdate);
+        TextView state = convertView.findViewById(R.id.show_row_state);
         TextView createdby = convertView.findViewById(R.id.show_row_createdby);
 
         Quiz quiz = quizzes.get(i);
         topic.setText(quiz.getTitle());
-        SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy");//formating according to my need
-        String date = formatter.format(quiz.getDate());
-        limitdate.setText(date);
+        if(quiz.getState()){
+            state.setText("Open");
+        }
+        else{
+            state.setText("Closed");
+        }
         createdby.setText(quiz.getAuthor());
         return convertView;
     }
