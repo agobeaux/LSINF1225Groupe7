@@ -1,0 +1,479 @@
+commit f26714984fda260b84e58f314067192d6e89c31c
+Author: gildasmulders <gildas.mulders@gmail.com>
+Date:   Tue May 8 10:51:02 2018 +0200
+
+    testEmail
+
+ testEmail.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 00b53733b54f90d34d8a276bec1e4ab7714925a7
+Author: DeJeremy <degraeuwe.jeremy@outlook.com>
+Date:   Mon May 7 18:51:10 2018 +0200
+
+    Fonctionnalité logout/déconnexion
+
+ .../be/groupe7lsinf1225/minipoll/activity/MainMenuActivity.java     | 6 ++++++
+ .../app/src/main/java/be/groupe7lsinf1225/minipoll/object/User.java | 2 +-
+ MiniPoll/app/src/main/res/layout/activity_main_menu.xml             | 1 +
+ 3 files changed, 8 insertions(+), 1 deletion(-)
+
+commit fc5368b33e7bafc43f20449bf03849f5a4fc7dbb
+Author: DeJeremy <degraeuwe.jeremy@outlook.com>
+Date:   Mon May 7 18:41:10 2018 +0200
+
+    Inscription fonctionnelle avec lien à la base de données
+
+ .../minipoll/activity/AccountCreationActivity.java  |  4 ++--
+ .../minipoll/activity/ProfileCreationActivity.java  | 15 +++++++++++----
+ .../be/groupe7lsinf1225/minipoll/object/User.java   | 21 +++++++++++++++++++++
+ MiniPoll/app/src/main/res/values/strings.xml        |  3 ++-
+ 4 files changed, 36 insertions(+), 7 deletions(-)
+
+commit 07f98dbec1ba2dcd81ef2940dfb9744957685298
+Merge: 546184c c31bb08
+Author: DeJeremy <degraeuwe.jeremy@outlook.com>
+Date:   Mon May 7 17:37:56 2018 +0200
+
+    Merge branch 'master' of https://github.com/agobeaux/LSINF1225Groupe7
+
+commit 546184c1f7799c332b9a79f559d974e06f6e70e4
+Author: DeJeremy <degraeuwe.jeremy@outlook.com>
+Date:   Mon May 7 17:37:45 2018 +0200
+
+    Corrections vérifications sur les entrées à la création de profil
+
+ .../main/java/be/groupe7lsinf1225/minipoll/activity/LoginActivity.java  | 1 +
+ .../be/groupe7lsinf1225/minipoll/activity/ProfileCreationActivity.java  | 2 +-
+ 2 files changed, 2 insertions(+), 1 deletion(-)
+
+commit c31bb08724cf7789cb38677de54cb6f13ecdb514
+Author: arnaud spits <arnaudspits@gmail.com>
+Date:   Mon May 7 17:05:21 2018 +0200
+
+    minor modification a account&profil creation activity
+
+ MiniPoll/.idea/vcs.xml                                     |  6 ++++++
+ .../minipoll/activity/AccountCreationActivity.java         | 14 +++++++++++++-
+ .../minipoll/activity/ProfileCreationActivity.java         |  5 +++--
+ MiniPoll/app/src/main/res/values/strings.xml               |  1 +
+ 4 files changed, 23 insertions(+), 3 deletions(-)
+
+commit 1af91c72d773cf1308b8c8cede545301072e2019
+Author: DeJeremy <degraeuwe.jeremy@outlook.com>
+Date:   Mon May 7 12:36:30 2018 +0200
+
+    Vérification sur l'adresse mail entrée
+
+ .../minipoll/activity/ProfileCreationActivity.java               | 9 ++++++---
+ MiniPoll/app/src/main/res/values/strings.xml                     | 1 +
+ 2 files changed, 7 insertions(+), 3 deletions(-)
+
+commit 8ad4e9b447cba08c22e49ce03919691d4d02fee5
+Author: DeJeremy <degraeuwe.jeremy@outlook.com>
+Date:   Mon May 7 12:18:19 2018 +0200
+
+    Implémentation de la création de compte
+
+ MiniPoll/.idea/codeStyles/Project.xml              | 24 ++++++++++++++++++++++
+ MiniPoll/app/src/main/AndroidManifest.xml          |  2 --
+ .../minipoll/activity/AccountCreationActivity.java | 19 ++++++++++++++++-
+ .../minipoll/activity/MainMenuActivity.java        |  4 ++--
+ MiniPoll/app/src/main/res/values/strings.xml       |  5 +++++
+ 5 files changed, 49 insertions(+), 5 deletions(-)
+
+commit 559866122eeb18adecddbd4e88d61a86e2816bd5
+Merge: ff1d4d9 54719a9
+Author: DeJeremy <degraeuwe.jeremy@outlook.com>
+Date:   Mon May 7 11:29:05 2018 +0200
+
+    Résolution de conflit dans le manifest
+
+commit ff1d4d915616c791b8ed81c97b0dcc6567ad027c
+Author: DeJeremy <degraeuwe.jeremy@outlook.com>
+Date:   Mon May 7 11:23:20 2018 +0200
+
+    Suite du commit précédent
+
+ MiniPoll/.idea/caches/build_file_checksums.ser     | Bin 538 -> 536 bytes
+ MiniPoll/.idea/codeStyles/Project.xml              |  24 ++
+ MiniPoll/.idea/dbnavigator.xml                     | 453 +++++++++++++++++++++
+ .../be/groupe7lsinf1225/minipoll/object/User.java  |   2 +-
+ 4 files changed, 478 insertions(+), 1 deletion(-)
+
+commit e5fd93c8126975122efa2de8460480bc00fc1b31
+Author: DeJeremy <degraeuwe.jeremy@outlook.com>
+Date:   Mon May 7 11:21:25 2018 +0200
+
+    Gestion fonctionnelle de la connexion et de la base de données
+
+ MiniPoll/app/src/main/AndroidManifest.xml          |  9 ++--
+ MiniPoll/app/src/main/assets/database.sql          | 49 ++++---------------
+ .../be/groupe7lsinf1225/minipoll/AppMiniPoll.java  |  1 +
+ .../groupe7lsinf1225/minipoll/MySQLiteHelper.java  |  2 +-
+ .../minipoll/activity/LoginActivity.java           |  5 ++
+ .../be/groupe7lsinf1225/minipoll/object/User.java  | 56 ++++------------------
+ .../app/src/main/res/layout/activity_login.xml     |  1 +
+ MiniPoll/app/src/main/res/values/strings.xml       |  3 +-
+ 8 files changed, 32 insertions(+), 94 deletions(-)
+
+commit 54719a9d1b00e06b4d5576d32d77e4a823b24379
+Author: gildasmulders <gildas.mulders@uclouvain.be>
+Date:   Mon May 7 01:03:19 2018 +0200
+
+    Profile + backgrounds
+
+ MiniPoll/.idea/caches/build_file_checksums.ser          | Bin 535 -> 535 bytes
+ MiniPoll/.idea/misc.xml                                 |   2 +-
+ MiniPoll/app/src/main/AndroidManifest.xml               |   7 ++++---
+ .../minipoll/activity/LoginActivity.java                |   2 +-
+ .../minipoll/activity/MainMenuActivity.java             |   5 +++++
+ .../minipoll/activity/ProfileCreationActivity.java      |   4 ++--
+ .../src/main/res/layout/activity_account_creation.xml   |   1 +
+ MiniPoll/app/src/main/res/layout/activity_login.xml     |   2 ++
+ MiniPoll/app/src/main/res/layout/activity_main_menu.xml |   2 ++
+ .../src/main/res/layout/activity_profile_creation.xml   |   3 ++-
+ MiniPoll/app/src/main/res/values/colors.xml             |   2 ++
+ MiniPoll/app/src/main/res/values/strings.xml            |   4 ++++
+ MiniPoll/app/src/main/res/values/styles.xml             |   1 +
+ 13 files changed, 27 insertions(+), 8 deletions(-)
+
+commit 16342c73cfd396fc636102ef9585c8a18a107726
+Merge: e16a217 4db4bef
+Author: gildasmulders <gildas.mulders@uclouvain.be>
+Date:   Sun May 6 22:30:32 2018 +0200
+
+    Merge branch 'master' of https://github.com/agobeaux/LSINF1225Groupe7
+
+commit e16a217cd1dc43b9bb661bd93451a8cc86397bc6
+Author: gildasmulders <gildas.mulders@uclouvain.be>
+Date:   Sun May 6 22:30:17 2018 +0200
+
+    R
+
+ MiniPoll/.idea/caches/build_file_checksums.ser    | Bin 538 -> 535 bytes
+ MiniPoll/.idea/codeStyles/Project.xml             |  24 ----------------------
+ MiniPoll/.idea/misc.xml                           |   2 +-
+ MiniPoll/build.gradle                             |   2 +-
+ MiniPoll/gradle/wrapper/gradle-wrapper.properties |   4 ++--
+ 5 files changed, 4 insertions(+), 28 deletions(-)
+
+commit 4db4bef164d72fffa1f8191b897c4f66f18213c8
+Merge: 9be62fe 17aec67
+Author: agobeaux <alexandre.gobeaux@student.uclouvain.be>
+Date:   Sat May 5 17:55:00 2018 +0200
+
+    Merge branch 'master' of https://github.com/agobeaux/LSINF1225Groupe7
+
+commit 9be62fe8a8f03b5cb3ed6a28dba254aaf3383aa9
+Author: agobeaux <alexandre.gobeaux@student.uclouvain.be>
+Date:   Sat May 5 17:52:50 2018 +0200
+
+    Correction de l'oubli d'un argument dans User.java.
+    Ajout d'un gitlog.stat (pas utile)
+
+ .../app/src/main/java/be/groupe7lsinf1225/minipoll/object/User.java     | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 17aec67bf0b7249ffce8533d56128009e7a9612d
+Author: DeJeremy <degraeuwe.jeremy@outlook.com>
+Date:   Fri May 4 17:27:05 2018 +0200
+
+    Améliorations de la classe User et adaptation dans l'activité login
+
+ .../minipoll/activity/LoginActivity.java           |  2 +-
+ .../be/groupe7lsinf1225/minipoll/object/User.java  | 59 ++++++++--------------
+ 2 files changed, 23 insertions(+), 38 deletions(-)
+
+commit a37ebaee07d8ab5d6cd51a87debbae2293bf6731
+Merge: a875a7e 1d7a375
+Author: nicolascayphas <nicolas.cayphas@yahoo.com>
+Date:   Fri May 4 10:58:07 2018 +0200
+
+    Merge branch 'master' of https://github.com/agobeaux/LSINF1225Groupe7
+
+commit a875a7e084f575dcfdfbda4b24f1d7cd87a65f35
+Author: nicolascayphas <nicolas.cayphas@yahoo.com>
+Date:   Fri May 4 10:57:15 2018 +0200
+
+    user
+
+ MiniPoll/app/src/main/java/be/groupe7lsinf1225/minipoll/object/User.java | 1 -
+ 1 file changed, 1 deletion(-)
+
+commit 1d7a375bdc11cfb387082294876b93bb88b41725
+Author: agobeaux <alexandre.gobeaux@student.uclouvain.be>
+Date:   Fri May 4 00:19:38 2018 +0200
+
+    Main Menu Activity (layout only) + pictures used in it
+
+ MiniPoll/app/src/main/AndroidManifest.xml          |   7 +-
+ .../minipoll/activity/MainMenuActivity.java        |  17 +++
+ .../app/src/main/res/drawable/menu_agreements.png  | Bin 0 -> 73594 bytes
+ .../app/src/main/res/drawable/menu_friends.png     | Bin 0 -> 19492 bytes
+ .../app/src/main/res/drawable/menu_helpafriend.png | Bin 0 -> 6337 bytes
+ MiniPoll/app/src/main/res/drawable/menu_poll.png   | Bin 0 -> 7750 bytes
+ .../app/src/main/res/drawable/menu_profile.png     | Bin 0 -> 3234 bytes
+ MiniPoll/app/src/main/res/drawable/menu_quiz.png   | Bin 0 -> 4237 bytes
+ .../app/src/main/res/layout/activity_main_menu.xml | 129 +++++++++++++++++++++
+ .../main/res/layout/activity_profile_creation.xml  |  14 +++
+ MiniPoll/app/src/main/res/values/strings.xml       |   5 +
+ 11 files changed, 168 insertions(+), 4 deletions(-)
+
+commit 7ececba51a1144dd53dcaeec9fda4b2d0a398687
+Author: nicolascayphas <nicolas.cayphas@yahoo.com>
+Date:   Thu May 3 16:08:09 2018 +0200
+
+    string error
+
+ MiniPoll/app/src/main/res/values/strings.xml | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit 7988f47799b7c2c484ae7193ed0af9df143a3a45
+Merge: 5cd73f8 f6126e1
+Author: DeJeremy <degraeuwe.jeremy@outlook.com>
+Date:   Thu May 3 16:05:38 2018 +0200
+
+    Correction de conflits
+
+commit 5cd73f8514b15e3d703633baa1f92a6c340da8ad
+Author: DeJeremy <degraeuwe.jeremy@outlook.com>
+Date:   Thu May 3 16:00:37 2018 +0200
+
+    Ajout de la méthode getUsers qui permet l'instanciation d'un User
+
+ .../be/groupe7lsinf1225/minipoll/object/User.java  | 38 ++++++++++++----------
+ 1 file changed, 20 insertions(+), 18 deletions(-)
+
+commit f6126e1427c49487cd11d557cb50829ac7ab030a
+Author: nicolascayphas <nicolas.cayphas@yahoo.com>
+Date:   Thu May 3 15:57:29 2018 +0200
+
+    fonction userwithstring
+
+ .../app/src/main/java/be/groupe7lsinf1225/minipoll/object/User.java     | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 2f0975b319bd60afd114368c77d956f274bd25e3
+Merge: 8cdedbb 762bb1b
+Author: nicolascayphas <nicolas.cayphas@yahoo.com>
+Date:   Thu May 3 15:56:32 2018 +0200
+
+    fonction userwithstring
+
+commit 8cdedbbfaaba9bbbd57e841926a1c7df64c2689e
+Author: nicolascayphas <nicolas.cayphas@yahoo.com>
+Date:   Thu May 3 15:52:31 2018 +0200
+
+    fonction userwithstring
+
+ .../be/groupe7lsinf1225/minipoll/object/User.java  | 70 +++++++++++++++++-----
+ 1 file changed, 56 insertions(+), 14 deletions(-)
+
+commit 762bb1b6ad9356472362f459ac43a5cedfb62ba9
+Merge: b348e5b 693681f
+Author: DeJeremy <degraeuwe.jeremy@outlook.com>
+Date:   Thu May 3 15:42:30 2018 +0200
+
+    Merge branch 'master' of https://github.com/agobeaux/LSINF1225Groupe7
+
+commit b348e5bd65fb414a4ce0d31bf72ce05beccb45a0
+Author: DeJeremy <degraeuwe.jeremy@outlook.com>
+Date:   Thu May 3 15:40:18 2018 +0200
+
+    Ajout de certains constructeurs et de plusieurs méthodes sur les objets
+
+ MiniPoll/.idea/modules.xml                         |  2 -
+ .../groupe7lsinf1225/minipoll/object/BiPoll.java   | 18 ++++++
+ .../groupe7lsinf1225/minipoll/object/Choice.java   |  3 +
+ .../be/groupe7lsinf1225/minipoll/object/User.java  | 70 ++++++++++++++++++----
+ 4 files changed, 81 insertions(+), 12 deletions(-)
+
+commit 693681f48833d4dceb16569b1a5c8e10ac3e0e73
+Author: ArnaudSpits <arnaudspits@gmail.com>
+Date:   Thu May 3 15:30:13 2018 +0200
+
+    MiniPollApp -> AppMiniPoll
+
+ .../src/main/java/be/groupe7lsinf1225/minipoll/MySQLiteHelper.java    | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit 26d2f44f307bf581cf7ba5c42fc547234a643204
+Merge: 853cca5 dc9d15e
+Author: ArnaudSpits <arnaudspits@gmail.com>
+Date:   Thu May 3 15:25:26 2018 +0200
+
+    ebauce
+
+commit 853cca56d9f0cc8b38afc60de64d77ce34ac25bb
+Author: ArnaudSpits <arnaudspits@gmail.com>
+Date:   Thu May 3 15:11:40 2018 +0200
+
+    ebauche des activités login & AccountCreation & ProfilCreation
+
+ MiniPoll/.idea/caches/build_file_checksums.ser     | Bin 536 -> 538 bytes
+ MiniPoll/.idea/codeStyles/Project.xml              |  24 --
+ MiniPoll/.idea/dbnavigator.xml                     | 453 ---------------------
+ MiniPoll/.idea/modules.xml                         |   2 -
+ .../minipoll/activity/AccountCreationActivity.java |  44 +-
+ .../minipoll/activity/LoginActivity.java           |  60 ++-
+ .../minipoll/activity/ProfileCreationActivity.java |  51 ++-
+ .../be/groupe7lsinf1225/minipoll/object/User.java  |   5 +
+ 8 files changed, 147 insertions(+), 492 deletions(-)
+
+commit dc9d15ee9597453571122cb7a55d1f9d471ddb05
+Merge: 89467f8 77fa771
+Author: DeJeremy <degraeuwe.jeremy@outlook.com>
+Date:   Thu May 3 15:10:11 2018 +0200
+
+    Merge branch 'master' of https://github.com/agobeaux/LSINF1223Groupe7
+
+commit 89467f8667676ce35cb946f5da4b9a4b66194ed7
+Author: DeJeremy <degraeuwe.jeremy@outlook.com>
+Date:   Thu May 3 15:09:57 2018 +0200
+
+    Création de plusieurs classes objets + implémentation de différents constructeurs et fonctions get
+
+ .../minipoll/object/Agreement.java                 |  6 +++
+ .../groupe7lsinf1225/minipoll/object/BiPoll.java   |  6 +++
+ .../groupe7lsinf1225/minipoll/object/Choice.java   | 21 ++++++++++
+ .../groupe7lsinf1225/minipoll/object/Question.java | 45 ++++++++++++++++++++++
+ .../be/groupe7lsinf1225/minipoll/object/Quiz.java  |  6 +++
+ 5 files changed, 84 insertions(+)
+
+commit 77fa771c7ef0354b121f4a10b1997e567142cc23
+Author: agobeaux <alexandre.gobeaux@student.uclouvain.be>
+Date:   Thu May 3 15:03:18 2018 +0200
+
+    Picture (Profile Creation Activity) : ok
+
+ .../be/groupe7lsinf1225/minipoll/activity/ProfileCreationActivity.java  | 2 +-
+ MiniPoll/app/src/main/res/layout/activity_profile_creation.xml          | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+commit a20edfb5def9cb206defa5b74f0bc4b4c02d24af
+Merge: cdb414e 9e279f8
+Author: agobeaux <alexandre.gobeaux@student.uclouvain.be>
+Date:   Thu May 3 14:48:45 2018 +0200
+
+    Merge branch 'master' of https://github.com/agobeaux/LSINF1225Groupe7
+
+commit cdb414e59bde6390f0df373dc148d5b8abb69eb7
+Author: agobeaux <alexandre.gobeaux@student.uclouvain.be>
+Date:   Thu May 3 14:48:27 2018 +0200
+
+    Change
+
+ MiniPoll/app/src/main/res/drawable/default_profile.png   | Bin 0 -> 9733 bytes
+ .../src/main/res/layout/activity_profile_creation.xml    |  13 +++++++------
+ 2 files changed, 7 insertions(+), 6 deletions(-)
+
+commit 9e279f82e55fa6f2e0354ab1f43f162a5bbd72c7
+Author: nicolascayphas <nicolas.cayphas@yahoo.com>
+Date:   Thu May 3 14:25:25 2018 +0200
+
+    Test du commit git
+
+ MiniPoll/.idea/modules.xml                                             | 2 ++
+ .../app/src/main/java/be/groupe7lsinf1225/minipoll/object/Poll.java    | 3 +++
+ 2 files changed, 5 insertions(+)
+
+commit baed17dc53c493b761f8d637243e9ca1d7f5359e
+Author: DeJeremy <degraeuwe.jeremy@outlook.com>
+Date:   Thu May 3 14:18:13 2018 +0200
+
+    Ajout de la base de données + ébauche de la class abstraite Poll
+
+ MiniPoll/app/src/main/assets/database.sql          | 159 +++++++++++++++++++++
+ .../be/groupe7lsinf1225/minipoll/object/Poll.java  |  14 ++
+ .../be/groupe7lsinf1225/minipoll/object/User.java  |  37 ++---
+ 3 files changed, 184 insertions(+), 26 deletions(-)
+
+commit f21c127c1f97089df0c430a29769002dae91555a
+Author: Alexandre Gobeaux <alexandre.gobeaux@student.uclouvain.be>
+Date:   Thu May 3 13:30:07 2018 +0200
+
+    Delete User.java
+
+ MiniPoll/User.java | 170 -----------------------------------------------------
+ 1 file changed, 170 deletions(-)
+
+commit 7f423daf68f1e2e2ea4129def7abfe1186418b40
+Author: DeJeremy <degraeuwe.jeremy@outlook.com>
+Date:   Thu May 3 13:13:35 2018 +0200
+
+    Création et initialisation de la classe User sans la prise en charge de la base de données
+
+ MiniPoll/.idea/caches/build_file_checksums.ser     | Bin 0 -> 536 bytes
+ MiniPoll/.idea/codeStyles/Project.xml              |  53 +++
+ MiniPoll/.idea/dbnavigator.xml                     | 453 +++++++++++++++++++++
+ MiniPoll/.idea/misc.xml                            |   7 +-
+ MiniPoll/app/src/main/AndroidManifest.xml          |  10 +-
+ .../{ => activity}/AccountCreationActivity.java    |   4 +-
+ .../minipoll/{ => activity}/LoginActivity.java     |   4 +-
+ .../{ => activity}/ProfileCreationActivity.java    |   4 +-
+ .../be/groupe7lsinf1225/minipoll/object/User.java  | 114 ++++++
+ .../main/res/layout/activity_account_creation.xml  |   2 +-
+ .../app/src/main/res/layout/activity_login.xml     |   2 +-
+ .../main/res/layout/activity_profile_creation.xml  |   2 +-
+ 12 files changed, 641 insertions(+), 14 deletions(-)
+
+commit 4483efdc9b11ffc594888cd4ad94b889998baf50
+Author: agobeaux <alexandre.gobeaux@student.uclouvain.be>
+Date:   Wed May 2 16:31:14 2018 +0200
+
+    Fin du TP 26 Avril
+
+ MiniPoll/.gitignore                                |   9 ++
+ MiniPoll/.idea/gradle.xml                          |  18 +++
+ MiniPoll/.idea/misc.xml                            |  33 ++++
+ MiniPoll/.idea/modules.xml                         |   9 ++
+ MiniPoll/.idea/runConfigurations.xml               |  12 ++
+ MiniPoll/User.java                                 | 170 +++++++++++++++++++++
+ MiniPoll/app/.gitignore                            |   1 +
+ MiniPoll/app/build.gradle                          |  28 ++++
+ MiniPoll/app/proguard-rules.pro                    |  21 +++
+ .../minipoll/ExampleInstrumentedTest.java          |  26 ++++
+ MiniPoll/app/src/main/AndroidManifest.xml          |  29 ++++
+ .../minipoll/AccountCreationActivity.java          |  22 +++
+ .../groupe7lsinf1225/minipoll/LoginActivity.java   |  23 +++
+ .../minipoll/ProfileCreationActivity.java          |  17 +++
+ .../res/drawable-v24/ic_launcher_foreground.xml    |  34 +++++
+ .../main/res/drawable/ic_launcher_background.xml   | 170 +++++++++++++++++++++
+ .../src/main/res/drawable/profile_placeholder.jpg  | Bin 0 -> 5490 bytes
+ .../main/res/layout/activity_account_creation.xml  |  97 ++++++++++++
+ .../app/src/main/res/layout/activity_login.xml     | 105 +++++++++++++
+ .../main/res/layout/activity_profile_creation.xml  | 108 +++++++++++++
+ .../src/main/res/mipmap-anydpi-v26/ic_launcher.xml |   5 +
+ .../res/mipmap-anydpi-v26/ic_launcher_round.xml    |   5 +
+ .../app/src/main/res/mipmap-hdpi/ic_launcher.png   | Bin 0 -> 3056 bytes
+ .../src/main/res/mipmap-hdpi/ic_launcher_round.png | Bin 0 -> 5024 bytes
+ .../app/src/main/res/mipmap-mdpi/ic_launcher.png   | Bin 0 -> 2096 bytes
+ .../src/main/res/mipmap-mdpi/ic_launcher_round.png | Bin 0 -> 2858 bytes
+ .../app/src/main/res/mipmap-xhdpi/ic_launcher.png  | Bin 0 -> 4569 bytes
+ .../main/res/mipmap-xhdpi/ic_launcher_round.png    | Bin 0 -> 7098 bytes
+ .../app/src/main/res/mipmap-xxhdpi/ic_launcher.png | Bin 0 -> 6464 bytes
+ .../main/res/mipmap-xxhdpi/ic_launcher_round.png   | Bin 0 -> 10676 bytes
+ .../src/main/res/mipmap-xxxhdpi/ic_launcher.png    | Bin 0 -> 9250 bytes
+ .../main/res/mipmap-xxxhdpi/ic_launcher_round.png  | Bin 0 -> 15523 bytes
+ MiniPoll/app/src/main/res/values/colors.xml        |   6 +
+ MiniPoll/app/src/main/res/values/strings.xml       |  24 +++
+ MiniPoll/app/src/main/res/values/styles.xml        |  11 ++
+ .../groupe7lsinf1225/minipoll/ExampleUnitTest.java |  17 +++
+ MiniPoll/build.gradle                              |  27 ++++
+ MiniPoll/gradle.properties                         |  17 +++
+ MiniPoll/gradle/wrapper/gradle-wrapper.jar         | Bin 0 -> 53636 bytes
+ MiniPoll/gradle/wrapper/gradle-wrapper.properties  |   6 +
+ MiniPoll/gradlew                                   | 160 +++++++++++++++++++
+ MiniPoll/gradlew.bat                               |  90 +++++++++++
+ MiniPoll/settings.gradle                           |   1 +
+ 43 files changed, 1301 insertions(+)
+
+commit c2dcab4fd5a2edf235b28b81ceade3f0ca43d89a
+Author: agobeaux <alexandre.gobeaux@student.uclouvain.be>
+Date:   Wed May 2 16:28:43 2018 +0200
+
+    Initial commit
+
+ README.md | 1 +
+ 1 file changed, 1 insertion(+)
