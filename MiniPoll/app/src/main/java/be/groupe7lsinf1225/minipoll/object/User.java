@@ -94,8 +94,12 @@ public class User {
 
         cursor.moveToFirst();
 
+        String userRequest = User.getConnectedUser().getLogin();
+
         while (!cursor.isAfterLast()){
-            users.add(new User(cursor.getString(0),cursor.getString(1),cursor.getString(2),cursor.getString(3),cursor.getString(4),cursor.getString(5),-1));
+            if(!userRequest.equals(cursor.getString(0))) {
+                users.add(new User(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5), -1));
+            }
             cursor.moveToNext();
         }
 
@@ -224,6 +228,10 @@ public class User {
         User.connected_user = user;
     }
 
+    // === Set === //
+
+    public void setbestfriend(String best_friend){ this.best_friend = best_friend; }
+
     // === Get === //
 
     public static User getConnectedUser() {
@@ -245,6 +253,10 @@ public class User {
 
     public String getEmail() {
         return email;
+    }
+
+    public String getbestfriend() {
+        return best_friend;
     }
 
     public int getPicture() {

@@ -23,25 +23,22 @@ public class ViewUserAdapter extends ArrayAdapter {
         super(context,-1,user);
         mInflater = LayoutInflater.from(context);
         this.user = user;
+
     }
     public View getView(int position, View convertView, ViewGroup parent){
         View newView = mInflater.inflate(R.layout.item_view_user, parent, false);
         TextView textViewusername = newView.findViewById(R.id.view_user_username);
           textViewusername.setText(user.get(position).getLogin());
 
-          boolean friend=true;
-          if(friend) {
-              ImageButton addbutton = newView.findViewById(R.id.view_user_add_button);
-              addbutton.setImageResource(R.drawable.ic_add_button);
-          }
-          else{
-
-          }
+        ImageButton addbutton = newView.findViewById(R.id.view_user_add_button);
+          addbutton.setImageResource(R.drawable.ic_add_button);
 
         TextView textViewfirstname = newView.findViewById(R.id.view_user_first_name);
           textViewfirstname.setText(user.get(position).getFirstName());
+
         TextView textViewlastname = newView.findViewById(R.id.view_user_last_name);
           textViewlastname.setText(user.get(position).getLastName());
+
         TextView textViewemail = newView.findViewById(R.id.view_user_email_adresse);
           textViewemail.setText(user.get(position).getEmail());
 
@@ -56,4 +53,8 @@ public class ViewUserAdapter extends ArrayAdapter {
 
         return newView;
     }
+
+    public void addfriend(View view){
+    }
+
 }
