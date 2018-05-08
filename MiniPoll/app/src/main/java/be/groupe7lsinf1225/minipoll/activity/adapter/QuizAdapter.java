@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import be.groupe7lsinf1225.minipoll.R;
 import be.groupe7lsinf1225.minipoll.object.Quiz;
 
-public class QuizAdapter extends BaseAdapter {
+public abstract class QuizAdapter extends BaseAdapter {
 
     /**
      * Permet d'instancier un fichier xml de layout dans une vue.
@@ -31,7 +31,7 @@ public class QuizAdapter extends BaseAdapter {
      * @param context        Contexte de l'application.
      * @param quizzes Liste des éléments de collection à placer dans la liste.
      */
-    public MyListViewAdapter(Context context, ArrayList<Quiz> quizzes) {
+    public QuizAdapter(Context context, ArrayList<Quiz> quizzes) {
         mInflater = LayoutInflater.from(context);
         this.quizzes = quizzes;
     }
@@ -43,7 +43,7 @@ public class QuizAdapter extends BaseAdapter {
 
     @Override
     public Object getItem(int i) {
-        return quizzes.get(i);;
+        return quizzes.get(i);
     }
 
     @Override
@@ -51,7 +51,7 @@ public class QuizAdapter extends BaseAdapter {
         return i; //idealement aller chercher id de quiz dans sql
     }
 
-    @Override
+
     public View getView(int i, View view, View convertView, ViewGroup viewGroup) {
         if (convertView == null) {
             convertView = mInflater.inflate(R.layout.collected_friend_row, viewGroup, false);
