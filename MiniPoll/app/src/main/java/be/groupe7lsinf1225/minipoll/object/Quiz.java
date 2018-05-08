@@ -1,16 +1,14 @@
 package be.groupe7lsinf1225.minipoll.object;
 
-import java.util.Date;
-
 public class Quiz extends Poll {
 
     private String title;
     private String author;
-    private Date date;
+    private boolean state;
 
-    public Quiz(String title, Date date, String author){
+    public Quiz(String title, String status, String author){
         this.title = title;
-        this.date = date;
+        this.state = state;
         this.author = author;
     }
 
@@ -22,7 +20,7 @@ public class Quiz extends Poll {
         return author;
     }
 
-    public Date getDate() {
-        return date;
+    public boolean getState() {
+        return state;
     }
 }
