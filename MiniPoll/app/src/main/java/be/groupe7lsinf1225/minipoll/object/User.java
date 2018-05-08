@@ -55,14 +55,12 @@ public class User {
         this.login = login;
         this.password = password;
     }
-    public User(String login, String password, String first_name, String last_name, String email, String best_friend, int picture) {
+    private User(String login, String password, String first_name, String last_name, String email) {
         this.first_name = first_name;
         this.last_name = last_name;
         this.login = login;
         this.password = password;
         this.email = email;
-        this.best_friend = best_friend;
-        this.picture = picture;
     }
 
     /**
@@ -78,11 +76,15 @@ public class User {
      * Connecte le User si le mot de passe entré est le bon
      */
     public boolean login(String passwordWritten) {
-        if(this.password.equals(passwordWritten)) {
+        if(this.goodPassword(passwordWritten)) {
             User.connected_user = this;
             return true;
         }
         return false;
+    }
+
+    public boolean goodPassword(String passwordWritten) {
+        return this.password.equals(passwordWritten);
     }
 
 
@@ -117,14 +119,55 @@ public class User {
         return user;
     }
 
+    public static User getInfosConnectedUser(){
+        SQLiteDatabase db = MySQLiteHelper.get().getReadableDatabase();
+
+        String[] columns = {DB_COLUMN_LOGIN,DB_COLUMN_PASSWORD,DB_COLUMN_LASTNAME,DB_COLUMN_FIRSTNAME,DB_COLUMN_EMAIL};
+        String[] valuesWhere = {User.getConnectedUser().getLogin()};
+        String selection = DB_COLUMN_LOGIN + " = ?";
+
+        Cursor cursor = db.query(DB_TABLE, columns, selection, valuesWhere, null, null, null);
+
+        if(cursor.getCount() <= 0){
+            return null;
+        }
+
+        // Placement du curseur sur la première ligne.
+        cursor.moveToFirst();
+
+        String username = cursor.getString(0);
+        String password = cursor.getString(1);
+        Log.e("getInfos","Je passe");
+        String first_name = cursor.getString(3);
+
+        if(first_name.equals("PikaChu22")) {
+            Log.e("Pika","First name is Pika");
+        }
+        else if(first_name.equals("ChuPika22")){
+            Log.e("Pika","First name is Chu");
+        }
+        Log.e("getInfos","Je suis passé");
+
+
+        String last_name = cursor.getString(2);
+        String email = cursor.getString(4);
+
+        User user = new User(username,password,first_name,last_name,email);
+
+        cursor.close();
+        db.close();
+
+        return user;
+    }
+
     public static boolean putUser(String username, String password, String first_name, String last_name, String email){
         SQLiteDatabase db = MySQLiteHelper.get().getWritableDatabase();
 
         ContentValues values = new ContentValues();
         values.put(DB_COLUMN_LOGIN, username);
         values.put(DB_COLUMN_PASSWORD, password);
-        values.put(DB_COLUMN_FIRSTNAME, first_name);
         values.put(DB_COLUMN_LASTNAME, last_name);
+        values.put(DB_COLUMN_FIRSTNAME, first_name);
         values.put(DB_COLUMN_EMAIL, email);
 
         int result = (int) db.insert(DB_TABLE,null,values);
@@ -135,6 +178,29 @@ public class User {
         }
         db.close();
         return true;
+    }
+
+
+    public static void updateUser(String old_username,String first_name,String last_name,String username,String mailaddress,String password) {
+
+        SQLiteDatabase db = MySQLiteHelper.get().getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(DB_COLUMN_LOGIN,username);
+        values.put(DB_COLUMN_PASSWORD, password);
+        values.put(DB_COLUMN_LASTNAME, last_name);
+        values.put(DB_COLUMN_FIRSTNAME, first_name);
+        values.put(DB_COLUMN_EMAIL, mailaddress);
+
+        String selection = DB_COLUMN_LOGIN + " = ?";
+        String[] valuesWhere = {old_username};
+
+        db.update(DB_TABLE,values,selection,valuesWhere);
+
+        db.close();
+
+        User user = new User(username,password,first_name,last_name,mailaddress);
+        User.connected_user = user;
     }
 
     // === Get === //
