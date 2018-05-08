@@ -5,20 +5,20 @@ import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 
 import be.groupe7lsinf1225.minipoll.R;
+import be.groupe7lsinf1225.minipoll.activity.adapter.ViewUserAdapter;
+import be.groupe7lsinf1225.minipoll.object.User;
 
 import com.lorentzos.flingswipe.SwipeFlingAdapterView;
 
 public class ViewUserActivity extends Activity {
 
-    private ArrayList<String> al;
-    private ArrayAdapter<String> arrayAdapter;
-    private int i;
+    private ArrayList<User> al;
+    private ViewUserAdapter arrayAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,16 +27,16 @@ public class ViewUserActivity extends Activity {
         setContentView(R.layout.activity_view_user);
 
         al = new ArrayList<>();
-        al.add("php");
-        al.add("c");
-        al.add("python");
-        al.add("java");
-        al.add("html");
-        al.add("c++");
-        al.add("css");
-        al.add("javascript");
+        al.add(new User("LoL1","","first1","last1","coucou1@com","",-1));
+        al.add(new User("LoL2","","first2","last2","coucou2@com","",-1));
+        al.add(new User("LoL3","","first3","last3","coucou3@com","",-1));
+        al.add(new User("LoL4","","first4","last4","coucou4@com","",-1));
+        al.add(new User("LoL5","","first5","last5","coucou5@com","",-1));
+        al.add(new User("LoL6","","first6","last6","coucou6@com","",-1));
+        al.add(new User("LoL7","","first7","last7","coucou7@com","",-1));
+        al.add(new User("LoL8","","first8","last8","coucou8@com","",-1));
 
-        arrayAdapter = new ArrayAdapter<>(this, R.layout.item_view_user, R.id.helloText, al );
+        arrayAdapter = new ViewUserAdapter(this, al );
 
         SwipeFlingAdapterView flingContainer = findViewById(R.id.view_user_frame);
 
@@ -56,6 +56,7 @@ public class ViewUserActivity extends Activity {
                 //Do something on the left!
                 //You also have access to the original object.
                 //If you want to use it just cast it (String) dataObject
+                al.add(al.get(0));
                 makeToast(ViewUserActivity.this, "Left!");
             }
 
@@ -67,10 +68,9 @@ public class ViewUserActivity extends Activity {
             @Override
             public void onAdapterAboutToEmpty(int itemsInAdapter) {
                 // Ask for more data here
-                al.add("XML ".concat(String.valueOf(i)));
+                al.add(new User("LoLX","","firstX","lastX","coucou@com","",-1));
                 arrayAdapter.notifyDataSetChanged();
                 Log.d("LIST", "notified");
-                i++;
             }
 
             @Override

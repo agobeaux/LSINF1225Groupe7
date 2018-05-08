@@ -15,7 +15,7 @@ public class MainMenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
     }
-git
+
     public void friendlist(View view){
         Intent intent = new Intent(this, GestionFriendActivity.class);
         startActivity(intent);
