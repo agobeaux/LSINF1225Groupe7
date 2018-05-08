@@ -26,7 +26,6 @@
             android:layout_column="0"
             android:layout_gravity="start|top"
             android:layout_row="2"
-            android:onClick="friendlist"
             android:scaleType="fitXY"
             android:src="@drawable/menu_helpafriend" />
         <!--<Button
@@ -58,6 +57,7 @@
             android:layout_column="1"
             android:layout_gravity="end|top"
             android:layout_row="1"
+            android:onClick="quiz"
             android:scaleType="fitXY"
             android:src="@drawable/menu_quiz"
             tools:layout_editor_absoluteX="130dp"
@@ -71,6 +71,7 @@
 
             android:layout_gravity="end|top"
             android:layout_row="0"
+            android:onClick="friendlist"
             android:scaleType="fitXY"
             android:src="@drawable/menu_friends"
             app:layout_constraintRight_toRightOf="parent"
