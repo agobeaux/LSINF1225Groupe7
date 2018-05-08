@@ -85,6 +85,24 @@ public class User {
         return false;
     }
 
+    public static ArrayList<User> getAllUser() {
+        ArrayList<User> users = new ArrayList<>();
+        SQLiteDatabase db = MySQLiteHelper.get().getReadableDatabase();
+        String[] columns = {DB_COLUMN_LOGIN,DB_COLUMN_PASSWORD,DB_COLUMN_FIRSTNAME,DB_COLUMN_LASTNAME,DB_COLUMN_EMAIL,DB_COLUMN_BEST_FRIEND,DB_COLUMN_PICTURE};
+
+        Cursor cursor = db.query(DB_TABLE, columns, null, null, null, null, null);
+
+        cursor.moveToFirst();
+
+        while (!cursor.isAfterLast()){
+            users.add(new User(cursor.getString(0),cursor.getString(1),cursor.getString(2),cursor.getString(3),cursor.getString(4),cursor.getString(5),-1));
+            cursor.moveToNext();
+        }
+
+        cursor.close();
+        db.close();
+        return users;
+    }
 
     public static User getUser(String login) {
         // Récupération du  SQLiteHelper et de la base de données.
