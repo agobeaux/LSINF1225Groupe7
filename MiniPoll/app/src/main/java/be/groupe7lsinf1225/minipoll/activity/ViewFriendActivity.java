@@ -98,9 +98,6 @@ public class ViewFriendActivity extends Activity {
             if(supp==2) {
                 if(User.getConnectedUser().suppFriend(al.get(0).getLogin())) {
                     makeToast(ViewFriendActivity.this, "friend deleted!");
-                    ImageView profileImage = view.findViewById(R.id.view_friend_profil_photo);
-                    profileImage.setImageResource(R.drawable.ic_supp_friend);
-                    arrayAdapter.notifyDataSetChanged();
                 }
                 else{
                     makeToast(ViewFriendActivity.this, "an error occurred");
