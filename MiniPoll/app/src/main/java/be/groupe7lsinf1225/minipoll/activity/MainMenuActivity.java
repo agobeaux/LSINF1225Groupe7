@@ -33,6 +33,12 @@ public class MainMenuActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    /** Called when the user taps the BiPoll image button */
+    public void bipoll(View view) {
+        Intent intent = new Intent(this, BiPollActivity.class);
+        startActivity(intent);
+    }
+
     public void consultProfile(View view) {
         Intent intent = new Intent(this, UpdateProfileActivity.class);
         startActivity(intent);
