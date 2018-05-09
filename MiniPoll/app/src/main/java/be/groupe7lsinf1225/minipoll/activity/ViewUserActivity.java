@@ -72,7 +72,7 @@ public class ViewUserActivity extends Activity {
         flingContainer.setOnItemClickListener(new SwipeFlingAdapterView.OnItemClickListener() {
             @Override
             public void onItemClicked(int itemPosition, Object dataObject) {
-                makeToast(ViewUserActivity.this, "Clicked!");
+                //makeToast(ViewUserActivity.this,"");
             }
         });
     }
@@ -83,10 +83,9 @@ public class ViewUserActivity extends Activity {
 
             if (User.getConnectedUser().FriendRequest(friend)) {
                 makeToast(ViewUserActivity.this, "Friend request send to " + friend + " !");
-                ImageButton addbutton = findViewById(R.id.view_user_add_button);
-                addbutton.setImageResource(R.drawable.default_profile);
-            } else {
-                makeToast(ViewUserActivity.this, "inactif button");
+                ImageButton addbutton = view.findViewById(R.id.view_user_add_button);
+                addbutton.setImageResource(R.drawable.ic_add_friend);
+                arrayAdapter.notifyDataSetChanged();
             }
         }
     }

@@ -26,7 +26,7 @@ public class Question {
         this.good_answer = good_answer;
     }
 
-    // == get == //
+    // == Picture == //
 
     public int getGoodAnswer()
     {

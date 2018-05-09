@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import be.groupe7lsinf1225.minipoll.object.Picture;
 import be.groupe7lsinf1225.minipoll.object.User;
 import be.groupe7lsinf1225.minipoll.R;
 
@@ -38,14 +39,14 @@ public class ViewFriendAdapter extends ArrayAdapter {
 
         ImageButton bestfriendbutton = newView.findViewById(R.id.view_friend_bestfriend_button);
         if(friend.getLogin().equals(RequestUser.getbestfriend())) {
-            bestfriendbutton.setImageResource(R.drawable.default_profile);
+            bestfriendbutton.setImageResource(R.drawable.ic_best_friends);
         }
         else {
-            bestfriendbutton.setImageResource(R.drawable.ic_add_button);
+            bestfriendbutton.setImageResource(R.drawable.ic_friend);
         }
 
         ImageButton suppbutton = newView.findViewById(R.id.view_friend_supp_button);
-          suppbutton.setImageResource(R.drawable.ic_add_button);
+          suppbutton.setImageResource(R.drawable.ic_supp_friend);
 
         TextView textViewfirstname = newView.findViewById(R.id.view_friend_first_name);
           textViewfirstname.setText(friend.getFirstName());
@@ -57,13 +58,8 @@ public class ViewFriendAdapter extends ArrayAdapter {
           textViewemail.setText(friend.getEmail());
 
         ImageView profileImage = newView.findViewById(R.id.view_friend_profil_photo);
-        int picture = friend.getPicture();
-        if(picture != -1){
-            profileImage.setImageResource(picture);
-        }
-        else {
-            profileImage.setImageResource(R.drawable.profile_placeholder);
-        }
+        String picture = String.valueOf(friend.getPicture());
+            profileImage.setImageResource(Picture.get(picture));
 
         return newView;
     }

@@ -98,10 +98,10 @@ INSERT INTO QUIZ (IDQUIZ, TITLE, AUTHOR, CLOSED) VALUES (1, 'Mon premier petit q
 -- Table: USER
 DROP TABLE IF EXISTS USER;
 CREATE TABLE USER ( LOGIN not null primary key,PASSWORD not null,LASTNAME not null, FIRSTNAME not null,PICTURE, EMAIL not null,BESTFRIEND references USER,unique(EMAIL) );
-INSERT INTO USER (LOGIN, PASSWORD, LASTNAME, FIRSTNAME, PICTURE, EMAIL, BESTFRIEND) VALUES ('Sacha LOL', 'Catchemall', 'Ketchum', 'Sacha', NULL, 'Sacha@pokemon.lol', NULL);
-INSERT INTO USER (LOGIN, PASSWORD, LASTNAME, FIRSTNAME, PICTURE, EMAIL, BESTFRIEND) VALUES ('Pika Pika', 'Sacha', 'Chu', 'Pika', NULL, 'Pika@pokemon.lol', 'Sacha LOL');
-INSERT INTO USER (LOGIN, PASSWORD, LASTNAME, FIRSTNAME, PICTURE, EMAIL, BESTFRIEND) VALUES ('Jolie Fille', 'Coeur', 'unknown', 'Ondine', NULL, 'Ondine@pokemon.lol', NULL);
-INSERT INTO USER (LOGIN, PASSWORD, LASTNAME, FIRSTNAME, PICTURE, EMAIL, BESTFRIEND) VALUES ('Le Doc', 'Pokesciences', 'Le Professeur', 'Chen', NULL, 'Chen@pokemon.lol', NULL);
+INSERT INTO USER (LOGIN, PASSWORD, LASTNAME, FIRSTNAME, PICTURE, EMAIL, BESTFRIEND) VALUES ('Sacha LOL', 'Catchemall', 'Ketchum', 'Sacha', -1, 'Sacha@pokemon.lol', NULL);
+INSERT INTO USER (LOGIN, PASSWORD, LASTNAME, FIRSTNAME, PICTURE, EMAIL, BESTFRIEND) VALUES ('Pika Pika', 'Sacha', 'Chu', 'Pika', -1, 'Pika@pokemon.lol', 'Sacha LOL');
+INSERT INTO USER (LOGIN, PASSWORD, LASTNAME, FIRSTNAME, PICTURE, EMAIL, BESTFRIEND) VALUES ('Jolie Fille', 'Coeur', 'unknown', 'Ondine', -1, 'Ondine@pokemon.lol', NULL);
+INSERT INTO USER (LOGIN, PASSWORD, LASTNAME, FIRSTNAME, PICTURE, EMAIL, BESTFRIEND) VALUES ('Le Doc', 'Pokesciences', 'Le Professeur', 'Chen', -1, 'Chen@pokemon.lol', NULL);
 
 -- Table: VIEW_AGREEMENT
 DROP TABLE IF EXISTS VIEW_AGREEMENT;

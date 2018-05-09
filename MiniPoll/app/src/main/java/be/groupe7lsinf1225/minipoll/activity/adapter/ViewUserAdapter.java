@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import be.groupe7lsinf1225.minipoll.object.Picture;
 import be.groupe7lsinf1225.minipoll.object.User;
 import be.groupe7lsinf1225.minipoll.R;
 
@@ -38,10 +39,10 @@ public class ViewUserAdapter extends ArrayAdapter {
 
         ImageButton addbutton = newView.findViewById(R.id.view_user_add_button);
         if(user.inFriendList(RequestUser.getLogin()) == -1){
-            addbutton.setImageResource(R.drawable.ic_add_button);
+            addbutton.setImageResource(R.drawable.ic_add_friend);
         }
         else{
-            addbutton.setImageResource(R.drawable.default_profile);
+            addbutton.setImageResource(R.drawable.ic_ok_friend);
 
         }
 
@@ -55,13 +56,8 @@ public class ViewUserAdapter extends ArrayAdapter {
           textViewemail.setText(user.getEmail());
 
         ImageView profileImage = newView.findViewById(R.id.view_user_profil_photo);
-        int picture = user.getPicture();
-        if(picture != -1){
-            profileImage.setImageResource(picture);
-        }
-        else {
-            profileImage.setImageResource(R.drawable.profile_placeholder);
-        }
+        String picture = String.valueOf(user.getPicture());
+            profileImage.setImageResource(Picture.get(picture));
 
         return newView;
     }

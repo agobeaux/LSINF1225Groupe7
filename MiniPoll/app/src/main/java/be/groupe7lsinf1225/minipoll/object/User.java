@@ -98,7 +98,7 @@ public class User {
 
         while (!cursor.isAfterLast()){
             if(!userRequest.equals(cursor.getString(0))) {
-                users.add(new User(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5), -1));
+                users.add(new User(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getInt(6)));
             }
             cursor.moveToNext();
         }
@@ -112,7 +112,7 @@ public class User {
         SQLiteDatabase db = MySQLiteHelper.get().getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put("STATE",String.valueOf(1));
+        values.put("STATE",1);
         String[] valuesWhere = {friend,this.login,this.login,friend};
         String selection = "(LOGIN1 = ? AND LOGIN2 = ?) OR (LOGIN1 = ? AND LOGIN2 = ?)";
 
@@ -191,12 +191,39 @@ public class User {
         return ret;
     }
 
-    public ArrayList<User> getAllFriend(){
+    public ArrayList<User> getAllFriendRequest(){
+        ArrayList<User> friends = new ArrayList<>();
+        SQLiteDatabase db = MySQLiteHelper.get().getReadableDatabase();
+        String[] columns = {"LOGIN1","LOGIN2","STATE"};
+        String[] valuesWhere = {this.login};
+        String selection = "(STATE = 0) AND (LOGIN2 = ?)";
+
+        Cursor cursor = db.query("FRIENDS", columns, selection,valuesWhere, null, null, null);
+
+        cursor.moveToFirst();
+
+        String userRequest = User.getConnectedUser().getLogin();
+        while (!cursor.isAfterLast()){
+            if(userRequest.equals(cursor.getString(0))){
+                friends.add(User.getUser(cursor.getString(1)));
+            }
+            else if(userRequest.equals(cursor.getString(1))){
+                friends.add(User.getUser(cursor.getString(0)));
+            }
+            cursor.moveToNext();
+        }
+
+        cursor.close();
+        db.close();
+        return friends;
+    }
+
+    public ArrayList<User> getAllFriend(String state){
         ArrayList<User> friends = new ArrayList<>();
         SQLiteDatabase db = MySQLiteHelper.get().getReadableDatabase();
         String[] columns = {"LOGIN1","LOGIN2","STATE"};
         String[] valuesWhere = {this.login,this.login};
-        String selection = "(STATE = 1) AND (LOGIN1 = ? OR LOGIN2 = ?)";
+        String selection = "(STATE = " + state + ") AND (LOGIN1 = ? OR LOGIN2 = ?)";
 
         Cursor cursor = db.query("FRIENDS", columns, selection,valuesWhere, null, null, null);
 
@@ -243,7 +270,7 @@ public class User {
         cursor.moveToFirst();
 
 
-        User user = new User(login, cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5), -1);
+        User user = new User(login, cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getInt(6));
 
         // Fermeture du curseur et de la base de données.
         cursor.close();

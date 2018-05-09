@@ -6,12 +6,14 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 
 import be.groupe7lsinf1225.minipoll.R;
 import be.groupe7lsinf1225.minipoll.activity.adapter.ViewFriendAdapter;
+import be.groupe7lsinf1225.minipoll.object.Picture;
 import be.groupe7lsinf1225.minipoll.object.User;
 
 import com.lorentzos.flingswipe.SwipeFlingAdapterView;
@@ -28,7 +30,7 @@ public class ViewFriendActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_user);
 
-        al = User.getConnectedUser().getAllFriend();
+        al = User.getConnectedUser().getAllFriend("1");
 
         arrayAdapter = new ViewFriendAdapter(this, al);
 
@@ -74,7 +76,7 @@ public class ViewFriendActivity extends Activity {
         flingContainer.setOnItemClickListener(new SwipeFlingAdapterView.OnItemClickListener() {
             @Override
             public void onItemClicked(int itemPosition, Object dataObject) {
-                makeToast(ViewFriendActivity.this, "Clicked!");
+                //makeToast(ViewFriendActivity.this, "");
             }
         });
     }
@@ -82,10 +84,10 @@ public class ViewFriendActivity extends Activity {
     public void setbestfriend(View view){
         if(!arrayAdapter.isfinished()) {
             String newbestfriend = al.get(0).getLogin();
-            if (!newbestfriend.equals("No More Friend") && !newbestfriend.equals(User.getConnectedUser().getbestfriend())) {
+            if (!newbestfriend.equals(User.getConnectedUser().getbestfriend())) {
                 User.getConnectedUser().setbestfriend(newbestfriend);
-                ImageButton bestfriendbutton = findViewById(R.id.view_friend_bestfriend_button);
-                bestfriendbutton.setImageResource(R.drawable.default_profile);
+                ImageButton bestfriendbutton = view.findViewById(R.id.view_friend_bestfriend_button);
+                bestfriendbutton.setImageResource(R.drawable.ic_best_friends);
                 makeToast(ViewFriendActivity.this, "best friend set!");
             }
         }
@@ -96,6 +98,9 @@ public class ViewFriendActivity extends Activity {
             if(supp==2) {
                 if(User.getConnectedUser().suppFriend(al.get(0).getLogin())) {
                     makeToast(ViewFriendActivity.this, "friend deleted!");
+                    ImageView profileImage = view.findViewById(R.id.view_friend_profil_photo);
+                    profileImage.setImageResource(R.drawable.ic_supp_friend);
+                    arrayAdapter.notifyDataSetChanged();
                 }
                 else{
                     makeToast(ViewFriendActivity.this, "an error occurred");
