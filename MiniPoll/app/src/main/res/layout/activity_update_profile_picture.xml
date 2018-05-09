@@ -6,153 +6,177 @@
     android:layout_height="match_parent"
     android:background="@color/colorBackground">
 
-    <GridLayout
-        android:id="@+id/gridLayout"
-        android:layout_width="300dp"
-        android:layout_height="400dp"
-        android:columnCount="3"
-        android:rowCount="4"
+    <android.support.v7.widget.GridLayout
+        android:layout_width="330dp"
+        android:layout_height="440dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:columnCount="3"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:rowCount="4">
 
-        <!--<Button
-            android:id="@+id/button5"
-            android:layout_column="1"
-            android:layout_row="1"
-            android:layout_gravity="left|top"
-            android:text="Button" />
--->
         <ImageButton
             android:id="@+id/caterpie"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
 
-            android:layout_gravity="start|top"
             android:contentDescription="1"
             android:onClick="pictureUpdate"
             android:scaleType="fitXY"
             android:src="@drawable/caterpie"
             tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="0dp" />
+            tools:layout_editor_absoluteY="0dp"
+            app:layout_gravity="start|top" />
 
         <ImageButton
             android:id="@+id/charmander"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
 
-            android:layout_gravity="end|top"
             android:contentDescription="2"
             android:onClick="pictureUpdate"
             android:scaleType="fitXY"
             android:src="@drawable/charmander"
-            tools:layout_editor_absoluteX="130dp"
-            tools:layout_editor_absoluteY="130dp" />
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="0dp"
+            app:layout_gravity="start|top" />
 
         <ImageButton
             android:id="@+id/eevee"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_gravity="end|top"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
 
             android:contentDescription="3"
             android:onClick="pictureUpdate"
             android:scaleType="fitXY"
             android:src="@drawable/eevee"
-            app:layout_constraintRight_toRightOf="parent"
-            tools:layout_editor_absoluteY="0dp" />
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="0dp"
+            app:layout_gravity="start|top" />
 
         <ImageButton
             android:id="@+id/gyarados"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
 
-            android:layout_gravity="start|top"
             android:contentDescription="4"
             android:onClick="pictureUpdate"
             android:scaleType="fitXY"
             android:src="@drawable/gyarados"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:layout_editor_absoluteX="0dp" />
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="0dp"
+            app:layout_gravity="start|top" />
 
         <ImageButton
             android:id="@+id/machop"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
 
-            android:layout_gravity="end|top"
             android:contentDescription="5"
             android:onClick="pictureUpdate"
             android:scaleType="fitXY"
             android:src="@drawable/machop"
             tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="301dp" />
+            tools:layout_editor_absoluteY="0dp"
+            app:layout_gravity="start|top" />
 
         <ImageButton
             android:id="@+id/pidgey"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
 
-            android:layout_gravity="start|top"
             android:contentDescription="6"
             android:onClick="pictureUpdate"
             android:scaleType="fitXY"
-            android:src="@drawable/pidgey" />
+            android:src="@drawable/pidgey"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="0dp"
+            app:layout_gravity="start|top" />
 
         <ImageButton
             android:id="@+id/pikachu"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+
             android:contentDescription="7"
             android:onClick="pictureUpdate"
             android:scaleType="fitXY"
-            app:srcCompat="@drawable/pikachu" />
+            android:src="@drawable/pikachu"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="0dp"
+            app:layout_gravity="start|top" />
 
         <ImageButton
             android:id="@+id/rattata"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+
             android:contentDescription="8"
             android:onClick="pictureUpdate"
             android:scaleType="fitXY"
-            app:srcCompat="@drawable/rattata" />
+            android:src="@drawable/rattata"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="0dp"
+            app:layout_gravity="start|top" />
 
         <ImageButton
             android:id="@+id/squirtle"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+
             android:contentDescription="9"
             android:onClick="pictureUpdate"
             android:scaleType="fitXY"
-            app:srcCompat="@drawable/squirtle" />
+            android:src="@drawable/squirtle"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="0dp"
+            app:layout_gravity="start|top" />
 
         <ImageButton
             android:id="@+id/treecko"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+
             android:contentDescription="10"
             android:onClick="pictureUpdate"
             android:scaleType="fitXY"
-            app:srcCompat="@drawable/treecko" />
+            android:src="@drawable/treecko"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="0dp"
+            app:layout_gravity="start|top" />
 
         <ImageButton
             android:id="@+id/snorlax"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+
             android:contentDescription="11"
             android:onClick="pictureUpdate"
             android:scaleType="fitXY"
-            app:srcCompat="@drawable/snorlax" />
+            android:src="@drawable/snorlax"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="0dp"
+            app:layout_gravity="start|top" />
 
         <ImageButton
             android:id="@+id/zapdos"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+
             android:contentDescription="12"
             android:onClick="pictureUpdate"
             android:scaleType="fitXY"
-            app:srcCompat="@drawable/zapdos" />
-    </GridLayout>
+            android:src="@drawable/zapdos"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="0dp"
+            app:layout_gravity="start|top" />
+
+    </android.support.v7.widget.GridLayout>
 </android.support.constraint.ConstraintLayout>
