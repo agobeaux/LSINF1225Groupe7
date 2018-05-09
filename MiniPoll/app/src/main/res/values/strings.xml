@@ -40,6 +40,8 @@
     <string name="not_completed_required">Please complete all required fields</string>
     <string name="wrong_old_password">Wrong old password</string>
     <string name="error_update_profile">Update failed, please try again later</string>
+    <string name="confirm_password_update">Confirm new password</string>
+    <string name="confirm_failed_update">The two new passwords are different</string>
 
     <!-- Main Menu Activity -->
     <string name="mainmenu">Main menu</string>

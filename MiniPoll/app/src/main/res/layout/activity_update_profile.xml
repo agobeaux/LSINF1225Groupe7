@@ -10,8 +10,6 @@
     <LinearLayout
         android:layout_width="327dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
-        android:layout_marginTop="19dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,27 +20,15 @@
             android:id="@+id/mail_address_update"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginBottom="6dp"
             android:ems="10"
             android:hint="@string/mailaddress"
             android:inputType="textEmailAddress" />
 
         <EditText
-            android:id="@+id/username_update"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginTop="8dp"
-            android:ems="10"
-            android:hint="@string/login"
-            android:inputType="textPersonName" />
-
-        <EditText
             android:id="@+id/old_password_update"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
             android:ems="10"
             android:hint="@string/old_password"
             android:inputType="textPassword" />
@@ -51,18 +37,31 @@
             android:id="@+id/old_password_precision"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="6dp"
             android:text="@string/old_password_precision" />
 
         <EditText
             android:id="@+id/password_update"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginBottom="6dp"
             android:ems="10"
             android:hint="@string/new_password"
             android:inputType="textPassword" />
+
+        <EditText
+            android:id="@+id/password_confirm_update"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/confirm_password_update"
+            android:inputType="textPassword" />
+
+        <TextView
+            android:id="@+id/old_password_precision2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/old_password_precision" />
 
     </LinearLayout>
 
@@ -70,7 +69,7 @@
         android:id="@+id/picture_update"
         android:layout_width="160dp"
         android:layout_height="140dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="1dp"
         android:onClick="pictureUpdateLayout"
         android:scaleType="fitXY"
         app:layout_constraintEnd_toEndOf="parent"
@@ -91,10 +90,22 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <EditText
+            android:id="@+id/username_update"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="2dp"
+            android:editable="false"
+            android:ems="10"
+            android:enabled="false"
+            android:focusable="false"
+            android:hint="@string/login"
+            android:inputType="textPersonName" />
+
+        <EditText
             android:id="@+id/first_name_update"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="2dp"
             android:ems="10"
             android:hint="@string/firstname"
             android:inputType="textPersonName"
@@ -105,7 +116,7 @@
             android:id="@+id/last_name_update"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="2dp"
             android:ems="10"
             android:hint="@string/lastname"
             android:inputType="textPersonName" />

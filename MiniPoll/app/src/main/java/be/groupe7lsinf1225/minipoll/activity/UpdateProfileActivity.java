@@ -96,6 +96,8 @@ public class UpdateProfileActivity extends Activity implements TextView.OnEditor
         oldPasswordEditText.setOnEditorActionListener(this);
         EditText passwordEditText = findViewById(R.id.password_update);
         passwordEditText.setOnEditorActionListener(this);
+        EditText passwordConfirmEditText = findViewById(R.id.password_confirm_update);
+        passwordConfirmEditText.setOnEditorActionListener(this);
 
         firstnameEditText.setText(user.getFirstName());
         lastnameEditText.setText(user.getLastName());
@@ -118,6 +120,8 @@ public class UpdateProfileActivity extends Activity implements TextView.OnEditor
         String old_password = oldPasswordEditText.getText().toString();
         EditText passwordEditText = findViewById(R.id.password_update);
         String password = passwordEditText.getText().toString();
+        EditText passwordConfirmEditText = findViewById(R.id.password_confirm_update);
+        String password_confirm = passwordConfirmEditText.getText().toString();
 
 
         ImageButton profileImage = findViewById(R.id.picture_update);
@@ -142,19 +146,16 @@ public class UpdateProfileActivity extends Activity implements TextView.OnEditor
             AppMiniPoll.notifyLong(R.string.username_wrong_length);
         }
         else if(password.length() < 5 || password.length() > 14) {
-            AppMiniPoll.notifyShort(R.string.password_wrong_length);
-        }
-        else if(!old_username.equals(username) && User.getUser(username) != null){
-            AppMiniPoll.notifyShort(R.string.username_already_used);
-        }
-        else if(!old_password.equals("") && (old_password.length() < 5 || old_password.length() > 14)) {
-            AppMiniPoll.notifyShort(R.string.password_wrong_length);
+            AppMiniPoll.notifyLong(R.string.password_wrong_length);
         }
         else if(!old_password.equals("") && !user.goodPassword(old_password)) {
             AppMiniPoll.notifyShort(R.string.wrong_old_password);
         }
         else if(old_password.equals("") && !user.goodPassword(password)) {
             AppMiniPoll.notifyShort(R.string.wrong_password);
+        }
+        else if(!old_password.equals("") && !(password.equals(password_confirm))) {
+            AppMiniPoll.notifyShort(R.string.confirm_failed_update);
         }
         else {
             User.updateUser(old_username,first_name,last_name,username,mailaddress,password,numPicture);
