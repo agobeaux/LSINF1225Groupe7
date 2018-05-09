@@ -73,7 +73,7 @@ public class MainMenuActivity extends AppCompatActivity {
 
     public void accept (View view){
         ConnectUser.addFriend(list.get(0).getLogin());
-        setContentView(R.layout.activity_gestion_friend);
+        setContentView(R.layout.activity_main_menu);
         list.remove(0);
         if(list.size()>0) {
             notif();
@@ -82,7 +82,7 @@ public class MainMenuActivity extends AppCompatActivity {
 
     public void refuse (View view){
         ConnectUser.suppFriend(list.get(0).getLogin());
-        setContentView(R.layout.activity_gestion_friend);
+        setContentView(R.layout.activity_main_menu);
         list.remove(0);
         if(list.size()>0) {
             notif();

@@ -84,7 +84,7 @@ public class ViewUserActivity extends Activity {
             if (User.getConnectedUser().FriendRequest(friend)) {
                 makeToast(ViewUserActivity.this, "Friend request send to " + friend + " !");
                 ImageButton addbutton = view.findViewById(R.id.view_user_add_button);
-                addbutton.setImageResource(R.drawable.ic_add_friend);
+                addbutton.setImageResource(R.drawable.ic_ok_friend);
                 arrayAdapter.notifyDataSetChanged();
             }
         }
