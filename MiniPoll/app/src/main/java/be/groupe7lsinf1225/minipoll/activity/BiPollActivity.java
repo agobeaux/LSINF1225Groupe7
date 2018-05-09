@@ -1,4 +1,5 @@
 package be.groupe7lsinf1225.minipoll.activity;
+
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +12,7 @@ import java.util.ArrayList;
 
 import be.groupe7lsinf1225.minipoll.MySQLiteHelper;
 import be.groupe7lsinf1225.minipoll.R;
+import be.groupe7lsinf1225.minipoll.activity.adapter.BiPollAdapter;
 import be.groupe7lsinf1225.minipoll.object.BiPoll;
 import be.groupe7lsinf1225.minipoll.object.User;
 
@@ -19,12 +21,17 @@ public class BiPollActivity extends AppCompatActivity implements AdapterView.OnI
 
 
         private ArrayList<BiPoll> bipolls;
+        private BiPollAdapter myBiPollAdapter;
 
 
         protected void onCreate(Bundle savedInstanceState) {
                 super.onCreate(savedInstanceState);
-                setContentView(R.layout.collected_poll_row);
+                setContentView(R.layout.activity_bipoll);
                 loadBiPolls();
+                ListView myListView = findViewById(R.id.show_listView_bipolls);
+                myBiPollAdapter = new BiPollAdapter(this, bipolls);
+                myListView.setAdapter(myBiPollAdapter);
+                myListView.setOnItemClickListener(this);
         }
 
 
@@ -45,7 +52,6 @@ public class BiPollActivity extends AppCompatActivity implements AdapterView.OnI
                         String selection2 = "IDBIPOLL" + " = ?";
 
                         Cursor cursor2 = db.query("BIPOLL", columns2, selection2, valuesWhere2, null, null, null);
-                        //(String question, String author, String[] titles_choices, boolean state)
                         String loctitle[] = {"reponse1","reponse2"};
                         loctitle[1] = cursor2.getString(3);
                         loctitle[2] = cursor2.getString(4);

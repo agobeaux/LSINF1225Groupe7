@@ -23,4 +23,18 @@ public class BiPoll extends Poll {
         this.author = author;
         this.state = state;
     }
+
+    public String getQuestion() {
+        return question;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public boolean getState() {
+        return state;
+    }
+
+    public ArrayList<Choice> getChoices() {return choices;}
 }
