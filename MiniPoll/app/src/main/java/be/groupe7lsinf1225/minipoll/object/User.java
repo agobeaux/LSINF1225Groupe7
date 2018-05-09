@@ -372,6 +372,10 @@ public class User {
         this.best_friend = best_friend;
     }
 
+
+    public static void setConnected_user(User user) {
+        User.connected_user = user;
+    }
     // === Get === //
 
     public static User getConnectedUser() {
