@@ -65,7 +65,7 @@
         android:id="@+id/view_user_email_adresse"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingLeft="90dp"
+        android:paddingLeft="70dp"
         android:paddingTop="320dp"
         android:text="Email"
         android:textColor="@android:color/holo_blue_dark"

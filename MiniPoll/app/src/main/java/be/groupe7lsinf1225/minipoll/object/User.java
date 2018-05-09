@@ -108,8 +108,64 @@ public class User {
         return users;
     }
 
-    //no test
-    public boolean inFriendList(String friend){
+    public boolean addFriend(String friend){
+        SQLiteDatabase db = MySQLiteHelper.get().getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put("STATE",String.valueOf(1));
+        String[] valuesWhere = {friend,this.login,this.login,friend};
+        String selection = "(LOGIN1 = ? AND LOGIN2 = ?) OR (LOGIN1 = ? AND LOGIN2 = ?)";
+
+        int dia = db.update("FRIENDS",values,selection,valuesWhere);
+        db.close();
+
+        if(dia==-1){
+            return false;
+        }
+        return true;
+    }
+
+    public boolean suppFriend(String friend){
+        SQLiteDatabase db = MySQLiteHelper.get().getWritableDatabase();
+
+        String[] valuesWhere = {friend,this.login,this.login,friend};
+        String selection = "(LOGIN1 = ? AND LOGIN2 = ?) OR (LOGIN1 = ? AND LOGIN2 = ?)";
+
+         int dia = db.delete("FRIENDS",selection,valuesWhere);
+         db.close();
+
+         if(dia==-1){
+             return false;
+         }
+         return true;
+    }
+
+    public boolean FriendRequest(String friend){
+        int dia = this.inFriendList(friend);
+        if(dia == -1){
+             //   values.put("STATE",String.valueOf(1));
+             //   String[] valuesWhere = {friend,this.login,this.login,friend};
+             //   String selection = "(LOGIN1 = ? AND LOGIN2 = ?) OR (LOGIN1 = ? AND LOGIN2 = ?)";
+
+             //   dia2 = db.update("FRIENDS",values,selection,valuesWhere);
+            SQLiteDatabase db = MySQLiteHelper.get().getWritableDatabase();
+
+            ContentValues values = new ContentValues();
+            values.put("LOGIN1",this.login);
+            values.put("LOGIN2",friend);
+
+            int dia2 = (int) db.insert("FRIENDS",null,values);
+            db.close();
+            if(dia2 == -1){
+                return false;
+            }
+            return true;
+        }
+        return false;
+    }
+
+    //a corriger si on a le temps
+    public int inFriendList(String friend){
         SQLiteDatabase db = MySQLiteHelper.get().getReadableDatabase();
         String[] columns = {"LOGIN1","LOGIN2","STATE"};
         String[] valuesWhere = {friend,this.login,this.login,friend};
@@ -117,19 +173,32 @@ public class User {
 
         Cursor cursor = db.query("FRIENDS", columns, selection,valuesWhere, null, null, null);
 
+        int ret;
         if(cursor.getCount() <= 0){
-            return false;
+            ret = -1;
         }
-        return true;
+        else {
+            //a corriger si on a le temps
+            ret = 0;
+            cursor = db.query("FRIENDS", columns, selection+" AND (STATE = 0)",valuesWhere, null, null, null);
+            if(cursor.getCount() <= 0){
+                ret = 1;
+            }
+        }
+
+        db.close();
+        cursor.close();
+        return ret;
     }
 
-    public static ArrayList<User> getAllFriend(){
+    public ArrayList<User> getAllFriend(){
         ArrayList<User> friends = new ArrayList<>();
         SQLiteDatabase db = MySQLiteHelper.get().getReadableDatabase();
         String[] columns = {"LOGIN1","LOGIN2","STATE"};
-        String selection = "STATE" + " = 1";
+        String[] valuesWhere = {this.login,this.login};
+        String selection = "(STATE = 1) AND (LOGIN1 = ? OR LOGIN2 = ?)";
 
-        Cursor cursor = db.query("FRIENDS", columns, selection,null, null, null, null);
+        Cursor cursor = db.query("FRIENDS", columns, selection,valuesWhere, null, null, null);
 
         cursor.moveToFirst();
 

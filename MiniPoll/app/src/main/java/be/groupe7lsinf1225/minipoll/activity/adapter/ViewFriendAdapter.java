@@ -17,22 +17,27 @@ import be.groupe7lsinf1225.minipoll.R;
 public class ViewFriendAdapter extends ArrayAdapter {
 
     private final LayoutInflater mInflater;
-    private ArrayList<User> friend;
+    private ArrayList<User> friends;
+    private User RequestUser;
+    private int countdown;
 
-    public ViewFriendAdapter(Context context, ArrayList<User> friend){
-        super(context,-1,friend);
+    public ViewFriendAdapter(Context context, ArrayList<User> friends){
+        super(context,-1,friends);
         mInflater = LayoutInflater.from(context);
-        this.friend = friend;
+        this.friends = friends;
+        this.RequestUser = User.getConnectedUser();
+        this.countdown= friends.size();
 
     }
     public View getView(int position, View convertView, ViewGroup parent){
         View newView = mInflater.inflate(R.layout.item_view_friend, parent, false);
+        User friend = friends.get(position);
 
         TextView textViewusername = newView.findViewById(R.id.view_friend_username);
-          textViewusername.setText(friend.get(position).getLogin());
+          textViewusername.setText(friend.getLogin());
 
         ImageButton bestfriendbutton = newView.findViewById(R.id.view_friend_bestfriend_button);
-        if(friend.get(position).getLogin().equals(User.getConnectedUser().getbestfriend())) {
+        if(friend.getLogin().equals(RequestUser.getbestfriend())) {
             bestfriendbutton.setImageResource(R.drawable.default_profile);
         }
         else {
@@ -43,16 +48,16 @@ public class ViewFriendAdapter extends ArrayAdapter {
           suppbutton.setImageResource(R.drawable.ic_add_button);
 
         TextView textViewfirstname = newView.findViewById(R.id.view_friend_first_name);
-          textViewfirstname.setText(friend.get(position).getFirstName());
+          textViewfirstname.setText(friend.getFirstName());
 
         TextView textViewlastname = newView.findViewById(R.id.view_friend_last_name);
-          textViewlastname.setText(friend.get(position).getLastName());
+          textViewlastname.setText(friend.getLastName());
 
         TextView textViewemail = newView.findViewById(R.id.view_friend_email_adresse);
-          textViewemail.setText(friend.get(position).getEmail());
+          textViewemail.setText(friend.getEmail());
 
         ImageView profileImage = newView.findViewById(R.id.view_friend_profil_photo);
-        int picture = friend.get(position).getPicture();
+        int picture = friend.getPicture();
         if(picture != -1){
             profileImage.setImageResource(picture);
         }
@@ -62,6 +67,10 @@ public class ViewFriendAdapter extends ArrayAdapter {
 
         return newView;
     }
+
+    public boolean isfinished(){return (this.countdown<=0);}
+
+    public void tic(){this.countdown--;}
 
     public void setbestfriend(View view){
     }
