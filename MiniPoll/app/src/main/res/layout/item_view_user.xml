@@ -80,6 +80,6 @@
         android:fitsSystemWindows="true"
         android:onClick="addfriend"
         android:scaleType="fitXY"
-        app:srcCompat="@drawable/ic_add_button" />
+        app:srcCompat="@drawable/ic_add_friend" />
 
 </FrameLayout>
