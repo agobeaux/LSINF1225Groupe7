@@ -255,7 +255,7 @@ public class User {
     public static User getInfosConnectedUser(){
         SQLiteDatabase db = MySQLiteHelper.get().getReadableDatabase();
 
-        String[] columns = {DB_COLUMN_LOGIN,DB_COLUMN_PASSWORD,DB_COLUMN_LASTNAME,DB_COLUMN_FIRSTNAME,DB_COLUMN_EMAIL};
+        String[] columns = {DB_COLUMN_LOGIN,DB_COLUMN_PASSWORD,DB_COLUMN_LASTNAME,DB_COLUMN_FIRSTNAME,DB_COLUMN_PICTURE,DB_COLUMN_EMAIL};
         String[] valuesWhere = {User.getConnectedUser().getLogin()};
         String selection = DB_COLUMN_LOGIN + " = ?";
 
@@ -270,11 +270,12 @@ public class User {
 
         String username = cursor.getString(0);
         String password = cursor.getString(1);
-        String first_name = cursor.getString(3);
         String last_name = cursor.getString(2);
-        String email = cursor.getString(4);
+        String first_name = cursor.getString(3);
+        int picture = cursor.getInt(4);
+        String email = cursor.getString(5);
 
-        User user = new User(username,password,first_name,last_name,email,null,-1);
+        User user = new User(username,password,first_name,last_name,email,null,picture);
 
         cursor.close();
         db.close();
@@ -303,7 +304,7 @@ public class User {
     }
 
 
-    public static void updateUser(String old_username,String first_name,String last_name,String username,String mailaddress,String password) {
+    public static void updateUser(String old_username,String first_name,String last_name,String username,String mailaddress,String password, int picture) {
 
         SQLiteDatabase db = MySQLiteHelper.get().getWritableDatabase();
 
@@ -313,6 +314,7 @@ public class User {
         values.put(DB_COLUMN_LASTNAME, last_name);
         values.put(DB_COLUMN_FIRSTNAME, first_name);
         values.put(DB_COLUMN_EMAIL, mailaddress);
+        values.put(DB_COLUMN_PICTURE, picture);
 
         String selection = DB_COLUMN_LOGIN + " = ?";
         String[] valuesWhere = {old_username};
@@ -321,7 +323,7 @@ public class User {
 
         db.close();
 
-        User user = new User(username,password,first_name,last_name,null,mailaddress,-1);
+        User user = new User(username,password,first_name,last_name,mailaddress,null,picture);
         User.connected_user = user;
     }
 

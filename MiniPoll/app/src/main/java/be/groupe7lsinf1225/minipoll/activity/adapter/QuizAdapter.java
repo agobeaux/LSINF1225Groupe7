@@ -8,12 +8,13 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import be.groupe7lsinf1225.minipoll.R;
 import be.groupe7lsinf1225.minipoll.object.Quiz;
 
-public abstract class QuizAdapter extends BaseAdapter {
+public class QuizAdapter extends BaseAdapter {
 
     /**
      * Permet d'instancier un fichier xml de layout dans une vue.
@@ -53,15 +54,24 @@ public abstract class QuizAdapter extends BaseAdapter {
 
 
 
-    public View getView(int i, View view, View convertView, ViewGroup viewGroup) {
+    public View getView(int i, View convertView, ViewGroup viewGroup) {
 
         if (convertView == null) {
             //convertView = mInflater.inflate(R.layout.collected_friend_row, viewGroup, false);
         }
         TextView topic = convertView.findViewById(R.id.show_row_topic);
-        TextView limitdate = convertView.findViewById(R.id.show_row_limitdate);
+        TextView state = convertView.findViewById(R.id.show_row_state);
         TextView createdby = convertView.findViewById(R.id.show_row_createdby);
 
-        return null;
+        Quiz quiz = quizzes.get(i);
+        topic.setText(quiz.getTitle());
+        if(quiz.getState()){
+            state.setText("Open");
+        }
+        else{
+            state.setText("Closed");
+        }
+        createdby.setText(quiz.getAuthor());
+        return convertView;
     }
 }

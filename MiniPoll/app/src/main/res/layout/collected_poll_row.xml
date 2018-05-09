@@ -22,13 +22,13 @@
             android:textSize="20sp"
 
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/show_row_limitdate"
+            app:layout_constraintEnd_toStartOf="@+id/show_row_state"
             app:layout_constraintStart_toStartOf="parent"
 
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/show_row_limitdate"
+            android:id="@+id/show_row_state"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="#9E9E9E"
@@ -55,7 +55,7 @@
 
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/show_row_limitdate"
+            app:layout_constraintStart_toEndOf="@+id/show_row_state"
 
             app:layout_constraintTop_toTopOf="parent" />
 

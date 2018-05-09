@@ -27,8 +27,13 @@ public class UpdateProfileActivity extends Activity implements TextView.OnEditor
 
         String picture = getIntent().getStringExtra("picture");
 
+        User user = User.getInfosConnectedUser();
+
         if(picture == null)
         {
+            picture = String.valueOf(user.getPicture());
+        }
+        if(picture == null) {
             profileImage.setImageResource(R.drawable.profile_placeholder);
         }
         else {
@@ -75,6 +80,8 @@ public class UpdateProfileActivity extends Activity implements TextView.OnEditor
             }
         }
 
+        profileImage.setContentDescription(picture);
+
 
 
         EditText firstnameEditText = findViewById(R.id.first_name_update);
@@ -89,8 +96,6 @@ public class UpdateProfileActivity extends Activity implements TextView.OnEditor
         oldPasswordEditText.setOnEditorActionListener(this);
         EditText passwordEditText = findViewById(R.id.password_update);
         passwordEditText.setOnEditorActionListener(this);
-
-        User user = User.getInfosConnectedUser();
 
         firstnameEditText.setText(user.getFirstName());
         lastnameEditText.setText(user.getLastName());
@@ -113,6 +118,15 @@ public class UpdateProfileActivity extends Activity implements TextView.OnEditor
         String old_password = oldPasswordEditText.getText().toString();
         EditText passwordEditText = findViewById(R.id.password_update);
         String password = passwordEditText.getText().toString();
+
+
+        ImageButton profileImage = findViewById(R.id.picture_update);
+        CharSequence picture = profileImage.getContentDescription();
+
+        int numPicture = 0;
+        if(picture != null) {
+            numPicture = Integer.parseInt((String)picture);
+        }
 
         User user = User.getConnectedUser();
 
@@ -143,7 +157,7 @@ public class UpdateProfileActivity extends Activity implements TextView.OnEditor
             AppMiniPoll.notifyShort(R.string.wrong_password);
         }
         else {
-            User.updateUser(old_username,first_name,last_name,username,mailaddress,password);
+            User.updateUser(old_username,first_name,last_name,username,mailaddress,password,numPicture);
 
             Intent intent = new Intent(this,MainMenuActivity.class);
             startActivity(intent);
