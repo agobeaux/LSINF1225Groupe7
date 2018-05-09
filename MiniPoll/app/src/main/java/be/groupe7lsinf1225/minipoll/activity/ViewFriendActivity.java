@@ -20,6 +20,7 @@ public class ViewFriendActivity extends Activity {
 
     private ArrayList<User> al;
     private ViewFriendAdapter arrayAdapter;
+    private int  supp = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +41,11 @@ public class ViewFriendActivity extends Activity {
             public void removeFirstObjectInAdapter() {
                 al.remove(0);
                 arrayAdapter.notifyDataSetChanged();
+                if(!arrayAdapter.isfinished()) {
+                    arrayAdapter.tic();
+                    supp = 0;
+                    arrayAdapter.notifyDataSetChanged();
+                }
             }
 
             @Override
@@ -56,7 +62,6 @@ public class ViewFriendActivity extends Activity {
             public void onAdapterAboutToEmpty(int itemsInAdapter) {
                 al.add(new User("No More Friend","","","","","",-1));
                 arrayAdapter.notifyDataSetChanged();
-                Log.d("LIST", "notified");
             }
 
             @Override
@@ -75,17 +80,35 @@ public class ViewFriendActivity extends Activity {
     }
 
     public void setbestfriend(View view){
-        String newbestfriend = al.get(0).getLogin();
-        if(!newbestfriend.equals("No More Friend") && !newbestfriend.equals(User.getConnectedUser().getbestfriend())) {
-            User.getConnectedUser().setbestfriend(newbestfriend);
-            ImageButton bestfriendbutton = findViewById(R.id.view_friend_bestfriend_button);
-            bestfriendbutton.setImageResource(R.drawable.default_profile);
-            makeToast(ViewFriendActivity.this, "best friend set!");
+        if(!arrayAdapter.isfinished()) {
+            String newbestfriend = al.get(0).getLogin();
+            if (!newbestfriend.equals("No More Friend") && !newbestfriend.equals(User.getConnectedUser().getbestfriend())) {
+                User.getConnectedUser().setbestfriend(newbestfriend);
+                ImageButton bestfriendbutton = findViewById(R.id.view_friend_bestfriend_button);
+                bestfriendbutton.setImageResource(R.drawable.default_profile);
+                makeToast(ViewFriendActivity.this, "best friend set!");
+            }
         }
     }
 
     public void suppfriend(View view){
-        makeToast(ViewFriendActivity.this, "friend deleted!");
+        if(!arrayAdapter.isfinished()) {
+            if(supp==2) {
+                if(User.getConnectedUser().suppFriend(al.get(0).getLogin())) {
+                    makeToast(ViewFriendActivity.this, "friend deleted!");
+                }
+                else{
+                    makeToast(ViewFriendActivity.this, "an error occurred");
+                    supp = 1;
+                }
+            }
+            else {
+                if(supp==0){
+                    makeToast(ViewFriendActivity.this, "Hit 3 time to delet him from your friend list");
+                }
+            }
+            supp++;
+        }
     }
 
     static void makeToast(Context ctx, String s){

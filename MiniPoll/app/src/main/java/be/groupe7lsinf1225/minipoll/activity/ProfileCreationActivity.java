@@ -41,7 +41,7 @@ public class ProfileCreationActivity extends Activity implements TextView.OnEdit
         String lastname = lastnameEditText.getText().toString();
         EditText mailaddressEditText = findViewById(R.id.MailAddress);
         String mailaddress = mailaddressEditText.getText().toString();
-        //missing photo
+
 
         if (firstname.equals("") || lastname.equals("") || mailaddress.equals("")) {
             AppMiniPoll.notifyShort(R.string.not_completed);
