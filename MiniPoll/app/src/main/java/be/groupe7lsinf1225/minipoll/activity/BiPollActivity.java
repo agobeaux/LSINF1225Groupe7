@@ -11,9 +11,7 @@ import java.util.ArrayList;
 
 import be.groupe7lsinf1225.minipoll.MySQLiteHelper;
 import be.groupe7lsinf1225.minipoll.R;
-import be.groupe7lsinf1225.minipoll.activity.adapter.QuizAdapter;
 import be.groupe7lsinf1225.minipoll.object.BiPoll;
-import be.groupe7lsinf1225.minipoll.object.Quiz;
 import be.groupe7lsinf1225.minipoll.object.User;
 
 //@Override
