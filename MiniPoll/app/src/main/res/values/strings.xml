@@ -59,4 +59,7 @@
     <string name="title_activity_scrolling">ScrollingActivity</string>
     <string name="action_settings">Settings</string>
 
+    <!-- BiPoll Activity -->
+    <string name="no_visible_bipoll">No binary poll to show you, create one or be invited to answer to one</string>
+
 </resources>

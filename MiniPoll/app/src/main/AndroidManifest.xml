@@ -26,14 +26,19 @@
         <activity
             android:name=".activity.MainMenuActivity"
             android:parentActivityName=".activity.LoginActivity" />
-        <activity android:name=".activity.GestionFriendActivity" />
-        <activity android:name=".activity.ViewFriendActivity" />
-        <activity android:name=".activity.ViewUserActivity"></activity>
+        <activity
+            android:name=".activity.GestionFriendActivity" />
+        <activity
+            android:name=".activity.ViewFriendActivity" />
+        <activity
+            android:name=".activity.ViewUserActivity"/>
         <activity
             android:name=".activity.UpdateProfileActivity" />
         <activity
             android:name=".activity.QuizActivity"
             android:parentActivityName=".activity.MainMenuActivity" />
+        <activity
+            android:name=".activity.BiPollActivity" />
     </application>
 
 </manifest>

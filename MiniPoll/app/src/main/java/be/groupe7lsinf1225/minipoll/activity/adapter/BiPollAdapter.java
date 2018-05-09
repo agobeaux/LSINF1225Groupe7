@@ -1,6 +1,7 @@
 package be.groupe7lsinf1225.minipoll.activity.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,7 +41,12 @@ public class BiPollAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return bipolls.size();
+        if (bipolls == null) {
+            return 0;
+        }
+        else {
+            return bipolls.size();
+        }
     }
 
     @Override
@@ -54,11 +60,11 @@ public class BiPollAdapter extends BaseAdapter {
     }
 
 
-
-    public View getView(int i, View convertView, ViewGroup viewGroup) {
+    @Override
+    public View getView(int i, View convertView, ViewGroup parent) {
 
         if (convertView == null) {
-            //convertView = mInflater.inflate(R.layout.collected_friend_row, viewGroup, false);
+            convertView = mInflater.inflate(R.layout.collected_poll_row, parent, false);
         }
         TextView topic = convertView.findViewById(R.id.show_row_topic);
         TextView state = convertView.findViewById(R.id.show_row_state);
@@ -67,12 +73,18 @@ public class BiPollAdapter extends BaseAdapter {
         BiPoll bipoll = bipolls.get(i);
         topic.setText(bipoll.getQuestion());
         if(bipoll.getState()){
-            state.setText("Open");
-        }
-        else{
             state.setText("Closed");
         }
+        else{
+            state.setText("Open");
+        }
         createdby.setText(bipoll.getAuthor());
+
         return convertView;
+    }
+
+    public void setBipolls(ArrayList<BiPoll> bipolls) {
+        this.bipolls = bipolls;
+        notifyDataSetChanged();
     }
 }
