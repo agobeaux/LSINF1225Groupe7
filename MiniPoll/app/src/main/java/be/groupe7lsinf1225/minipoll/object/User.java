@@ -283,7 +283,7 @@ public class User {
         return user;
     }
 
-    public static boolean putUser(String username, String password, String first_name, String last_name, String email){
+    public static boolean putUser(String username, String password, String first_name, String last_name, String email, int picture){
         SQLiteDatabase db = MySQLiteHelper.get().getWritableDatabase();
 
         ContentValues values = new ContentValues();
@@ -291,6 +291,7 @@ public class User {
         values.put(DB_COLUMN_PASSWORD, password);
         values.put(DB_COLUMN_LASTNAME, last_name);
         values.put(DB_COLUMN_FIRSTNAME, first_name);
+        values.put(DB_COLUMN_PICTURE, picture);
         values.put(DB_COLUMN_EMAIL, email);
 
         int result = (int) db.insert(DB_TABLE,null,values);

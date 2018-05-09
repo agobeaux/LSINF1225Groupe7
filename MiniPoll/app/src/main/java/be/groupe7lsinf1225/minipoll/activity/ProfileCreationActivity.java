@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import be.groupe7lsinf1225.minipoll.AppMiniPoll;
@@ -23,8 +22,57 @@ public class ProfileCreationActivity extends Activity implements TextView.OnEdit
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_creation);
 
-        ImageButton profileImage = findViewById(R.id.imageButton4);
-        profileImage.setImageResource(R.drawable.profile_placeholder);
+        ImageButton profileImage = findViewById(R.id.picture_creation);
+
+        String picture = getIntent().getStringExtra("picture");
+
+        if(picture == null) {
+            profileImage.setImageResource(R.drawable.profile_placeholder);
+        }
+        else {
+            switch (picture) {
+                case "1":
+                    profileImage.setImageResource(R.drawable.caterpie);
+                    break;
+                case "2":
+                    profileImage.setImageResource(R.drawable.charmander);
+                    break;
+                case "3":
+                    profileImage.setImageResource(R.drawable.eevee);
+                    break;
+                case "4":
+                    profileImage.setImageResource(R.drawable.gyarados);
+                    break;
+                case "5":
+                    profileImage.setImageResource(R.drawable.machop);
+                    break;
+                case "6":
+                    profileImage.setImageResource(R.drawable.pidgey);
+                    break;
+                case "7":
+                    profileImage.setImageResource(R.drawable.pikachu);
+                    break;
+                case "8":
+                    profileImage.setImageResource(R.drawable.rattata);
+                    break;
+                case "9":
+                    profileImage.setImageResource(R.drawable.squirtle);
+                    break;
+                case "10":
+                    profileImage.setImageResource(R.drawable.treecko);
+                    break;
+                case "11":
+                    profileImage.setImageResource(R.drawable.snorlax);
+                    break;
+                case "12":
+                    profileImage.setImageResource(R.drawable.zapdos);
+                    break;
+                default:
+                    profileImage.setImageResource(R.drawable.profile_placeholder);
+                    break;
+            }
+        }
+        profileImage.setContentDescription(picture);
 
         EditText firstnameEditText = findViewById(R.id.FirstName);
         firstnameEditText.setOnEditorActionListener(this);
@@ -42,6 +90,18 @@ public class ProfileCreationActivity extends Activity implements TextView.OnEdit
         EditText mailaddressEditText = findViewById(R.id.MailAddress);
         String mailaddress = mailaddressEditText.getText().toString();
 
+        Log.e("Je passe","oui oui je passe");
+
+        ImageButton profileImage = findViewById(R.id.picture_creation);
+        CharSequence picture = profileImage.getContentDescription();
+
+        int numPicture = 0;
+        if(picture != null) {
+            numPicture = Integer.parseInt((String)picture);
+        }
+
+        Log.e("Mais enfin","je suis passe :o");
+
 
         if (firstname.equals("") || lastname.equals("") || mailaddress.equals("")) {
             AppMiniPoll.notifyShort(R.string.not_completed);
@@ -55,7 +115,7 @@ public class ProfileCreationActivity extends Activity implements TextView.OnEdit
             String username = oldIntent.getStringExtra("username");
             String password = oldIntent.getStringExtra("password");
 
-            if(!User.putUser(username,password,firstname,lastname,mailaddress)){
+            if(!User.putUser(username,password,firstname,lastname,mailaddress,numPicture)){
                 AppMiniPoll.notifyLong(R.string.error_sign_up);
             }
             else{
@@ -64,6 +124,21 @@ public class ProfileCreationActivity extends Activity implements TextView.OnEdit
 
             startActivity(intent);
         }
+    }
+
+    public void pictureUpdateLayout(View v) {
+        setContentView(R.layout.activity_update_profile_picture);
+    }
+
+    public void pictureUpdate(View v) {
+        Intent oldIntent = getIntent();
+        String username = oldIntent.getStringExtra("username");
+        String password = oldIntent.getStringExtra("password");
+        Intent intent = new Intent(this,ProfileCreationActivity.class);
+        intent.putExtra("picture",v.getContentDescription());
+        intent.putExtra("username",username);
+        intent.putExtra("password",password);
+        startActivity(intent);
     }
 
     public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
