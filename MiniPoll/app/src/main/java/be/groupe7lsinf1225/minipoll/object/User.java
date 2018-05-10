@@ -431,8 +431,6 @@ public class User {
         String selection = "LOGIN" + " = ?";
 
         Cursor cursor = db.query("VIEW_QUIZ", columns, selection, valuesWhere, null, null, null);
-        Log.e(null, "NbOfRows: " + cursor.getCount());
-        Log.e(null, "NBOfColumns" + cursor.getColumnCount());
         if( cursor.moveToFirst() ) {
             int i;
             for(i=0; i < cursor.getCount(); i++ ) {
