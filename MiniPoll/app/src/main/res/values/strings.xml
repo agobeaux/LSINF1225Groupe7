@@ -56,6 +56,10 @@
     <string name="state">State</string>
     <string name="createdby">Created by</string>
 
+    <!-- Poll creation -->
+    <string name="no_friends_to_share">Make you some friends before creating a poll</string>
+    <string name="minimum_one_friend">Select at least one friend</string>
+
     <!-- Gestion Friend Activity -->
     <string name="title_activity_gestion_friend">GestionFriendActivity</string>
     <string name="title_activity_scrolling">ScrollingActivity</string>

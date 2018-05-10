@@ -3,9 +3,11 @@ package be.groupe7lsinf1225.minipoll.object;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import java.util.ArrayList;
 
+import be.groupe7lsinf1225.minipoll.AppMiniPoll;
 import be.groupe7lsinf1225.minipoll.MySQLiteHelper;
 
 public class BiPoll extends Poll {
@@ -30,69 +32,117 @@ public class BiPoll extends Poll {
         this.state = false;
     }
 
-    public static boolean addBiPoll(String title,String author,String choise1,String choise2){
-        SQLiteDatabase db = MySQLiteHelper.get().getWritableDatabase();
+    public static boolean addBiPoll(String title,String author,String choice1,String choice2,ArrayList<String> selected_friends){
 
         int id = BiPoll.getId();
         //int idc1 = 2*id - 1;
-        int idc1 = 3;
-        int idc2 = 2*id;
+        int idc1 = id;
+        int idc2 = id+1;
 
         ContentValues values = new ContentValues();
         values.put("IDCHOICE",idc1);
-        values.put("CONTENT",choise1);
+        values.put("CONTENT",choice1);
 
-        //le insert crash je sat pas pq
-        int dia1 = (int) db.insert("CHOICE_BIPOLL",null,values);
-        if(-1 == dia1){
+        ContentValues values2 = new ContentValues();
+        values2.put("IDCHOICE",idc2);
+        values2.put("CONTENT",choice2);
+
+        SQLiteDatabase db = MySQLiteHelper.get().getWritableDatabase();
+
+
+        //int dia1 = 1;
+        if(-1 == (int) db.insert("CHOICE_BIPOLL",null,values)){
             db.close();
             return false;
         }
-        //db.delete("CHOICE_BIPOLL", "IDCHOICE = "+ String.valueOf(idc1), null);
-        if(false) {
-            ContentValues values1 = new ContentValues();
-            values1.put("IDCHOICE", idc2);
-            values1.put("CONTENT", choise2);
+        if(-1 == (int) db.insert("CHOICE_BIPOLL",null,values2)){
+            String selection = "IDCHOICE = CAST(? as INTEGER)";
+            String[] valuesWhere = {String.valueOf(idc1)};
+            db.delete("CHOICE_BIPOLL",selection,valuesWhere);
+            db.close();
+            return false;
+        }
 
-            if (-1 == db.insert("CHOICE_BIPOLL", null, values1)) {
-                db.delete("CHOICE_BIPOLL", "IDCHOICE = " + String.valueOf(idc1), null);
-                db.close();
-                return false;
-            }
 
-            ContentValues values2 = new ContentValues();
-            values2.put("IDBIPOLL", id);
-            values2.put("TITLE", title);
-            values2.put("AUTHOR", author);
-            values2.put("CHOICE1", idc1);
-            values2.put("CHOICE2", idc2);
+        // db.delete("CHOICE_BIPOLL", "IDCHOICE = "+ String.valueOf(idc1), null);
 
-            if (-1 == (int) db.insert("BIPOLL", null, values2)) {
+        /*
+        String[] selectionTest = {"CONTENT"};
+        String where = "IDCHOICE = CAST(? as INTEGER)";
+        String[] valuesWhere = {String.valueOf(idc1)};
+        Cursor c1 = db.query("CHOICE_BIPOLL",selectionTest,where,valuesWhere,null,null,null);
+
+        if(c1.getCount() <= 0)
+            Log.e("TEST","C1 <= 0");
+        else if(c1.getCount() == 1)
+            Log.e("TEST","C1 = 1");
+        */
+
+        int idBipoll = idc2/2;
+        ContentValues values3 = new ContentValues();
+        values3.put("IDBIPOLL", idBipoll);
+        values3.put("TITLE", title);
+        values3.put("AUTHOR", author);
+        values3.put("CHOICE1", idc1);
+        values3.put("CHOICE2", idc2);
+
+        if (-1 == (int) db.insert("BIPOLL", null, values3)) {
+            db.delete("CHOICE_BIPOLL", "IDCHOICE = " + String.valueOf(idc1), null);
+            db.delete("CHOICE_BIPOLL", "IDCHOICE = " + String.valueOf(idc2), null);
+            db.close();
+            return false;
+        }
+        int i;
+        for(i=0 ; i<selected_friends.size(); i++) {
+            ContentValues values4 = new ContentValues();
+            values4.put("LOGIN",selected_friends.get(i));
+            values4.put("IDBIPOLL", idBipoll);
+
+            if(-1 == (int) db.insert("VIEW_BIPOLL",null,values4)){
+                db.delete("VIEW_BIPOLL","IDBIPOLL = " + String.valueOf(idBipoll),null);
                 db.delete("CHOICE_BIPOLL", "IDCHOICE = " + String.valueOf(idc1), null);
                 db.delete("CHOICE_BIPOLL", "IDCHOICE = " + String.valueOf(idc2), null);
+                db.delete("BIPOLL","IDBIPOLL = " + String.valueOf(idBipoll),null);
                 db.close();
                 return false;
             }
+
         }
+        ContentValues values5 = new ContentValues();
+        values5.put("LOGIN",User.getConnectedUser().getLogin());
+        values5.put("IDBIPOLL",idBipoll);
+
+        if(-1 == (int) db.insert("VIEW_BIPOLL",null,values5)) {
+            db.delete("VIEW_BIPOLL","IDBIPOLL = " + String.valueOf(idBipoll),null);
+            db.delete("CHOICE_BIPOLL", "IDCHOICE = " + String.valueOf(idc1), null);
+            db.delete("CHOICE_BIPOLL", "IDCHOICE = " + String.valueOf(idc2), null);
+            db.delete("BIPOLL","IDBIPOLL = " + String.valueOf(idBipoll),null);
+            db.close();
+            return false;
+        }
+
+        db.close();
+
+
         return true;
     }
 
     public static int getId(){
         SQLiteDatabase db = MySQLiteHelper.get().getReadableDatabase();
 
-        String[] columns = {"IDBIPOLL"};
-        Cursor cursor = null;
-        for(int i = 1;i<1000;i++){
-            cursor = db.query("BIPOLL", columns, "IDBIPOLL = " + String.valueOf(i),null, null, null, null);
-            if(cursor.getCount() <= 0){
-                cursor.close();
-                db.close();
-                return i;
-            }
-        }
+        String[] columns = {"IDCHOICE"};
+
+        Cursor cursor = db.query("CHOICE_BIPOLL",columns,null,null,null,null,"IDCHOICE");
+
+        cursor.moveToLast();
+
+        int id = cursor.getInt(0);
+
+        Log.e("getID","id du dernier: "+id);
+
         cursor.close();
         db.close();
-        return -1;
+        return id+1;
     }
 
     public static ArrayList<BiPoll> getBiPolls() {
