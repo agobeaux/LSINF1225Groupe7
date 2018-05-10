@@ -100,6 +100,7 @@
             android:layout_column="1"
             android:layout_gravity="end|top"
             android:layout_row="2"
+            android:onClick="creatpoll"
             android:scaleType="fitXY"
             android:src="@drawable/menu_poll"
             tools:layout_editor_absoluteX="0dp"
