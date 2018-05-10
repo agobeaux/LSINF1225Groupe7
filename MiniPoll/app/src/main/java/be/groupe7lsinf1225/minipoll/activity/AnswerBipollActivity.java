@@ -74,7 +74,7 @@ public class AnswerBipollActivity extends Activity {
             public void onLeftCardExit(Object dataObject) {
                 if(!answered) {
                 makeToast(AnswerBipollActivity.this, "like!");
-                //bipoll.answer(choice1.get(0));
+                bipoll.answer(choice1.get(0));
                 answered = true;
                 }
             }
@@ -83,7 +83,7 @@ public class AnswerBipollActivity extends Activity {
             public void onRightCardExit(Object dataObject){
                 if(!answered) {
                     makeToast(AnswerBipollActivity.this, "dislike!");
-                    //bipoll.answer(choice1.get(1));
+                    bipoll.answer(choice1.get(1));
                     answered = true;
                 }
             }
@@ -112,7 +112,7 @@ public class AnswerBipollActivity extends Activity {
             public void onLeftCardExit(Object dataObject) {
                 if(!answered) {
                     makeToast(AnswerBipollActivity.this, "like!");
-                    //bipoll.answer(choice1.get(1));
+                    bipoll.answer(choice1.get(1));
                     answered = true;
                 }
             }
@@ -121,7 +121,7 @@ public class AnswerBipollActivity extends Activity {
             public void onRightCardExit(Object dataObject) {
                 if(!answered) {
                     makeToast(AnswerBipollActivity.this, "dislike!");
-                    //bipoll.answer(choice1.get(0));
+                    bipoll.answer(choice1.get(0));
                     answered = true;
                 }
             }
