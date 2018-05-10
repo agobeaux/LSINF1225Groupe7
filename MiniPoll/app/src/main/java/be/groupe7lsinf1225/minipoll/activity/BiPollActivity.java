@@ -66,14 +66,9 @@ public class BiPollActivity extends Activity implements AdapterView.OnItemClickL
 
             }
             else{
-                if(bipolls.get(position).haveanswer()==-1){
                     Intent intent = new Intent(this,AnswerBipollActivity.class);
                     intent.putExtra("idBipoll",this.bipolls.get(position).getLocId());
                     startActivity(intent);
-                }
-                else{
-                    //check answer
-                }
             }
         }
 

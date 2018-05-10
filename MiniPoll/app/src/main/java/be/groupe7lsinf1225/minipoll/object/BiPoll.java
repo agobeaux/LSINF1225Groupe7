@@ -112,6 +112,24 @@ public class BiPoll extends Poll {
         return true;
     }
 
+    public boolean updateanswer(String choice){
+
+        ContentValues values = new ContentValues();
+
+        values.put("CHOICE",choice);
+
+        String[] valuesWhere = {User.getConnectedUser().getLogin(),String.valueOf(this.id)};
+        String selection = "LOGIN = ? AND IDBIPOLL = CAST(? as INTEGER)";
+
+        SQLiteDatabase db = MySQLiteHelper.get().getWritableDatabase();
+
+        if(-1 == db.update("ANSWER_BIPOLL",values,selection,valuesWhere)){
+            db.close();
+            return false;
+        }
+        return true;
+    }
+
     public int haveanswer(){
 
         String[] columns = {"LOGIN","CHOICE","IDBIPOLL"};

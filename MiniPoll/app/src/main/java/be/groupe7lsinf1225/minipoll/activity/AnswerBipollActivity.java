@@ -7,7 +7,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.View;
 import android.view.inputmethod.EditorInfo;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,6 +21,7 @@ import be.groupe7lsinf1225.minipoll.R;
 import be.groupe7lsinf1225.minipoll.activity.adapter.ViewBipollChoiceAdapter;
 import be.groupe7lsinf1225.minipoll.activity.adapter.ViewFriendAdapter;
 import be.groupe7lsinf1225.minipoll.object.BiPoll;
+import be.groupe7lsinf1225.minipoll.object.Picture;
 import be.groupe7lsinf1225.minipoll.object.User;
 
 public class AnswerBipollActivity extends Activity {
@@ -29,6 +32,7 @@ public class AnswerBipollActivity extends Activity {
     private ViewBipollChoiceAdapter arrayAdapter2;
     private boolean answered = false;
 
+    private String select = null;
     private BiPoll bipoll;
 
     @Override
@@ -45,6 +49,9 @@ public class AnswerBipollActivity extends Activity {
             nul.add("Unknownen");
             nul.add("Unknownen");
             bipoll = new BiPoll("Unknownen","Unknownen",-1,nul);
+        }
+        else if (bipoll.haveanswer()==-1) {
+            answered = true;
         }
 
         TextView textViewauthor = findViewById(R.id.answer_bipoll_author);
@@ -68,24 +75,20 @@ public class AnswerBipollActivity extends Activity {
 
             @Override
             public void removeFirstObjectInAdapter() {
+                arrayAdapter1.notifyDataSetChanged();
             }
 
             @Override
             public void onLeftCardExit(Object dataObject) {
-                if(!answered) {
+                select = choice1.get(0);
                 makeToast(AnswerBipollActivity.this, "like!");
-                bipoll.answer(choice1.get(0));
-                answered = true;
-                }
+
             }
 
             @Override
             public void onRightCardExit(Object dataObject){
-                if(!answered) {
-                    makeToast(AnswerBipollActivity.this, "dislike!");
-                    bipoll.answer(choice1.get(1));
-                    answered = true;
-                }
+                select = choice2.get(0);
+                makeToast(AnswerBipollActivity.this, "dislike!");
             }
 
             @Override
@@ -106,24 +109,21 @@ public class AnswerBipollActivity extends Activity {
 
             @Override
             public void removeFirstObjectInAdapter() {
+                arrayAdapter2.notifyDataSetChanged();
             }
 
             @Override
             public void onLeftCardExit(Object dataObject) {
-                if(!answered) {
-                    makeToast(AnswerBipollActivity.this, "like!");
-                    bipoll.answer(choice1.get(1));
-                    answered = true;
-                }
+                select = choice2.get(0);
+                makeToast(AnswerBipollActivity.this, "like!");
+
             }
 
             @Override
             public void onRightCardExit(Object dataObject) {
-                if(!answered) {
-                    makeToast(AnswerBipollActivity.this, "dislike!");
-                    bipoll.answer(choice1.get(0));
-                    answered = true;
-                }
+                select = choice1.get(0);
+                makeToast(AnswerBipollActivity.this, "dislike!");
+
             }
 
             @Override
@@ -135,6 +135,25 @@ public class AnswerBipollActivity extends Activity {
 
             }
         });
+    }
+
+    public void confirm(View view){
+        if(select!=null){
+            boolean err;
+            if(!answered) {
+                err = bipoll.answer(select);
+                answered = true;
+            }
+            else {
+                err = bipoll.updateanswer(select);
+            }
+            if(err) {
+                makeToast(AnswerBipollActivity.this, "Your answer have been saved!");
+            }
+        }
+        else{
+            makeToast(AnswerBipollActivity.this, "Please make a choice!");
+        }
     }
 
     static void makeToast(Context ctx, String s){
