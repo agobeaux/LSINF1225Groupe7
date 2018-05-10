@@ -27,6 +27,22 @@ public class Question {
 
     // == Picture == //
 
+    public static Question getQuestion(String IdQuestion){
+        SQLiteDatabase db = MySQLiteHelper.get().getReadableDatabase();
+        String[] columns = {"IDQUESTION","IDQUIZ","POSITION","TITLE"};
+        int IdInt = Integer.parseInt(IdQuestion);
+        String selection = "IDQUESTION = " + IdInt;
+        Cursor cursor = db.query("QUESTION_QUIZ", columns, selection, null, null, null, null);
+        if( cursor.moveToFirst() ) {
+            Question question = new Question(cursor.getString(3),cursor.getInt(1));
+            cursor.close();
+            db.close();
+        }
+        Log.e(null, "Error : this question id doesn't exist");
+        db.close();
+        return null;
+    }
+
     public int getIDQuestion()
     {
         return IDQuestion;
