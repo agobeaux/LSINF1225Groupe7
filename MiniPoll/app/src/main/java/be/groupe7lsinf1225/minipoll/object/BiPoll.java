@@ -14,6 +14,7 @@ public class BiPoll extends Poll {
 
     private String question;
     private String author;
+    private ArrayList<String> c;
     private boolean state;
     private int id;
     /**
@@ -21,18 +22,84 @@ public class BiPoll extends Poll {
      */
     public BiPoll(String question, String author, int id) {
         this.question = question;
-        ArrayList<Choice> c = new ArrayList<>();
+        c = new ArrayList<>();
         this.author = author;
         this.state = false;
         this.id = id;
+    }
+
+    public BiPoll(String question, String author, int id,ArrayList<String> choice) {
+        this.question = question;
+        c = choice;
+        this.author = author;
+        this.state = false;
+        this.id = id;
+    }
+
+    public static BiPoll find(int id){
+
+        String[] columns = {"IDBIPOLL", "TITLE", "AUTHOR", "CHOICE1", "CHOICE2", "CLOSED"};
+        String[] valuesWhere = {String.valueOf(id)};
+        String selection = "IDBIPOLL = CAST(? as INTEGER)";
+
+        SQLiteDatabase db = MySQLiteHelper.get().getReadableDatabase();
+
+        Cursor cursor = db.query("BIPOLL", columns, selection, valuesWhere, null, null, null);
+
+        cursor.moveToFirst();
+
+        if(cursor.getCount()<=0){
+            cursor.close();
+            db.close();
+            return null;
+        }
+
+        ArrayList<String> choises = new ArrayList<>();
+        choises.add(findchoise(cursor.getInt(3)));
+        choises.add(findchoise(cursor.getInt(4)));
+
+        BiPoll bp = new BiPoll(cursor.getString(1),cursor.getString(2),cursor.getInt(0),choises);
+        if(cursor.getString(5).equals("false")) {
+            bp.setState(false);
+        }
+        else{
+            bp.setState(true);
+        }
+
+        cursor.close();
+        db.close();
+        return bp;
+
+    }
+
+    public static  String findchoise(int id){
+
+        String[] columns = {"IDCHOICE","CONTENT"};
+        String[] valuesWhere = {String.valueOf(id)};
+        String selection = "IDCHOICE = CAST(? as INTEGER)";
+
+        SQLiteDatabase db = MySQLiteHelper.get().getReadableDatabase();
+
+        //Cursor cursor = db.query("CHOICE_BIPOLL", columns, selection, valuesWhere, null, null, null);
+
+        //if(cursor.getCount()<=0){
+        //    cursor.close();
+            db.close();
+            return "Unknowen";
+        //}
+        //String finded = cursor.getString(1);
+
+        //cursor.close();
+        //db.close();
+        //return finded;
     }
 
     public static boolean addBiPoll(String title,String author,String choice1,String choice2,ArrayList<String> selected_friends){
 
         int id = BiPoll.getId();
 
-        int idc1 = id;
-        int idc2 = id+1;
+        int idc1 = id*2-1;
+        int idc2 = id*2;
 
         ContentValues values = new ContentValues();
         values.put("IDCHOICE",idc1);
@@ -73,7 +140,7 @@ public class BiPoll extends Poll {
             Log.e("TEST","C1 = 1");
         */
 
-        int idBipoll = idc2/2;
+        int idBipoll = id;
         ContentValues values3 = new ContentValues();
         values3.put("IDBIPOLL", idBipoll);
         values3.put("TITLE", title);
@@ -202,6 +269,10 @@ public class BiPoll extends Poll {
         return author;
     }
 
+    public void setState(boolean state){
+        this.state = state;
+    }
+
     public boolean getState() {
         return state;
     }
@@ -210,5 +281,9 @@ public class BiPoll extends Poll {
         return id;
     }
 
-    public ArrayList<Choice> getChoices() {return null;}
+    public ArrayList<String> getChoices() {return this.c;}
+
+    public String getChoice1() {return this.c.get(0);}
+
+    public String getChoice2() {return this.c.get(1);}
 }

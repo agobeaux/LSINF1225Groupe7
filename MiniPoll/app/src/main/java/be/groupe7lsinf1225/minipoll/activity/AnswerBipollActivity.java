@@ -39,21 +39,27 @@ public class AnswerBipollActivity extends Activity {
         Intent old_intent = getIntent();
         int idBipoll = old_intent.getIntExtra("idBipoll",0);
 
-        //bipoll = BiPoll.find(idBipoll);
+        bipoll = BiPoll.find(idBipoll);
+        if (bipoll == null) {
+            ArrayList<String> nul = new ArrayList<>();
+            nul.add("Unknownen");
+            nul.add("Unknownen");
+            bipoll = new BiPoll("Unknownen","Unknownen",-1,nul);
+        }
 
         TextView textViewauthor = findViewById(R.id.answer_bipoll_author);
-        textViewauthor.setText("ici tu met l author");
+        textViewauthor.setText(bipoll.getAuthor());
         TextView textViewquestion = findViewById(R.id.answer_bipoll_question);
-        textViewquestion.setText("ici tu met la question");
+        textViewquestion.setText(bipoll.getQuestion());
 
         //String[] choice = BiPoll.getChoice();
 
         final ArrayList<String> choice1 = new ArrayList<>();
-        choice1.add("ici tu met le choice 1");
-        choice1.add("ici tu met le choice 1");
+        choice1.add(bipoll.getChoice1());
+        choice1.add(bipoll.getChoice1());
         final ArrayList<String> choice2 = new ArrayList<>();
-        choice2.add("ici tu met le choice 2");
-        choice2.add("ici tu met le choice 2");
+        choice2.add(bipoll.getChoice2());
+        choice2.add(bipoll.getChoice2());
 
         arrayAdapter1 = new ViewBipollChoiceAdapter(this, choice1,R.layout.item_bipoll_choise1,R.id.item_bipoll_choice1);
 
