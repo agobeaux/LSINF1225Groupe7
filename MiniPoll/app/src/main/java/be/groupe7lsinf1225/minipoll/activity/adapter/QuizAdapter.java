@@ -43,7 +43,7 @@ public class QuizAdapter extends BaseAdapter {
     }
 
     @Override
-    public Object getItem(int i) {
+    public Quiz getItem(int i) {
         return quizzes.get(i);
     }
 
