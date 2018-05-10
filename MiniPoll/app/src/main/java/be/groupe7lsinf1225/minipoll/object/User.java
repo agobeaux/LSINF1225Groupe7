@@ -419,7 +419,7 @@ public class User {
         Cursor cursor = db.query("VIEW_QUIZ", columns, selection, valuesWhere, null, null, null);
         Log.e(null, "NbOfRows: " + cursor.getCount());
         Log.e(null, "NBOfColumns" + cursor.getColumnCount());
-        if( cursor != null && cursor.moveToFirst() ) {
+        if( cursor.moveToFirst() ) {
             int i;
             for(i=0; i < cursor.getCount(); i++ ) {
                 Ids.add(String.valueOf(cursor.getInt(1)));

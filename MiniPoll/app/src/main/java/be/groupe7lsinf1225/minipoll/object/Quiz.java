@@ -30,22 +30,19 @@ public class Quiz extends Poll {
         return state;
     }
 
-    public static Quiz getId(int Id) {
+    public static Quiz getId(String Id) {
         SQLiteDatabase db = MySQLiteHelper.get().getReadableDatabase();
         String[] columns = {"IDQUIZ","TITLE", "AUTHOR", "CLOSED"};
-        String[] valuesWhere = {String.valueOf(Id)};
-        Log.e(null, "IDQUIZFROMQUICLASS :" + valuesWhere[0]);
-        String selection = "IDQUIZ" + " = ?";
-        Cursor cursor = db.query("QUIZ", columns, selection, valuesWhere, null, null, null);
-        Log.e(null, "NbOfRows: " + cursor.getCount());
+        int IdInt = Integer.parseInt(Id);
+        String selection = "IDQUIZ = " + IdInt;
+        Cursor cursor = db.query("QUIZ", columns, selection, null, null, null, null);
         if( cursor.moveToFirst() ) {
-            Log.e(null, "Title :" + cursor.getString(1));
             Quiz locQuiz = new Quiz(cursor.getString(1), !cursor.getString(3).equals("false"), cursor.getString(2));
             cursor.close();
             db.close();
             return locQuiz;
         }
-        Log.e(null, "Pourquoi ça ne marche pas ?");
+        Log.e(null, "Error : no quiz");
         db.close();
         return null;
     }
