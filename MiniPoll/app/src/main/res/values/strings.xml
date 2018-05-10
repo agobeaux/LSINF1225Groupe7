@@ -71,4 +71,8 @@
     <!-- Answering Quiz Text xml -->
     <string name="submit">Submit</string>
 
+    <!-- LeaderBoard Quiz Activity -->
+    <string name="leaderboard">Leaderboard</string>
+    <string name="return_to_the_quiz_menu">Return to the Quiz Menu</string>
+
 </resources>
