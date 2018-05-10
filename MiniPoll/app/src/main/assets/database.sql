@@ -1,27 +1,19 @@
 --
--- Fichier généré par SQLiteStudio v3.1.1 sur jeu. mai 10 16:43:37 2018
+-- Fichier gï¿½nï¿½rï¿½ par SQLiteStudio v3.1.1 sur jeu. mai 10 16:43:37 2018
 --
--- Encodage texte utilisé : System
+-- Encodage texte utilisï¿½ : System
 --
 PRAGMA foreign_keys = off;
 BEGIN TRANSACTION;
 
 -- Table : AGREEMENT
 DROP TABLE IF EXISTS AGREEMENT;
-CREATE TABLE AGREEMENT ( IDAGREEMENT not null primary key,
-TITLE not null,
-AUTHOR not null references USER,
-CLOSED not null default false);
+CREATE TABLE AGREEMENT ( IDAGREEMENT not null primary key,TITLE not null,AUTHOR not null references USER,CLOSED not null default false);
 INSERT INTO AGREEMENT (IDAGREEMENT, TITLE, AUTHOR, CLOSED) VALUES (1, 'Aidez moi a choisir un Pokemon :-)', 'Jolie Fille', 'false');
 
 -- Table : ANSWER_AGREEMENT
 DROP TABLE IF EXISTS ANSWER_AGREEMENT;
-CREATE TABLE ANSWER_AGREEMENT ( LOGIN not null references USER,
-IDAGREEMENT not null references AGREEMENT,
-CHOICE not null references CHOICE_AGREEMENT,
-WEIGHT not null,
-unique(LOGIN,IDAGREEMENT,WEIGHT),
-unique(LOGIN,IDAGREEMENT,CHOICE) );
+CREATE TABLE ANSWER_AGREEMENT ( LOGIN not null references USER,IDAGREEMENT not null references AGREEMENT,CHOICE not null references CHOICE_AGREEMENT,WEIGHT not null,unique(LOGIN,IDAGREEMENT,WEIGHT),unique(LOGIN,IDAGREEMENT,CHOICE) );
 INSERT INTO ANSWER_AGREEMENT (LOGIN, IDAGREEMENT, CHOICE, WEIGHT) VALUES ('Sacha LOL', 1, 3, 1);
 INSERT INTO ANSWER_AGREEMENT (LOGIN, IDAGREEMENT, CHOICE, WEIGHT) VALUES ('Sacha LOL', 1, 2, 3);
 INSERT INTO ANSWER_AGREEMENT (LOGIN, IDAGREEMENT, CHOICE, WEIGHT) VALUES ('Sacha LOL', 1, 1, 2);
@@ -40,10 +32,7 @@ INSERT INTO ANSWER_BIPOLL (LOGIN, CHOICE, IDBIPOLL) VALUES ('Pika Pika', 1, 1);
 
 -- Table : ANSWER_QUIZ
 DROP TABLE IF EXISTS ANSWER_QUIZ;
-CREATE TABLE ANSWER_QUIZ (LOGIN not null references USER,
-CHOICE not null references CHOICE_QUIZ,
-IDQUESTION not null references QUESTION_QUIZ,
-unique(LOGIN,IDQUESTION));
+CREATE TABLE ANSWER_QUIZ (LOGIN not null references USER,CHOICE not null references CHOICE_QUIZ,IDQUESTION not null references QUESTION_QUIZ,unique(LOGIN,IDQUESTION));
 INSERT INTO ANSWER_QUIZ (LOGIN, CHOICE, IDQUESTION) VALUES ('Pika Pika', 14, 1);
 INSERT INTO ANSWER_QUIZ (LOGIN, CHOICE, IDQUESTION) VALUES ('Pika Pika', 22, 2);
 INSERT INTO ANSWER_QUIZ (LOGIN, CHOICE, IDQUESTION) VALUES ('Pika Pika', 33, 3);
@@ -56,27 +45,19 @@ INSERT INTO ANSWER_QUIZ (LOGIN, CHOICE, IDQUESTION) VALUES ('Le Doc', 31, 3);
 
 -- Table : BIPOLL
 DROP TABLE IF EXISTS BIPOLL;
-CREATE TABLE BIPOLL ( IDBIPOLL not null primary key,
-TITLE not null,
-AUTHOR not null references USER,
-CHOICE1 not null references CHOICE_BIPOLL,
-CHOICE2 not null references CHOICE_BIPOLL,
-CLOSED not null default false );
+CREATE TABLE BIPOLL ( IDBIPOLL not null primary key,TITLE not null,AUTHOR not null references USER,CHOICE1 not null references CHOICE_BIPOLL,CHOICE2 not null references CHOICE_BIPOLL,CLOSED not null default false );
 INSERT INTO BIPOLL (IDBIPOLL, TITLE, AUTHOR, CHOICE1, CHOICE2, CLOSED) VALUES (1, 'Quelle est ton pokemon prefere?', 'Le Doc', 1, 2, 'false');
 
 -- Table : CHOICE_AGREEMENT
 DROP TABLE IF EXISTS CHOICE_AGREEMENT;
-CREATE TABLE CHOICE_AGREEMENT ( IDCHOICE not null primary key,
-IDAGREEMENT not null references AGREEMENT,
-TITLE not null);
+CREATE TABLE CHOICE_AGREEMENT ( IDCHOICE not null primary key,IDAGREEMENT not null references AGREEMENT,TITLE not null);
 INSERT INTO CHOICE_AGREEMENT (IDCHOICE, IDAGREEMENT, TITLE) VALUES (1, 1, 'Salameche');
 INSERT INTO CHOICE_AGREEMENT (IDCHOICE, IDAGREEMENT, TITLE) VALUES (2, 1, 'Bulbizard');
 INSERT INTO CHOICE_AGREEMENT (IDCHOICE, IDAGREEMENT, TITLE) VALUES (3, 1, 'Carapuce');
 
 -- Table : CHOICE_BIPOLL
 DROP TABLE IF EXISTS CHOICE_BIPOLL;
-CREATE TABLE CHOICE_BIPOLL( IDCHOICE not null primary key,
-CONTENT not null);
+CREATE TABLE CHOICE_BIPOLL( IDCHOICE not null primary key,CONTENT not null);
 INSERT INTO CHOICE_BIPOLL (IDCHOICE, CONTENT) VALUES (1, 'Pikachu');
 INSERT INTO CHOICE_BIPOLL (IDCHOICE, CONTENT) VALUES (2, 'Florisard');
 
@@ -105,31 +86,19 @@ INSERT INTO FRIENDS (LOGIN1, LOGIN2, STATE) VALUES ('Le Doc', 'Sacha LOL', 1);
 
 -- Table : QUESTION_QUIZ
 DROP TABLE IF EXISTS QUESTION_QUIZ;
-CREATE TABLE QUESTION_QUIZ ( IDQUESTION not null primary key,
-IDQUIZ not null references QUIZ,
-POSITION not null,
-TITLE not null,
-unique(IDQUIZ,POSITION));
+CREATE TABLE QUESTION_QUIZ ( IDQUESTION not null primary key,IDQUIZ not null references QUIZ,POSITION not null,TITLE not null,unique(IDQUIZ,POSITION));
 INSERT INTO QUESTION_QUIZ (IDQUESTION, IDQUIZ, POSITION, TITLE) VALUES (1, 1, 1, 'lequel de ces pokemon est de type eau?');
 INSERT INTO QUESTION_QUIZ (IDQUESTION, IDQUIZ, POSITION, TITLE) VALUES (2, 1, 2, 'lequel n est pas un pokemon?');
 INSERT INTO QUESTION_QUIZ (IDQUESTION, IDQUIZ, POSITION, TITLE) VALUES (3, 1, 3, 'Ou peut-on trouver des Staris?');
 
 -- Table : QUIZ
 DROP TABLE IF EXISTS QUIZ;
-CREATE TABLE QUIZ( IDQUIZ not null primary key,
-TITLE not null,
-AUTHOR not null references USER,
-CLOSED not null default false);
+CREATE TABLE QUIZ( IDQUIZ not null primary key,TITLE not null,AUTHOR not null references USER,CLOSED not null default false);
 INSERT INTO QUIZ (IDQUIZ, TITLE, AUTHOR, CLOSED) VALUES (1, 'Mon premier petit quiz :-)', 'Sacha LOL', 'false');
 
 -- Table : USER
 DROP TABLE IF EXISTS USER;
-CREATE TABLE USER ( LOGIN not null primary key,
-PASSWORD not null,
-LASTNAME not null, FIRSTNAME not null,
-PICTURE, EMAIL not null,
-BESTFRIEND references USER,
-unique(EMAIL) );
+CREATE TABLE USER ( LOGIN not null primary key,PASSWORD not null,LASTNAME not null, FIRSTNAME not null,PICTURE, EMAIL not null,BESTFRIEND references USER,unique(EMAIL) );
 INSERT INTO USER (LOGIN, PASSWORD, LASTNAME, FIRSTNAME, PICTURE, EMAIL, BESTFRIEND) VALUES ('Sacha LOL', 'Catchemall', 'Ketchum', 'Sacha', NULL, 'Sacha@pokemon.lol', NULL);
 INSERT INTO USER (LOGIN, PASSWORD, LASTNAME, FIRSTNAME, PICTURE, EMAIL, BESTFRIEND) VALUES ('Pika Pika', 'Sacha', 'Chu', 'Pika', NULL, 'Pika@pokemon.lol', 'Sacha LOL');
 INSERT INTO USER (LOGIN, PASSWORD, LASTNAME, FIRSTNAME, PICTURE, EMAIL, BESTFRIEND) VALUES ('Jolie Fille', 'Coeur', 'unknown', 'Ondine', NULL, 'Ondine@pokemon.lol', NULL);
