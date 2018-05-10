@@ -1,6 +1,12 @@
 package be.groupe7lsinf1225.minipoll.object;
 
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
+
 import java.util.ArrayList;
+
+import be.groupe7lsinf1225.minipoll.MySQLiteHelper;
 
 public class Question {
 
@@ -41,5 +47,22 @@ public class Question {
     public String getTitle()
     {
         return title;
+    }
+
+    public static Choice[] getChoices(String IdQuestion) {
+        SQLiteDatabase db = MySQLiteHelper.get().getReadableDatabase();
+        String[] columns = {"IDCHOICE","TITLE", "AUTHOR", "CLOSED"};
+        int IdInt = Integer.parseInt(IdQuestion);
+        String selection = "IDQUIZ = " + IdInt;
+        Cursor cursor = db.query("CHOICE_QUIZ", columns, selection, null, null, null, null);
+        if( cursor.moveToFirst() ) {
+            Quiz locQuiz = new Quiz(cursor.getString(1), !cursor.getString(3).equals("false"), cursor.getString(2));
+            cursor.close();
+            db.close();
+            return null;
+        }
+        Log.e(null, "Error : no quiz");
+        db.close();
+        return null;
     }
 }
