@@ -30,9 +30,10 @@ public class Choice {
         String selection = "IDCHOICE = " + id;
         Cursor cursor = db.query("CHOICE_QUIZ", columns, selection, null, null, null, null);
         if(cursor.moveToFirst()){
+            boolean toReturn = cursor.getInt(1)==1;
             cursor.close();
             db.close();
-            return cursor.getString(1).equals("true");
+            return toReturn;
         }
         Log.e(null, "Not an IDChoice");
         cursor.close();

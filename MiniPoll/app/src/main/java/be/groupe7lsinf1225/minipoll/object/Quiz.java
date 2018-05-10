@@ -72,6 +72,28 @@ public class Quiz extends Poll {
         db.close();
         return null;
     }
+    public static ArrayList<String> getLogins(String IDQuiz){
+        ArrayList<String> Ids = new ArrayList<>();
+        SQLiteDatabase db;
+        db = MySQLiteHelper.get().getReadableDatabase();
+
+        String[] columns = {"LOGIN","IDQUIZ"};
+        String[] valuesWhere = {IDQuiz};
+        String selection = "IDQUIZ" + " = ?";
+
+        Cursor cursor = db.query("VIEW_QUIZ", columns, selection, valuesWhere, null, null, null);
+        if( cursor.moveToFirst() ) {
+            int i;
+            for(i=0; i < cursor.getCount(); i++ ) {
+                Ids.add(String.valueOf(cursor.getInt(0)));
+                cursor.moveToNext();
+            }
+            cursor.close();
+            db.close();
+            return Ids;
+        }
+        return Ids;
+    }
 
 
 }

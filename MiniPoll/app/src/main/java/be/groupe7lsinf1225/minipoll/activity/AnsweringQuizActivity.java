@@ -70,7 +70,7 @@ public class AnsweringQuizActivity extends AppCompatActivity {
         Question question = Question.getQuestion(IDQuestion);
         quest.setText(question.getTitle());
     }
-    public void submit() {
+    public void submit(View view) {
         Choice selected_choice = null;
         RadioGroup radioGroup = (RadioGroup)findViewById(R.id.myRadioGroup);
         int checkedRadioButtonId = radioGroup.getCheckedRadioButtonId();
@@ -124,6 +124,7 @@ public class AnsweringQuizActivity extends AppCompatActivity {
             intent.putExtra("state", stateExtra);
             intent.putExtra("createdBy", createdByExtra);
             intent.putExtra("IDQUIZ", IDQuiz);
+            intent.putExtra("IDLASTQUESTION", IDQuestion);
             startActivity(intent);
         }
 

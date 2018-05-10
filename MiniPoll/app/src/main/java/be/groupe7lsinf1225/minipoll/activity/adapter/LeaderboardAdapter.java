@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 import be.groupe7lsinf1225.minipoll.R;
 import be.groupe7lsinf1225.minipoll.object.Quiz;
+import be.groupe7lsinf1225.minipoll.object.User;
 
 /**
  * Created by agobeaux on 5/10/18.
@@ -27,6 +28,7 @@ public class LeaderboardAdapter extends BaseAdapter {
      * Liste des éléments de collection à mettre dans la liste.
      */
     private ArrayList<String> userlist;
+    private String IDQuiz;
 
     /**
      * Constructeur.
@@ -34,9 +36,10 @@ public class LeaderboardAdapter extends BaseAdapter {
      * @param context Contexte de l'application.
      * @param userlist Liste des éléments de collection à placer dans la liste.
      */
-    public LeaderboardAdapter(Context context, ArrayList<String> userlist) {
+    public LeaderboardAdapter(Context context, ArrayList<String> userlist, String IDQuiz) {
         mInflater = LayoutInflater.from(context);
         this.userlist = userlist;
+        this.IDQuiz = IDQuiz;
     }
 
     @Override
@@ -65,9 +68,9 @@ public class LeaderboardAdapter extends BaseAdapter {
         TextView scoreText = convertView.findViewById(R.id.show_row_score);
 
         String user = userlist.get(i);
-        //positionText.setText(getPosition(user)); // fonction à faire OU PLUTOT : gérer dans L'activity et le passer en argument
+        positionText.setText(String.valueOf(i+1)); // fonction à faire OU PLUTOT : gérer dans L'activity et le passer en argument
         userText.setText(user);
-        //scoreText.setText(getScore(user)); // fonction à faire OU PLUTOT : gérer dans L'activity et le passer en argument
+        scoreText.setText(String.valueOf(User.getQuizScore(IDQuiz, user))); // fonction à faire OU PLUTOT : gérer dans L'activity et le passer en argument
         return convertView;
     }
     

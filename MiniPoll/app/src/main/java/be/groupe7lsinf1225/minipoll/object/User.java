@@ -447,23 +447,23 @@ public class User {
     public static int getQuizScore(String IDQuiz, String Login){
         int Score = 0;
         ArrayList<Integer> IDQuestion = Quiz.getIDQuestions(IDQuiz);
-        String selection = "LOGIN = ? AND ( ";
+        String selection = "( LOGIN = " + "\"" + Login +"\"" + ") AND ( ";
         String[] IDs = new String[IDQuestion.size()+1];
         IDs[0] = Login;
         for(int i=0; i < IDQuestion.size(); i++){
             IDs[i+1] = String.valueOf(IDQuestion.get(i));
             if(i==IDQuestion.size() -1){
-                selection = selection + "IDQUESTION = ? )";
+                selection = selection + "IDQUESTION = " + IDQuestion.get(i) + " )";
             }
             else{
-                selection = selection + "IDQUESTION = ? OR";
+                selection = selection + "IDQUESTION = " + IDQuestion.get(i) + " OR ";
             }
         }
         SQLiteDatabase db;
         db = MySQLiteHelper.get().getReadableDatabase();
         String[] columns = {"LOGIN","CHOICE","IDQUESTION"};
-
-        Cursor cursor = db.query("ANSWER_QUIZ", columns, selection, IDs, null, null, null);
+        Log.e(null, selection);
+        Cursor cursor = db.query("ANSWER_QUIZ", columns, selection, null, null, null, null);
         if( cursor.moveToFirst() ) {
             int i;
             for(i=0; i < cursor.getCount(); i++ ) {
