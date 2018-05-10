@@ -59,7 +59,7 @@ public class AnswerBipollActivity extends Activity {
         choice2.add(bipoll.getChoice2());
         choice2.add(bipoll.getChoice2());
 
-        arrayAdapter1 = new ViewBipollChoiceAdapter(this, choice1,R.layout.item_bipoll_choise1,R.id.item_bipoll_choice1);
+        arrayAdapter1 = new ViewBipollChoiceAdapter(this, choice1,R.layout.item_bipoll_choice1,R.id.item_bipoll_choice1);
 
         SwipeFlingAdapterView flingContainer1 = findViewById(R.id.view_choise1_frame);
 
@@ -97,7 +97,7 @@ public class AnswerBipollActivity extends Activity {
 
             }
         });
-        arrayAdapter2 = new ViewBipollChoiceAdapter(this, choice2,R.layout.item_bipoll_choise2,R.id.item_bipoll_choice2);
+        arrayAdapter2 = new ViewBipollChoiceAdapter(this, choice2,R.layout.item_bipoll_choice2,R.id.item_bipoll_choice2);
 
         SwipeFlingAdapterView flingContainer2 = findViewById(R.id.view_choise2_frame);
 
