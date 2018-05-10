@@ -68,4 +68,7 @@
     <!-- BiPoll Activity -->
     <string name="no_visible_bipoll">No binary poll to show you, create one or be invited to answer to one</string>
 
+    <!-- Answering Quiz Text xml -->
+    <string name="submit">Submit</string>
+
 </resources>
