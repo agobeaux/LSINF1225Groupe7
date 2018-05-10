@@ -57,8 +57,7 @@ public class QuizActivity extends AppCompatActivity implements AdapterView.OnIte
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         Intent intent = new Intent(this, AnsweringQuizActivity.class);
         intent.putExtra("IDQUIZ", String.valueOf(myQuizAdapter.getItem(i).getID()));
-        String IDQuestion = String.valueOf(Quiz.getIDQuestions(String.valueOf(myQuizAdapter.getItem(i).getID())));
-        Log.e(null, "onItemClick: "+ IDQuestion );
+        String IDQuestion = String.valueOf(Quiz.getIDQuestions(String.valueOf(myQuizAdapter.getItem(i).getID())).get(0));
         intent.putExtra("IDQUESTION",IDQuestion);
         startActivity(intent);
     }

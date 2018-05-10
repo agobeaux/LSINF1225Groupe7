@@ -29,14 +29,15 @@ public class Question {
 
     public static Question getQuestion(String IdQuestion){
         SQLiteDatabase db = MySQLiteHelper.get().getReadableDatabase();
-        String[] columns = {"IDQUESTION","IDQUIZ","POSITION","TITLE"};
+        String[] columns = {"IDQUESTION","TITLE"};
         int IdInt = Integer.parseInt(IdQuestion);
         String selection = "IDQUESTION = " + IdInt;
         Cursor cursor = db.query("QUESTION_QUIZ", columns, selection, null, null, null, null);
         if( cursor.moveToFirst() ) {
-            Question question = new Question(cursor.getString(3),cursor.getInt(1));
+            Question question = new Question(cursor.getString(1),cursor.getInt(0));
             cursor.close();
             db.close();
+            return question;
         }
         Log.e(null, "Error : this question id doesn't exist");
         db.close();
@@ -65,6 +66,7 @@ public class Question {
             while (!cursor.isAfterLast()) {
                 Choice choice = new Choice(cursor.getString(2),cursor.getInt(0), cursor.getString(3).equals("true"));
                 choices[i] = choice;
+                cursor.moveToNext();
                 i++;
             }
             cursor.close();

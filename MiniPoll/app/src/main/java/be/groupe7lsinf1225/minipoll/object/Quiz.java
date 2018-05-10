@@ -66,6 +66,7 @@ public class Quiz extends Poll {
             }
             cursor.close();
             db.close();
+            return IDQuestions;
         }
         Log.e(null, "Error : no questions in quiz");
         db.close();

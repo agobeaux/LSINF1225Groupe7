@@ -3,8 +3,11 @@ package be.groupe7lsinf1225.minipoll.activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.RadioButton;
 import android.widget.TextView;
+
+import java.util.ArrayList;
 
 import be.groupe7lsinf1225.minipoll.R;
 import be.groupe7lsinf1225.minipoll.object.Question;
@@ -13,12 +16,16 @@ import be.groupe7lsinf1225.minipoll.object.Quiz;
 
 public class AnsweringQuizActivity extends AppCompatActivity {
 
+    private String IDQuiz;
+    private ArrayList<Integer> IDQuestions;
+    private String IDQuestion;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Intent intent = getIntent();
-        String IDQuiz = intent.getStringExtra("IDQUIZ");
-        String IDQuestion = intent.getStringExtra("IDQUESTION");
+        IDQuiz = intent.getStringExtra("IDQUIZ");
+        IDQuestions = Quiz.getIDQuestions(IDQuiz);
+        IDQuestion = intent.getStringExtra("IDQUESTION");
         setContentView(R.layout.answering_quiz_text);
         //CHOICES
         RadioButton choice1 = findViewById(R.id.choice1);
@@ -47,5 +54,20 @@ public class AnsweringQuizActivity extends AppCompatActivity {
         TextView quest = findViewById(R.id.Question);
         Question question = Question.getQuestion(IDQuestion);
         quest.setText(question.getTitle());
+    }
+    public void submit(View view) {
+        String nextQuestionID;
+        for(int i = 0; i < IDQuestions.size()-1; i++){
+            if(String.valueOf(IDQuestions.get(i)).equals(IDQuestion)){
+                nextQuestionID = String.valueOf(IDQuestions.get(i+1));
+                Intent intent = new Intent(this, AnsweringQuizActivity.class);
+                intent.putExtra("IDQUIZ", IDQuiz);
+                intent.putExtra("IDQUESTION",nextQuestionID);
+                startActivity(intent);
+            }
+        }
+        Intent intent = new Intent(this, AccountCreationActivity.class);
+        startActivity(intent);
+
     }
 }
