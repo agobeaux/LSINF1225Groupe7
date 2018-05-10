@@ -69,6 +69,7 @@ public class Question {
                 cursor.moveToNext();
                 i++;
             }
+            Log.e(null, "There are" + i +"choices");
             cursor.close();
             db.close();
             return choices;

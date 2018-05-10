@@ -66,8 +66,6 @@ public class AnsweringQuizActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         }
-        Intent intent = new Intent(this, AccountCreationActivity.class);
-        startActivity(intent);
 
     }
 }
