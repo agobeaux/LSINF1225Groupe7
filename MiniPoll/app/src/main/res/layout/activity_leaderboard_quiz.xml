@@ -98,7 +98,7 @@
         <TextView
             android:id="@+id/State2"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:background="#9E9E9E"
             android:textAlignment="center"
             android:textAllCaps="false"
@@ -115,7 +115,7 @@
         <TextView
             android:id="@+id/CreatedBy2"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:background="#9E9E9E"
             android:textAlignment="center"
             android:textAllCaps="false"
@@ -126,6 +126,69 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/State2"
+
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/LayoutTitles3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/show_listView_leaders"
+        app:layout_constraintTop_toBottomOf="@+id/leaderboard">
+
+        <TextView
+            android:id="@+id/Ranking"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="#9E9E9E"
+            android:text="@string/ranking"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@android:color/black"
+            android:textSize="20sp"
+
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/User"
+            app:layout_constraintStart_toStartOf="parent"
+
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/User"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="#9E9E9E"
+            android:text="@string/user"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@android:color/black"
+            android:textSize="20sp"
+
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/Score"
+            app:layout_constraintStart_toEndOf="@+id/Ranking"
+
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/Score"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="#9E9E9E"
+            android:text="@string/score"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@android:color/black"
+            android:textSize="20sp"
+
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/User"
 
             app:layout_constraintTop_toTopOf="parent" />
 

@@ -77,13 +77,15 @@ public class LeaderboardQuizActivity extends AppCompatActivity {
                     userlist.add(cursor.getString(0));
                 }
                 else{
-                    for(int j = 0; j < userlist.size();j++){
-                        if ((j == (userlist.size() - 1))) {
-                            userlist.add(cursor.getString(0));
-                            j = userlist.size();
-                        } else if ((User.getQuizScore(IDQuiz, cursor.getString(0)) > User.getQuizScore(IDQuiz, String.valueOf(userlist.get(j))))) {
+                    int len = userlist.size();
+                    int j;
+                    for( j = 0; j < len;j++){
+                        if ((User.getQuizScore(IDQuiz, cursor.getString(0)) > User.getQuizScore(IDQuiz, String.valueOf(userlist.get(j))))) {
                             userlist.add(j,cursor.getString(0));
-                            j = userlist.size();
+                            j = userlist.size() + 3;
+                        }
+                        else if( j == len - 1){
+                            userlist.add(cursor.getString(0));
                         }
                     }
                 }
