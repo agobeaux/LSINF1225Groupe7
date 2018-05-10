@@ -10,7 +10,7 @@
         android:id="@+id/view_friend_username"
         android:layout_width="match_parent"
         android:layout_height="440dp"
-        android:background="#E339"
+        android:background="@color/colorBackground"
         android:gravity="center"
         android:textColor="@android:color/white"
         android:textSize="40sp"

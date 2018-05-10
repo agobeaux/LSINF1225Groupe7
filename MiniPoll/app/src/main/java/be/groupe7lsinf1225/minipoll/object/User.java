@@ -372,6 +372,20 @@ public class User {
         this.best_friend = best_friend;
     }
 
+    public static ArrayList<String> loadFriendsUsername() {
+        ArrayList<String> friends_username = new ArrayList<>();
+
+        ArrayList<User> friends = User.getConnectedUser().getAllFriend("1");
+        if(friends.isEmpty()){
+            return friends_username;
+        }
+        int i;
+        for(i=0 ; i<friends.size() ; i++){
+            friends_username.add(friends.get(i).getLogin());
+        }
+        return friends_username;
+    }
+
 
     public static void setConnected_user(User user) {
         User.connected_user = user;
@@ -405,5 +419,28 @@ public class User {
 
     public int getPicture() {
         return picture;
+    }
+
+    public static ArrayList<String> getQuizzes(){
+        ArrayList<String> Ids = new ArrayList<>();
+        SQLiteDatabase db;
+        db = MySQLiteHelper.get().getReadableDatabase();
+
+        String[] columns = {"LOGIN","IDQUIZ"};
+        String[] valuesWhere = {connected_user.getLogin()};
+        String selection = "LOGIN" + " = ?";
+
+        Cursor cursor = db.query("VIEW_QUIZ", columns, selection, valuesWhere, null, null, null);
+        if( cursor.moveToFirst() ) {
+            int i;
+            for(i=0; i < cursor.getCount(); i++ ) {
+                Ids.add(String.valueOf(cursor.getInt(1)));
+                cursor.moveToNext();
+            }
+            cursor.close();
+            db.close();
+            return Ids;
+        }
+        return Ids;
     }
 }
