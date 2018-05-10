@@ -63,14 +63,12 @@ public class BiPollActivity extends Activity implements AdapterView.OnItemClickL
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             if(this.bipolls.get(position).getAuthor().equals(User.getConnectedUser().getLogin())){
-                //full gestion & resultat
+
             }
             else{
-                //pour repondre / resultat
-                // ( implementez bipoll.haveAnswered() )
-                Intent intent = new Intent(this,AnswerBipollActivity.class);
-                intent.putExtra("idBipoll",this.bipolls.get(position).getLocId());
-                startActivity(intent);
+                    Intent intent = new Intent(this,AnswerBipollActivity.class);
+                    intent.putExtra("idBipoll",this.bipolls.get(position).getLocId());
+                    startActivity(intent);
             }
         }
 
