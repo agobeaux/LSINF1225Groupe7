@@ -372,6 +372,20 @@ public class User {
         this.best_friend = best_friend;
     }
 
+    public static ArrayList<String> loadFriendsUsername() {
+        ArrayList<String> friends_username = new ArrayList<>();
+
+        ArrayList<User> friends = User.getConnectedUser().getAllFriend("1");
+        if(friends.isEmpty()){
+            return friends_username;
+        }
+        int i;
+        for(i=0 ; i<friends.size() ; i++){
+            friends_username.add(friends.get(i).getLogin());
+        }
+        return friends_username;
+    }
+
 
     public static void setConnected_user(User user) {
         User.connected_user = user;
