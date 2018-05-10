@@ -37,7 +37,8 @@
         <activity android:name=".activity.CreationActivity" />
         <activity android:name=".activity.CreationBipollActivity" />
         <activity android:name=".activity.ResultBipollActivity" />
-        <activity android:name=".activity.AnswerBipollActivity"/>
+        <activity android:name=".activity.AnswerBipollActivity" />
+        <activity android:name=".activity.adapter.ViewBipollChoiceAdapter"></activity>
     </application>
 
 </manifest>
