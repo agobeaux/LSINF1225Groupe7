@@ -58,6 +58,10 @@ public class AnswerBipollActivity extends Activity {
         textViewauthor.setText(bipoll.getAuthor());
         TextView textViewquestion = findViewById(R.id.answer_bipoll_question);
         textViewquestion.setText(bipoll.getQuestion());
+        ImageView likeImageView = findViewById(R.id.like);
+        likeImageView.setImageResource(R.drawable.like);
+        ImageView dislikeImageView = findViewById(R.id.dislike);
+        dislikeImageView.setImageResource(R.drawable.dislike);
 
         final ArrayList<String> choice1 = new ArrayList<>();
         choice1.add(bipoll.getChoice1());
@@ -66,7 +70,7 @@ public class AnswerBipollActivity extends Activity {
         choice2.add(bipoll.getChoice2());
         choice2.add(bipoll.getChoice2());
 
-        arrayAdapter1 = new ViewBipollChoiceAdapter(this, choice1,R.layout.item_bipoll_choise1,R.id.item_bipoll_choice1);
+        arrayAdapter1 = new ViewBipollChoiceAdapter(this, choice1,R.layout.item_bipoll_choice1,R.id.item_bipoll_choice1);
 
         SwipeFlingAdapterView flingContainer1 = findViewById(R.id.view_choise1_frame);
 
@@ -100,7 +104,7 @@ public class AnswerBipollActivity extends Activity {
 
             }
         });
-        arrayAdapter2 = new ViewBipollChoiceAdapter(this, choice2,R.layout.item_bipoll_choise2,R.id.item_bipoll_choice2);
+        arrayAdapter2 = new ViewBipollChoiceAdapter(this, choice2,R.layout.item_bipoll_choice2,R.id.item_bipoll_choice2);
 
         SwipeFlingAdapterView flingContainer2 = findViewById(R.id.view_choise2_frame);
 
