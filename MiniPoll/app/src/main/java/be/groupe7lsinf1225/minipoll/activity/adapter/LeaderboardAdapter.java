@@ -58,7 +58,7 @@ public class LeaderboardAdapter extends BaseAdapter {
     public View getView(int i, View convertView, ViewGroup viewGroup) {
 
         if (convertView == null) {
-            convertView = mInflater.inflate(R.layout.collected_poll_row, viewGroup, false); // A MODIFIER
+            convertView = mInflater.inflate(R.layout.collected_leaderboard_row, viewGroup, false); // A MODIFIER
         }
         TextView positionText = convertView.findViewById(R.id.show_row_position);
         TextView userText = convertView.findViewById(R.id.show_row_user);

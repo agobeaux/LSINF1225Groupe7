@@ -443,4 +443,41 @@ public class User {
         }
         return Ids;
     }
+
+    public static int getQuizScore(String IDQuiz, String Login){
+        int Score = 0;
+        ArrayList<Integer> IDQuestion = Quiz.getIDQuestions(IDQuiz);
+        String selection = "LOGIN = ? AND ( ";
+        String[] IDs = new String[IDQuestion.size()+1];
+        IDs[0] = Login;
+        for(int i=0; i < IDQuestion.size(); i++){
+            IDs[i+1] = String.valueOf(IDQuestion.get(i));
+            if(i==IDQuestion.size() -1){
+                selection = selection + "IDQUESTION = ? )";
+            }
+            else{
+                selection = selection + "IDQUESTION = ? OR";
+            }
+        }
+        SQLiteDatabase db;
+        db = MySQLiteHelper.get().getReadableDatabase();
+        String[] columns = {"LOGIN","CHOICE","IDQUESTION"};
+
+        Cursor cursor = db.query("ANSWER_QUIZ", columns, selection, IDs, null, null, null);
+        if( cursor.moveToFirst() ) {
+            int i;
+            for(i=0; i < cursor.getCount(); i++ ) {
+                if( Choice.isGoodQuizAnswer(cursor.getString(1))){
+                    Score ++;
+                }
+                cursor.moveToNext();
+            }
+            cursor.close();
+            db.close();
+            return Score;
+        }
+        Log.e(null, "Error : this user didn't take part to this quiz");
+        db.close();
+        return 0;
+    }
 }

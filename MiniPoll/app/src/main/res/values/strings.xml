@@ -69,6 +69,7 @@
     <string name="no_visible_bipoll">No binary poll to show you, create one or be invited to answer to one</string>
 
     <!-- Answering Quiz Text xml -->
+    <string name="select_one">Check one of the choices first</string>
     <string name="submit">Submit</string>
 
     <!-- LeaderBoard Quiz Activity -->

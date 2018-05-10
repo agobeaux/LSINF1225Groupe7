@@ -19,19 +19,22 @@ import be.groupe7lsinf1225.minipoll.object.User;
 
 public class LeaderboardQuizActivity extends AppCompatActivity {
 
+    String IDQuiz;
     String topicExtra;
     String stateExtra;
     String createdByExtra;
     private ArrayList<String> userlist;
     private LeaderboardAdapter myAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_leaderboard_quiz);
-        Bundle extras = getIntent().getExtras(); // /!\ il faut faire des intent setExtras dans QuizActivity et dans AnsweringQuizActivity
-        topicExtra = extras.getString("topic");
-        stateExtra = extras.getString("state");
-        createdByExtra = extras.getString("createdBy");
+        Intent intent = getIntent();
+        topicExtra = intent.getStringExtra("topic");
+        stateExtra = intent.getStringExtra("state");
+        createdByExtra = intent.getStringExtra("createdBy");
+        IDQuiz = intent.getStringExtra("IDQUIZ");
 
         TextView topic = findViewById(R.id.Topic2);
         TextView state = findViewById(R.id.State2);
@@ -50,7 +53,7 @@ public class LeaderboardQuizActivity extends AppCompatActivity {
         et donc passer cette liste en argument
         2. Faire une fonction qui calcule le nombre de points de chaque utilisateur (à utiliser dans 1 d'ailleurs)
      */
-    public void onClick() {
+    public void onClick(View view) {
         Intent intent = new Intent(this, MainMenuActivity.class);
         startActivity(intent);
     }

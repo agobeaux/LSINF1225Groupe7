@@ -72,4 +72,6 @@ public class Quiz extends Poll {
         db.close();
         return null;
     }
+
+
 }

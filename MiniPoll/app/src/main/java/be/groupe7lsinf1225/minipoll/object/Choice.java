@@ -1,5 +1,11 @@
 package be.groupe7lsinf1225.minipoll.object;
 
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
+
+import be.groupe7lsinf1225.minipoll.MySQLiteHelper;
+
 public class Choice {
 
     private String title;
@@ -17,8 +23,25 @@ public class Choice {
 
     // == get == //
 
+    public static boolean isGoodQuizAnswer(String Id) {
+        SQLiteDatabase db = MySQLiteHelper.get().getReadableDatabase();
+        String[] columns = {"IDCHOICE", "ISGOOD_ANSWER"};
+        int id = Integer.parseInt(Id);
+        String selection = "IDCHOICE = " + id;
+        Cursor cursor = db.query("CHOICE_QUIZ", columns, selection, null, null, null, null);
+        if(cursor.moveToFirst()){
+            cursor.close();
+            db.close();
+            return cursor.getString(1).equals("true");
+        }
+        Log.e(null, "Not an IDChoice");
+        cursor.close();
+        db.close();
+        return false;
+    }
+
     public int getIDChoice() { return IDChoice;}
-    public boolean getGoodAnserState() { return good_answer;}
+    public boolean isGoodAnswer() { return good_answer;}
     public String getTitle(){
         return title;
     }
