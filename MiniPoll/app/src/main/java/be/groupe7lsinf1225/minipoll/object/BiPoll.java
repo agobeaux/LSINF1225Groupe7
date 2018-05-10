@@ -94,6 +94,22 @@ public class BiPoll extends Poll {
         //return finded;
     }
 
+    public boolean answer(String choice){
+        ContentValues values = new ContentValues();
+
+        values.put("LOGIN",User.getConnectedUser().getLogin());
+        values.put("CHOICE",choice);
+        values.put("IDBIPOLL",this.id);
+
+        SQLiteDatabase db = MySQLiteHelper.get().getWritableDatabase();
+
+        if(-1 == (int) db.insert("ANSWER_BIPOLL",null,values)){
+            db.close();
+            return false;
+        }
+        return true;
+    }
+
     public static boolean addBiPoll(String title,String author,String choice1,String choice2,ArrayList<String> selected_friends){
 
         int id = BiPoll.getId();

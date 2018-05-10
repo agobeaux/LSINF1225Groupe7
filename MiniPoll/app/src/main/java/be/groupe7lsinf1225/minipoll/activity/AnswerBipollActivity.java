@@ -52,8 +52,6 @@ public class AnswerBipollActivity extends Activity {
         TextView textViewquestion = findViewById(R.id.answer_bipoll_question);
         textViewquestion.setText(bipoll.getQuestion());
 
-        //String[] choice = BiPoll.getChoice();
-
         final ArrayList<String> choice1 = new ArrayList<>();
         choice1.add(bipoll.getChoice1());
         choice1.add(bipoll.getChoice1());
