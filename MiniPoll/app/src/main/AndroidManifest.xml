@@ -39,6 +39,7 @@
         <activity android:name=".activity.ResultBipollActivity" />
         <activity android:name=".activity.AnswerBipollActivity" />
         <activity android:name=".activity.LeaderboardQuizActivity"></activity>
+        <activity android:name=".activity.AnsweringQuizActivity" />
     </application>
 
 </manifest>

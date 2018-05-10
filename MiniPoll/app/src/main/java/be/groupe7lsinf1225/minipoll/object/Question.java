@@ -11,37 +11,41 @@ import be.groupe7lsinf1225.minipoll.MySQLiteHelper;
 public class Question {
 
     private String title;
-    private ArrayList<Choice> choices;
     // On stocke l'indice du choix qui correspond à la bonne réponse
-    private int good_answer;
+    private int IDQuestion;
+
 
     /**
      * Constructeur
      */
-    public Question(String title, boolean isPicture, String[] choices, int good_answer)
+    public Question(String title, int IDQuestion)
     {
         this.title = title;
 
-        ArrayList<Choice> c = new ArrayList<>();
-        int i;
-        for(i=0 ; i<4 ; i++) {
-            c.add(new Choice(isPicture,choices[i]));
-        }
-
-        this.choices = c;
-        this.good_answer = good_answer;
+        this.IDQuestion = IDQuestion;
     }
 
     // == Picture == //
 
-    public int getGoodAnswer()
-    {
-        return good_answer;
+    public static Question getQuestion(String IdQuestion){
+        SQLiteDatabase db = MySQLiteHelper.get().getReadableDatabase();
+        String[] columns = {"IDQUESTION","IDQUIZ","POSITION","TITLE"};
+        int IdInt = Integer.parseInt(IdQuestion);
+        String selection = "IDQUESTION = " + IdInt;
+        Cursor cursor = db.query("QUESTION_QUIZ", columns, selection, null, null, null, null);
+        if( cursor.moveToFirst() ) {
+            Question question = new Question(cursor.getString(3),cursor.getInt(1));
+            cursor.close();
+            db.close();
+        }
+        Log.e(null, "Error : this question id doesn't exist");
+        db.close();
+        return null;
     }
 
-    public Choice getChoice(int ind)
+    public int getIDQuestion()
     {
-        return this.choices.get(ind);
+        return IDQuestion;
     }
 
     public String getTitle()
@@ -50,16 +54,22 @@ public class Question {
     }
 
     public static Choice[] getChoices(String IdQuestion) {
+        Choice[] choices = new Choice[4];
         SQLiteDatabase db = MySQLiteHelper.get().getReadableDatabase();
-        String[] columns = {"IDCHOICE","TITLE", "AUTHOR", "CLOSED"};
+        String[] columns = {"IDCHOICE", "IDQUESTION", "TITLE", "ISGOOD_ANSWER"};
         int IdInt = Integer.parseInt(IdQuestion);
-        String selection = "IDQUIZ = " + IdInt;
+        String selection = "IDQUESTION = " + IdInt;
         Cursor cursor = db.query("CHOICE_QUIZ", columns, selection, null, null, null, null);
         if( cursor.moveToFirst() ) {
-            Quiz locQuiz = new Quiz(cursor.getString(1), !cursor.getString(3).equals("false"), cursor.getString(2));
+            int i = 0;
+            while (!cursor.isAfterLast()) {
+                Choice choice = new Choice(cursor.getString(2),cursor.getInt(0), cursor.getString(3).equals("true"));
+                choices[i] = choice;
+                i++;
+            }
             cursor.close();
             db.close();
-            return null;
+            return choices;
         }
         Log.e(null, "Error : no quiz");
         db.close();

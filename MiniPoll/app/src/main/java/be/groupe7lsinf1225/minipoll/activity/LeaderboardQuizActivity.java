@@ -20,5 +20,5 @@ public class LeaderboardQuizActivity extends AppCompatActivity {
         createdBy = extras.getString("createdBy");
     }
 
-    
+
 }

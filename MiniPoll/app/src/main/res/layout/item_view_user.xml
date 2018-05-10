@@ -68,7 +68,7 @@
         android:paddingLeft="70dp"
         android:paddingTop="320dp"
         android:text="Email"
-        android:textColor="@android:color/holo_blue_dark"
+        android:textColor="@color/colorPrimaryDark"
         android:textColorHighlight="@android:color/holo_blue_dark"
         android:textSize="18sp"
         android:textStyle="italic" />
