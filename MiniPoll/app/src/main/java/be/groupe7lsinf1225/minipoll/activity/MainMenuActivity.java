@@ -51,8 +51,14 @@ public class MainMenuActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+
     public void consultProfile(View view) {
         Intent intent = new Intent(this, UpdateProfileActivity.class);
+        startActivity(intent);
+    }
+
+    public void creatpoll(View view){
+        Intent intent = new Intent(this, CreationActivity.class);
         startActivity(intent);
     }
 

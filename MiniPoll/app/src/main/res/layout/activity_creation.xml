@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.CreationActivity">
+
+    <TextView
+        android:id="@+id/creation_title"
+        android:layout_width="334dp"
+        android:layout_height="44dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="40dp"
+        android:text="Créer ton propre MiniPoll !"
+        android:textSize="28sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/creation_bipoll_button"
+        android:layout_width="155dp"
+        android:layout_height="70dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="48dp"
+        android:onClick="bipoll"
+        android:text="Bipoll"
+        android:textSize="23sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintEnd_toStartOf="@+id/creation_bipoll_frame"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/creation_title" />
+
+    <Button
+        android:id="@+id/creation_agreement_button"
+        android:layout_width="160dp"
+        android:layout_height="70dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="15dp"
+        android:onClick="agreement"
+        android:text="Agreement"
+        android:textSize="23sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintEnd_toStartOf="@+id/creation_agreement_frame"
+        app:layout_constraintHorizontal_bias="0.423"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/creation_bipoll_button" />
+
+    <Button
+        android:id="@+id/creation_quiz_button"
+        android:layout_width="155dp"
+        android:layout_height="70dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:onClick="quiz"
+        android:text="Quiz"
+        android:textSize="23sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/creation_quiz_frame"
+        app:layout_constraintHorizontal_bias="0.423"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/creation_agreement_button"
+        app:layout_constraintVertical_bias="0.067" />
+
+    <ImageView
+        android:id="@+id/creation_bipoll_frame"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="80dp"
+        android:layout_marginRight="80dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/creation_agreement_frame"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/creation_title"
+        app:layout_constraintVertical_bias="0.833"
+        app:srcCompat="@drawable/menu_helpafriend" />
+
+    <ImageView
+        android:id="@+id/creation_agreement_frame"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginEnd="80dp"
+        android:layout_marginRight="80dp"
+        app:layout_constraintBottom_toTopOf="@+id/creation_quiz_frame"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/menu_agreements" />
+
+    <ImageView
+        android:id="@+id/creation_quiz_frame"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginBottom="140dp"
+        android:layout_marginEnd="80dp"
+        android:layout_marginRight="80dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/menu_quiz" />
+</android.support.constraint.ConstraintLayout>

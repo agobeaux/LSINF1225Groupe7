@@ -1,5 +1,6 @@
 package be.groupe7lsinf1225.minipoll.object;
 
+import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
@@ -27,6 +28,71 @@ public class BiPoll extends Poll {
         this.choices = c;
         this.author = author;
         this.state = false;
+    }
+
+    public static boolean addBiPoll(String title,String author,String choise1,String choise2){
+        SQLiteDatabase db = MySQLiteHelper.get().getWritableDatabase();
+
+        int id = BiPoll.getId();
+        //int idc1 = 2*id - 1;
+        int idc1 = 3;
+        int idc2 = 2*id;
+
+        ContentValues values = new ContentValues();
+        values.put("IDCHOICE",idc1);
+        values.put("CONTENT",choise1);
+
+        //le insert crash je sat pas pq
+        int dia1 = (int) db.insert("CHOICE_BIPOLL",null,values);
+        if(-1 == dia1){
+            db.close();
+            return false;
+        }
+        //db.delete("CHOICE_BIPOLL", "IDCHOICE = "+ String.valueOf(idc1), null);
+        if(false) {
+            ContentValues values1 = new ContentValues();
+            values1.put("IDCHOICE", idc2);
+            values1.put("CONTENT", choise2);
+
+            if (-1 == db.insert("CHOICE_BIPOLL", null, values1)) {
+                db.delete("CHOICE_BIPOLL", "IDCHOICE = " + String.valueOf(idc1), null);
+                db.close();
+                return false;
+            }
+
+            ContentValues values2 = new ContentValues();
+            values2.put("IDBIPOLL", id);
+            values2.put("TITLE", title);
+            values2.put("AUTHOR", author);
+            values2.put("CHOICE1", idc1);
+            values2.put("CHOICE2", idc2);
+
+            if (-1 == (int) db.insert("BIPOLL", null, values2)) {
+                db.delete("CHOICE_BIPOLL", "IDCHOICE = " + String.valueOf(idc1), null);
+                db.delete("CHOICE_BIPOLL", "IDCHOICE = " + String.valueOf(idc2), null);
+                db.close();
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static int getId(){
+        SQLiteDatabase db = MySQLiteHelper.get().getReadableDatabase();
+
+        String[] columns = {"IDBIPOLL"};
+        Cursor cursor = null;
+        for(int i = 1;i<1000;i++){
+            cursor = db.query("BIPOLL", columns, "IDBIPOLL = " + String.valueOf(i),null, null, null, null);
+            if(cursor.getCount() <= 0){
+                cursor.close();
+                db.close();
+                return i;
+            }
+        }
+        cursor.close();
+        db.close();
+        return -1;
     }
 
     public static ArrayList<BiPoll> getBiPolls() {
