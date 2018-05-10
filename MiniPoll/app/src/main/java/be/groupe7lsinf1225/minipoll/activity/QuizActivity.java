@@ -36,7 +36,7 @@ public class QuizActivity extends AppCompatActivity implements AdapterView.OnIte
         ArrayList<String> Ids = User.getQuizzes();
         for(int i = 0; Ids != null && i < Ids.size(); i++){
             Log.e(null, "IDQUIZ :" + Integer.parseInt(Ids.get(i)));
-            Quiz locQuiz = Quiz.getId(Ids.get(i));
+            Quiz locQuiz = Quiz.getQuiz(Ids.get(i));
             if (locQuiz != null) {
                 quizzes.add(locQuiz);
             }
@@ -56,6 +56,7 @@ public class QuizActivity extends AppCompatActivity implements AdapterView.OnIte
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         Intent intent = new Intent(this, MainMenuActivity.class);
+        intent.putExtra("IDQUIZ", String.valueOf(myQuizAdapter.getItem(i).getID()));
         startActivity(intent);
     }
 }

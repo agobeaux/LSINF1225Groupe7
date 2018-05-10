@@ -12,7 +12,6 @@ import be.groupe7lsinf1225.minipoll.MySQLiteHelper;
 
 public class BiPoll extends Poll {
 
-    private ArrayList<Choice> choices;
     private String question;
     private String author;
     private boolean state;
@@ -20,14 +19,9 @@ public class BiPoll extends Poll {
     /**
      * Constructeur
      */
-    public BiPoll(String question, String author, String[] titles_choices, int id) {
+    public BiPoll(String question, String author, int id) {
         this.question = question;
         ArrayList<Choice> c = new ArrayList<>();
-        int i;
-        for(i=0 ; i<2 ; i++){
-            c.add(new Choice(false, titles_choices[i]));
-        }
-        this.choices = c;
         this.author = author;
         this.state = false;
         this.id = id;
@@ -184,7 +178,7 @@ public class BiPoll extends Poll {
             question = cursor2.getString(1);
             author = cursor2.getString(2);
 
-            BiPoll locBipoll = new BiPoll(question,author,titles,locId);
+            BiPoll locBipoll = new BiPoll(question,author,locId);
             cursor2.close();
 
             biPolls.add(locBipoll);
@@ -216,5 +210,5 @@ public class BiPoll extends Poll {
         return id;
     }
 
-    public ArrayList<Choice> getChoices() {return choices;}
+    public ArrayList<Choice> getChoices() {return null;}
 }
