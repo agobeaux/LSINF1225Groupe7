@@ -66,10 +66,10 @@ public class QuizAdapter extends BaseAdapter {
         Quiz quiz = quizzes.get(i);
         topic.setText(quiz.getTitle());
         if(quiz.getState()){
-            state.setText("Open");
+            state.setText("Closed");
         }
         else{
-            state.setText("Closed");
+            state.setText("Open");
         }
         createdby.setText(quiz.getAuthor());
         return convertView;
