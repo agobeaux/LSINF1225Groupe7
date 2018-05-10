@@ -34,7 +34,8 @@ public class BiPoll extends Poll {
         SQLiteDatabase db = MySQLiteHelper.get().getWritableDatabase();
 
         int id = BiPoll.getId();
-        int idc1 = 2*id - 1;
+        //int idc1 = 2*id - 1;
+        int idc1 = 3;
         int idc2 = 2*id;
 
         ContentValues values = new ContentValues();
@@ -42,11 +43,12 @@ public class BiPoll extends Poll {
         values.put("CONTENT",choise1);
 
         //le insert crash je sat pas pq
-        if(-1 == db.insert("CHOICE_BIPOLL",null,values)){
+        int dia1 = (int) db.insert("CHOICE_BIPOLL",null,values);
+        if(-1 == dia1){
             db.close();
             return false;
         }
-        db.delete("CHOICE_BIPOLL", "IDCHOICE = "+ String.valueOf(idc1), null);
+        //db.delete("CHOICE_BIPOLL", "IDCHOICE = "+ String.valueOf(idc1), null);
         if(false) {
             ContentValues values1 = new ContentValues();
             values1.put("IDCHOICE", idc2);

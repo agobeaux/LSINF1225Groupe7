@@ -35,7 +35,8 @@
             android:parentActivityName=".activity.MainMenuActivity" />
         <activity android:name=".activity.BiPollActivity" />
         <activity android:name=".activity.CreationActivity" />
-        <activity android:name=".activity.CreationBipollActivity"></activity>
+        <activity android:name=".activity.CreationBipollActivity" />
+        <activity android:name=".activity.ResultBipollActivity"></activity>
     </application>
 
 </manifest>

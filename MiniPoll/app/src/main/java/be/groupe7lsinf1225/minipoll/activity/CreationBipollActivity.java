@@ -30,6 +30,8 @@ public class CreationBipollActivity extends Activity implements TextView.OnEdito
         choise1EditText.setOnEditorActionListener(this);
         EditText choise2EditText = findViewById(R.id.creationbipoll_choise2);
         choise2EditText.setOnEditorActionListener(this);
+
+        makeToast(this,String.valueOf(BiPoll.getId())); //a retiré
     }
 
     public void confirm(View view){

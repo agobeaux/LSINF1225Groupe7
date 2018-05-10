@@ -1,5 +1,6 @@
 package be.groupe7lsinf1225.minipoll.activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -20,7 +21,7 @@ import be.groupe7lsinf1225.minipoll.object.BiPoll;
 import be.groupe7lsinf1225.minipoll.object.User;
 
 //@Override
-public class BiPollActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
+public class BiPollActivity extends Activity implements AdapterView.OnItemClickListener {
 
 
         private ArrayList<BiPoll> bipolls;
@@ -61,7 +62,13 @@ public class BiPollActivity extends AppCompatActivity implements AdapterView.OnI
 
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+            if(this.bipolls.get(position).equals(User.getConnectedUser().getLogin())){
+                //full gestion & resultat
+            }
+            else{
+                //pour repondre / resultat
+                // ( implementez bipoll.haveAnswered() )
+            }
         }
 
 }
