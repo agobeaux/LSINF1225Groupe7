@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBackground"
+    android:background="@android:color/white"
     tools:context="be.groupe7lsinf1225.minipoll.activity.QuizActivity">
 
 
@@ -17,19 +17,19 @@
             android:id="@+id/Topic"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:background="#9E9E9E"
             android:text="@string/topic"
             android:textAlignment="center"
             android:textAllCaps="false"
             android:textColor="@android:color/black"
             android:textSize="20sp"
-            android:textStyle="bold"
 
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/State"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
 
-            android:background="#9E9E9E" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/State"
@@ -53,19 +53,19 @@
             android:id="@+id/CreatedBy"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:background="#9E9E9E"
             android:text="@string/createdby"
             android:textAlignment="center"
             android:textAllCaps="false"
             android:textColor="@android:color/black"
             android:textSize="20sp"
-            android:textStyle="bold"
 
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/State"
-            app:layout_constraintTop_toTopOf="parent"
 
-            android:background="#9E9E9E" />
+            app:layout_constraintTop_toTopOf="parent" />
 
     </android.support.constraint.ConstraintLayout>
 

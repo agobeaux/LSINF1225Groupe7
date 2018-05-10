@@ -16,11 +16,11 @@ public class BiPoll extends Poll {
     private String question;
     private String author;
     private boolean state;
-
+    private int id;
     /**
      * Constructeur
      */
-    public BiPoll(String question, String author, String[] titles_choices) {
+    public BiPoll(String question, String author, String[] titles_choices, int id) {
         this.question = question;
         ArrayList<Choice> c = new ArrayList<>();
         int i;
@@ -30,12 +30,13 @@ public class BiPoll extends Poll {
         this.choices = c;
         this.author = author;
         this.state = false;
+        this.id = id;
     }
 
     public static boolean addBiPoll(String title,String author,String choice1,String choice2,ArrayList<String> selected_friends){
 
         int id = BiPoll.getId();
-        //int idc1 = 2*id - 1;
+
         int idc1 = id;
         int idc2 = id+1;
 
@@ -138,8 +139,6 @@ public class BiPoll extends Poll {
 
         int id = cursor.getInt(0);
 
-        Log.e("getID","id du dernier: "+id);
-
         cursor.close();
         db.close();
         return id+1;
@@ -181,10 +180,11 @@ public class BiPoll extends Poll {
             cursor3_2.moveToFirst();
 
             String titles[] = {cursor3_1.getString(0),cursor3_2.getString(0)};
+            int locId = cursor2.getInt(0);
             question = cursor2.getString(1);
             author = cursor2.getString(2);
 
-            BiPoll locBipoll = new BiPoll(question,author,titles);
+            BiPoll locBipoll = new BiPoll(question,author,titles,locId);
             cursor2.close();
 
             biPolls.add(locBipoll);
@@ -210,6 +210,10 @@ public class BiPoll extends Poll {
 
     public boolean getState() {
         return state;
+    }
+
+    public int getLocId() {
+        return id;
     }
 
     public ArrayList<Choice> getChoices() {return choices;}
