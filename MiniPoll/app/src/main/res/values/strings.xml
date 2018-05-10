@@ -74,6 +74,9 @@
 
     <!-- LeaderBoard Quiz Activity -->
     <string name="leaderboard">Leaderboard</string>
+    <string name="score">Score</string>
+    <string name="user">User</string>
+    <string name="ranking">Ranking</string>
     <string name="return_to_the_quiz_menu">Return to the Quiz Menu</string>
 
 </resources>

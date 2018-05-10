@@ -69,7 +69,12 @@ public class LeaderboardAdapter extends BaseAdapter {
 
         String user = userlist.get(i);
         positionText.setText(String.valueOf(i+1)); // fonction à faire OU PLUTOT : gérer dans L'activity et le passer en argument
-        userText.setText(user);
+        if(user.equals(User.getConnectedUser().getLogin())){
+            userText.setText("You");
+        }
+        else{
+            userText.setText(user);
+        }
         scoreText.setText(String.valueOf(User.getQuizScore(IDQuiz, user))); // fonction à faire OU PLUTOT : gérer dans L'activity et le passer en argument
         return convertView;
     }
