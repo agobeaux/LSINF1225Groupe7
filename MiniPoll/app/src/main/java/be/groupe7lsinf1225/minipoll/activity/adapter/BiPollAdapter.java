@@ -13,6 +13,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import be.groupe7lsinf1225.minipoll.R;
+import be.groupe7lsinf1225.minipoll.object.Choice;
 import be.groupe7lsinf1225.minipoll.object.Quiz;
 import be.groupe7lsinf1225.minipoll.object.BiPoll;
 

@@ -34,8 +34,8 @@ public class BiPoll extends Poll {
         SQLiteDatabase db = MySQLiteHelper.get().getWritableDatabase();
 
         int id = BiPoll.getId();
-        int idc1 = 10*id + 1;
-        int idc2 = idc1 + 1;
+        int idc1 = 2*id - 1;
+        int idc2 = 2*id;
 
         ContentValues values = new ContentValues();
         values.put("IDCHOICE",idc1);
