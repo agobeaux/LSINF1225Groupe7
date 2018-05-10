@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.inputmethod.EditorInfo;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -51,6 +52,10 @@ public class AnswerBipollActivity extends Activity {
         textViewauthor.setText(bipoll.getAuthor());
         TextView textViewquestion = findViewById(R.id.answer_bipoll_question);
         textViewquestion.setText(bipoll.getQuestion());
+        ImageView likeImageView = findViewById(R.id.like);
+        likeImageView.setImageResource(R.drawable.like);
+        ImageView dislikeImageView = findViewById(R.id.dislike);
+        dislikeImageView.setImageResource(R.drawable.dislike);
 
         final ArrayList<String> choice1 = new ArrayList<>();
         choice1.add(bipoll.getChoice1());
