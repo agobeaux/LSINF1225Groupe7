@@ -57,7 +57,7 @@ public class QuizAdapter extends BaseAdapter {
     public View getView(int i, View convertView, ViewGroup viewGroup) {
 
         if (convertView == null) {
-            //convertView = mInflater.inflate(R.layout.collected_friend_row, viewGroup, false);
+            convertView = mInflater.inflate(R.layout.collected_poll_row, viewGroup, false);
         }
         TextView topic = convertView.findViewById(R.id.show_row_topic);
         TextView state = convertView.findViewById(R.id.show_row_state);
@@ -73,5 +73,8 @@ public class QuizAdapter extends BaseAdapter {
         }
         createdby.setText(quiz.getAuthor());
         return convertView;
+    }
+    public void setQuizzes(ArrayList<Quiz> newQuizzes) {
+        this.quizzes = newQuizzes;
     }
 }
