@@ -70,6 +70,10 @@ public class AnsweringQuizActivity extends AppCompatActivity {
         Question question = Question.getQuestion(IDQuestion);
         quest.setText(question.getTitle());
     }
+    @Override
+    public void onBackPressed() {
+        AppMiniPoll.notifyShort(R.string.end_quiz);
+    }
     public void submit(View view) {
         Choice selected_choice = null;
         RadioGroup radioGroup = (RadioGroup)findViewById(R.id.myRadioGroup);

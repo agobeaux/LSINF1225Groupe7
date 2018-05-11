@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import be.groupe7lsinf1225.minipoll.AppMiniPoll;
 import be.groupe7lsinf1225.minipoll.MySQLiteHelper;
 import be.groupe7lsinf1225.minipoll.R;
 import be.groupe7lsinf1225.minipoll.activity.adapter.LeaderboardAdapter;
@@ -99,6 +100,10 @@ public class LeaderboardQuizActivity extends AppCompatActivity {
             cursor.close();
             db.close();
         }
+    }
+    @Override
+    public void onBackPressed() {
+        AppMiniPoll.notifyShort(R.string.ended_quiz);
     }
     public void onClick(View view) {
         Intent intent = new Intent(this, MainMenuActivity.class);

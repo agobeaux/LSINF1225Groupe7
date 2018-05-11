@@ -58,9 +58,11 @@ public class ResultBipollActivity extends Activity implements TextView.OnEditorA
     }
 
     public void close(View view) {
-        Intent old_intent = getIntent();
-        int idBipoll = old_intent.getIntExtra("idBipoll",0);
-        BiPoll.close(idBipoll);
+        Intent intent = new Intent(this,BiPollActivity.class);
+        startActivity(intent);
+       // Intent old_intent = getIntent();
+        //int idBipoll = old_intent.getIntExtra("idBipoll",0);
+        //BiPoll.close(idBipoll);
     }
 
     public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
