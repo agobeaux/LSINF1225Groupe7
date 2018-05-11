@@ -62,16 +62,15 @@ public class BiPollActivity extends Activity implements AdapterView.OnItemClickL
 
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            if(this.bipolls.get(position).getAuthor().equals(User.getConnectedUser().getLogin())){
+            if(bipolls.get(position).getState() && this.bipolls.get(position).getAuthor().equals(User.getConnectedUser().getLogin())) {
                 BiPoll selectedBipoll = this.bipolls.get(position);
-                Intent intent = new Intent(this,ResultBipollActivity.class);
-                intent.putExtra("idBipoll",selectedBipoll.getLocId());
+                Intent intent = new Intent(this, ResultBipollActivity.class);
+                intent.putExtra("idBipoll", selectedBipoll.getLocId());
                 startActivity(intent);
-            }
-            else{
-                    Intent intent = new Intent(this,AnswerBipollActivity.class);
-                    intent.putExtra("idBipoll",this.bipolls.get(position).getLocId());
-                    startActivity(intent);
+            } else {
+                Intent intent = new Intent(this, AnswerBipollActivity.class);
+                intent.putExtra("idBipoll", this.bipolls.get(position).getLocId());
+                startActivity(intent);
             }
         }
 
