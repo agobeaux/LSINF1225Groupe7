@@ -73,7 +73,7 @@ public class BiPollAdapter extends BaseAdapter {
 
         BiPoll bipoll = bipolls.get(i);
         topic.setText(bipoll.getQuestion());
-        if(bipoll.getState()){
+        if(!bipoll.getState()){
             state.setText("Closed");
         }
         else{
