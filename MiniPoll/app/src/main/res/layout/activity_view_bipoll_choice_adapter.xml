@@ -7,30 +7,6 @@
     android:background="@color/colorBackground"
     tools:context=".activity.ViewUserActivity">
 
-    <com.lorentzos.flingswipe.SwipeFlingAdapterView
-        android:id="@+id/view_choise1_frame"
-        android:layout_width="wrap_content"
-        android:layout_height="150dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/view_choise2_frame"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/answer_bipoll_question"
-        app:rotation_degrees="15.5"
-        tools:context=".MyActivity" />
-
-    <com.lorentzos.flingswipe.SwipeFlingAdapterView
-        android:id="@+id/view_choise2_frame"
-        android:layout_width="wrap_content"
-        android:layout_height="169dp"
-        android:layout_marginBottom="3dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view_choise1_frame"
-        app:rotation_degrees="15.5"
-        tools:context=".MyActivity" />
-
     <TextView
         android:id="@+id/answer_bipoll_author"
         android:layout_width="wrap_content"
@@ -123,5 +99,32 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.982" />
+
+    <com.lorentzos.flingswipe.SwipeFlingAdapterView
+        android:id="@+id/view_choise1_frame"
+        android:layout_width="wrap_content"
+        android:layout_height="320dp"
+        android:layout_marginBottom="25dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/answer_bipoll_question"
+        app:rotation_degrees="15.5"
+        tools:context=".MyActivity" />
+
+    <com.lorentzos.flingswipe.SwipeFlingAdapterView
+        android:id="@+id/view_choise2_frame"
+        android:layout_width="wrap_content"
+        android:layout_height="300dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/answer_bipoll_question"
+        app:layout_constraintVertical_bias="0.967"
+        app:rotation_degrees="15.5"
+        tools:context=".MyActivity" />
 
 </android.support.constraint.ConstraintLayout>
