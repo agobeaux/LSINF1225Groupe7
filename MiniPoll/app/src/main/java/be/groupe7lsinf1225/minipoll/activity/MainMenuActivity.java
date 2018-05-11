@@ -27,6 +27,9 @@ public class MainMenuActivity extends AppCompatActivity {
             notif();
         }
     }
+    public void onBackPressed(){
+        /*do nothing*/
+         }
 
     public void friendlist(View view){
         Intent intent = new Intent(this, GestionFriendActivity.class);

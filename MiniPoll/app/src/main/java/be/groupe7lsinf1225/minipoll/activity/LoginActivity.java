@@ -62,12 +62,13 @@ public class LoginActivity extends Activity implements TextView.OnEditorActionLi
                 startActivity(intent);
             }
             else{
-                //notification : Wrong Password
+                passwordEditText.setText("");
                 AppMiniPoll.notifyShort(R.string.wrong_password);
             }
         }
         else{
             //notification : Username doesn't exist
+            passwordEditText.setText("");
             AppMiniPoll.notifyShort(R.string.user_not_found);
         }
     }
