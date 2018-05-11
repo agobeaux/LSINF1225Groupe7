@@ -67,6 +67,8 @@
 
     <!-- BiPoll Activity -->
     <string name="no_visible_bipoll">No binary poll to show you, create one or be invited to answer to one</string>
+    <string name="bipoll_closed">Poll closed</string>
+    <string name="not_answered_yet">There is no answer for this poll yet</string>
 
     <!-- Answering Quiz Text xml -->
     <string name="select_one">Check one of the choices first</string>

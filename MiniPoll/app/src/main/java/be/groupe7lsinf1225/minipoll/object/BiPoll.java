@@ -55,8 +55,8 @@ public class BiPoll extends Poll {
         }
 
         ArrayList<String> choises = new ArrayList<>();
-        choises.add(findchoise(cursor.getInt(3)));
-        choises.add(findchoise(cursor.getInt(4)));
+        choises.add(findchoice(cursor.getInt(3)));
+        choises.add(findchoice(cursor.getInt(4)));
 
         BiPoll bp = new BiPoll(cursor.getString(1),cursor.getString(2),cursor.getInt(0),choises);
         if(cursor.getString(5).equals("false")) {
@@ -72,7 +72,7 @@ public class BiPoll extends Poll {
 
     }
 
-    public static  String findchoise(int id){
+    public static  String findchoice(int id){
 
         String[] columns = {"IDCHOICE","CONTENT"};
         String[] valuesWhere = {String.valueOf(id)};
@@ -96,38 +96,52 @@ public class BiPoll extends Poll {
         return finded;
     }
 
-    public boolean answer(String choice){
-        ContentValues values = new ContentValues();
-
-        values.put("LOGIN",User.getConnectedUser().getLogin());
-        values.put("CHOICE",choice);
-        values.put("IDBIPOLL",this.id);
-
-        SQLiteDatabase db = MySQLiteHelper.get().getWritableDatabase();
-
-        if(-1 == (int) db.insert("ANSWER_BIPOLL",null,values)){
-            db.close();
-            return false;
-        }
-        return true;
-    }
-
     public boolean updateanswer(String choice){
+        SQLiteDatabase db = MySQLiteHelper.get().getReadableDatabase();
 
-        ContentValues values = new ContentValues();
+        String[] columns = {"LOGIN"};
+        String selection = "IDBIPOLL = CAST(? as INTEGER)";
+        String[] valuesWhere = {String.valueOf(this.id)};
 
-        values.put("CHOICE",choice);
-
-        String[] valuesWhere = {User.getConnectedUser().getLogin(),String.valueOf(this.id)};
-        String selection = "LOGIN = ? AND IDBIPOLL = CAST(? as INTEGER)";
-
-        SQLiteDatabase db = MySQLiteHelper.get().getWritableDatabase();
-
-        if(-1 == db.update("ANSWER_BIPOLL",values,selection,valuesWhere)){
+        Cursor cursor = db.query("ANSWER_BIPOLL",columns,selection,valuesWhere,null,null,null);
+        if(cursor.getCount() <= 0) {
+            cursor.close();
             db.close();
-            return false;
+
+            ContentValues values = new ContentValues();
+
+            values.put("LOGIN",User.getConnectedUser().getLogin());
+            values.put("CHOICE",choice);
+            values.put("IDBIPOLL",this.id);
+
+            SQLiteDatabase db2 = MySQLiteHelper.get().getWritableDatabase();
+
+            if(-1 == (int) db2.insert("ANSWER_BIPOLL",null,values)){
+                db2.close();
+                return false;
+            }
+            db2.close();
+            return true;
         }
-        return true;
+        else {
+                cursor.close();
+                db.close();
+                ContentValues values2 = new ContentValues();
+                values2.put("CHOICE",choice);
+
+                String[] valuesWhere2 = {User.getConnectedUser().getLogin(),String.valueOf(this.id)};
+                String selection2 = "LOGIN = ? AND IDBIPOLL = CAST(? as INTEGER)";
+
+                SQLiteDatabase db3 = MySQLiteHelper.get().getWritableDatabase();
+
+                if(-1 == db3.update("ANSWER_BIPOLL",values2,selection2,valuesWhere2)){
+                    db3.close();
+                    return false;
+                }
+                db3.close();
+                return true;
+        }
+
     }
 
     public int haveanswer(){
@@ -160,7 +174,7 @@ public class BiPoll extends Poll {
 
         int id = BiPoll.getId();
 
-        int idc1 = id*2-1;
+        int idc1 = (id*2)-1;
         int idc2 = id*2;
 
         ContentValues values = new ContentValues();
@@ -209,6 +223,7 @@ public class BiPoll extends Poll {
         values3.put("AUTHOR", author);
         values3.put("CHOICE1", idc1);
         values3.put("CHOICE2", idc2);
+        values3.put("CLOSED", "false");
 
         if (-1 == (int) db.insert("BIPOLL", null, values3)) {
             db.delete("CHOICE_BIPOLL", "IDCHOICE = " + String.valueOf(idc1), null);
@@ -254,9 +269,9 @@ public class BiPoll extends Poll {
     public static int getId(){
         SQLiteDatabase db = MySQLiteHelper.get().getReadableDatabase();
 
-        String[] columns = {"IDCHOICE"};
+        String[] columns = {"IDBIPOLL"};
 
-        Cursor cursor = db.query("CHOICE_BIPOLL",columns,null,null,null,null,"IDCHOICE");
+        Cursor cursor = db.query("BIPOLL",columns,null,null,null,null,"IDBIPOLL");
 
         cursor.moveToLast();
 
@@ -323,6 +338,47 @@ public class BiPoll extends Poll {
         return biPolls;
     }
 
+    public static void close(int id) {
+        ContentValues values = new ContentValues();
+        values.put("CLOSED","true");
+
+        String selection = "IDBIPOLL = CAST(? as INTEGER)";
+        String[] valuesWhere = {String.valueOf(getId())};
+
+        SQLiteDatabase db = MySQLiteHelper.get().getWritableDatabase();
+
+        db.update("BIPOLL",values,selection,valuesWhere);
+
+        db.close();
+    }
+
+    public String[] getAnswer() {
+        String[] result = new String[2];
+        SQLiteDatabase db = MySQLiteHelper.get().getReadableDatabase();
+
+        String[] columns = {"LOGIN","CHOICE"};
+        String selection = "IDBIPOLL = "+this.id;
+        // String[] valuesWhere = {String.valueOf(this.id)};
+
+        Log.e("getAnswer","this id : "+this.id+" et locId : "+getLocId());
+
+        Cursor cursor = db.query("ANSWER_BIPOLL",columns,selection,null,null,null,null);
+
+        if(cursor.getCount() <= 0) {
+            Log.e("getAnswer","count 0");
+            cursor.close();
+            db.close();
+            return result;
+        }
+        cursor.moveToFirst();
+        result[0] = cursor.getString(0);
+        result[1] = cursor.getString(1);
+
+        cursor.close();
+        db.close();
+        return result;
+    }
+
     public String getQuestion() {
         return question;
     }
@@ -336,7 +392,23 @@ public class BiPoll extends Poll {
     }
 
     public boolean getState() {
-        return state;
+        SQLiteDatabase db = MySQLiteHelper.get().getReadableDatabase();
+        String[] columns = {"CLOSED"};
+        String selection = "IDBIPOLL = CAST(? as INTEGER)";
+        String[] valuesWhere = {String.valueOf(getLocId())};
+
+        Cursor cursor = db.query("BIPOLL",columns,selection,valuesWhere,null,null,null);
+        if(cursor.getCount() <= 0) {
+            return false;
+        }
+        cursor.moveToFirst();
+        String closed = cursor.getString(0);
+        if(closed.equals("false")) {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
     public int getLocId() {
