@@ -144,11 +144,11 @@ public class BiPoll extends Poll {
 
     }
 
-    public int haveanswer(){
+    public boolean haveanswer(){
 
         String[] columns = {"LOGIN","CHOICE","IDBIPOLL"};
-        String[] valuesWhere = {User.getConnectedUser().getLogin(),String.valueOf(this.id)};
-        String selection = "LOGIN = ? AND IDBIPOLL = CAST(? as INTEGER)";
+        String[] valuesWhere = {String.valueOf(this.id)};
+        String selection = "IDBIPOLL = CAST(? as INTEGER)";
 
         SQLiteDatabase db = MySQLiteHelper.get().getReadableDatabase();
 
@@ -159,14 +159,14 @@ public class BiPoll extends Poll {
         if(cursor.getCount()<=0){
             cursor.close();
             db.close();
-            return -1;
+            return false;
         }
 
         int answer = cursor.getInt(1);
 
         cursor.close();
         db.close();
-        return answer;
+        return true;
 
     }
 

@@ -31,7 +31,6 @@ public class AnswerBipollActivity extends Activity {
     private ViewBipollChoiceAdapter arrayAdapter1;
     private ArrayList<String> choice2;
     private ViewBipollChoiceAdapter arrayAdapter2;
-    private boolean answered = false;
 
     private String select = null;
     private BiPoll bipoll;
@@ -54,8 +53,13 @@ public class AnswerBipollActivity extends Activity {
                 nul.add("Unknownen");
                 nul.add("Unknownen");
                 bipoll = new BiPoll("Unknownen", "Unknownen", -1, nul);
-            } else if (bipoll.haveanswer() == -1) {
-                answered = true;
+            }
+            ImageView image = findViewById(R.id.answer_bipoll_haveanswer);
+            if (bipoll.haveanswer()) {
+                image.setImageResource(R.drawable.ic_ok_friend);
+            }
+            else{
+                image.setImageResource(R.drawable.ic_supp_friend);
             }
 
             TextView textViewauthor = findViewById(R.id.answer_bipoll_author);
@@ -155,6 +159,8 @@ public class AnswerBipollActivity extends Activity {
             boolean err;
             err = bipoll.updateanswer(select);
             if(err) {
+                ImageView image = findViewById(R.id.answer_bipoll_haveanswer);
+                image.setImageResource(R.drawable.ic_ok_friend);
                 makeToast(AnswerBipollActivity.this, "Your answer have been saved!");
             }
         }
