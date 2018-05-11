@@ -93,17 +93,13 @@ public class AnsweringQuizActivity extends AppCompatActivity {
         }
         SQLiteDatabase db = MySQLiteHelper.get().getWritableDatabase();
 
-        ContentValues c = new ContentValues();
-        c.put("LOGIN", User.getConnectedUser().getLogin());
-        c.put("CHOICE", selected_choice.getIDChoice());
-        c.put("IDQUESTION", IDQuestion);
-
-        int err = (int) db.insert("ANSWER_QUIZ", null, c);
-
-        if (err == -1) {
-            Log.e(null, "INSERTING ANSWER IN DB FAILED");
-        }
-        c.clear();
+        String Query = "INSERT INTO ANSWER_QUIZ (LOGIN, CHOICE, IDQUESTION) VALUES ("+"\'" + User.getConnectedUser().getLogin() + "\', " +selected_choice.getIDChoice() +", "+ Integer.parseInt(IDQuestion) + ");";
+        Log.d(null, Query);
+        db.beginTransaction();
+        db.execSQL(Query);
+        db.setTransactionSuccessful();
+        db.endTransaction();
+        Log.e(null, "INSERTED ");
         db.close();
         String nextQuestionID = null;
         for(int i = 0; i < IDQuestions.size()-1; i++){

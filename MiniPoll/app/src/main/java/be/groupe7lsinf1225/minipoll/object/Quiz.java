@@ -92,7 +92,26 @@ public class Quiz extends Poll {
             db.close();
             return Ids;
         }
+        cursor.close();
+        db.close();
         return Ids;
+    }
+    public static boolean isInQuiz(String Login, String IdQuiz){
+        ArrayList<Integer> IDQuestions = Quiz.getIDQuestions(IdQuiz);
+        SQLiteDatabase db1;
+        db1 = MySQLiteHelper.get().getReadableDatabase();
+        String[] columns = {"LOGIN"};
+        String[] valuesWhere = {Login};
+        String selection = "LOGIN = \"" + Login + "\"" + " AND IDQUESTION = "+ String.valueOf(IDQuestions.get(0));
+        Log.e(null,selection );
+        Cursor cursor = db1.query("ANSWER_QUIZ", columns, selection, null, null, null, null );
+        if( cursor.moveToFirst() ) {
+            cursor.close();
+            db1.close();
+            return true;
+        }
+        db1.close();
+        return false;
     }
 
 

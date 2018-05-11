@@ -55,10 +55,30 @@ public class QuizActivity extends AppCompatActivity implements AdapterView.OnIte
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        Intent intent = new Intent(this, AnsweringQuizActivity.class);
-        intent.putExtra("IDQUIZ", String.valueOf(myQuizAdapter.getItem(i).getID()));
+        String IdQuiz = String.valueOf(myQuizAdapter.getItem(i).getID());
         String IDQuestion = String.valueOf(Quiz.getIDQuestions(String.valueOf(myQuizAdapter.getItem(i).getID())).get(0));
-        intent.putExtra("IDQUESTION",IDQuestion);
-        startActivity(intent);
+        Quiz quiz = Quiz.getQuiz(IdQuiz);
+        if((Quiz.isInQuiz(User.getConnectedUser().getLogin(),IdQuiz))||quiz.getState()){
+            Intent intent = new Intent(this, LeaderboardQuizActivity.class);
+            intent.putExtra("IDQUIZ",IdQuiz );
+            intent.putExtra("IDLASTQUESTION",IDQuestion);
+            intent.putExtra("topic",quiz.getTitle() );
+            String stateExtra;
+            if(quiz.getState()){
+                stateExtra = "Closed";
+            }
+            else{
+                stateExtra = "Open";
+            }
+            intent.putExtra("state", stateExtra);
+            intent.putExtra("createdBy", quiz.getAuthor());
+            startActivity(intent);
+        }
+        else {
+            Intent intent = new Intent(this, AnsweringQuizActivity.class);
+            intent.putExtra("IDQUIZ",IdQuiz );
+            intent.putExtra("IDQUESTION",IDQuestion);
+            startActivity(intent);
+        }
     }
 }
