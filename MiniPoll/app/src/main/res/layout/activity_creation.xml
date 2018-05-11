@@ -127,7 +127,7 @@
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="40dp"
-        android:text="Créer ton propre MiniPoll !"
+        android:text="Crée ton propre MiniPoll !"
         android:textSize="28sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
