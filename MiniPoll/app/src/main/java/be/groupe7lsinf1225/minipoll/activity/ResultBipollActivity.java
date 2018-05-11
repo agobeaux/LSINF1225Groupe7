@@ -9,15 +9,18 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import be.groupe7lsinf1225.minipoll.AppMiniPoll;
 import be.groupe7lsinf1225.minipoll.MySQLiteHelper;
 import be.groupe7lsinf1225.minipoll.R;
 import be.groupe7lsinf1225.minipoll.object.BiPoll;
+import be.groupe7lsinf1225.minipoll.object.User;
 
 public class ResultBipollActivity extends Activity implements TextView.OnEditorActionListener {
 
+    private BiPoll bipoll;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,7 +38,11 @@ public class ResultBipollActivity extends Activity implements TextView.OnEditorA
         TextView selectedFriendTextView = findViewById(R.id.result_selected_friend);
         selectedFriendTextView.setOnEditorActionListener(this);
 
-        BiPoll bipoll = BiPoll.find(idBipoll);
+        ImageButton option = findViewById(R.id.Bipoll_option_button);
+        option.setImageResource(R.drawable.ic_options);
+
+
+        bipoll = BiPoll.find(idBipoll);
         String question = bipoll.getQuestion();
         String[] answer = bipoll.getAnswer();  // selectedFriend,likedChoice
 
@@ -48,13 +55,12 @@ public class ResultBipollActivity extends Activity implements TextView.OnEditorA
             choiceTextView.setText(answer[1]);
             selectedFriendTextView.setText(answer[0]);
         }
+    }
 
-
-        //Select CHOICE_BIPOLL.CONTENT ,count(*) as Score
-        //From CHOICE_BIPOLL,ANSWER_BIPOLL
-        //WHERE ANSWER_BIPOLL.IDBIPOLL='id poll'
-        //and ANSWER_BIPOLL.CHOICE==CHOICE_BIPOLL.IDCHOICE
-        //GROUP BY  CHOICE_BIPOLL.CONTENT
+    public void option(View view){
+        if(bipoll.getAuthor().equals(User.getConnectedUser().getLogin())){
+            //ouvre les option
+        }
     }
 
     public void close(View view) {
