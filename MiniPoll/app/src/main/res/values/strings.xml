@@ -57,7 +57,7 @@
     <string name="createdby">Created by</string>
 
     <!-- Poll creation -->
-    <string name="no_friends_to_share">Make you some friends before creating a poll</string>
+    <string name="no_friends_to_share">Make yourself some friends before creating a poll</string>
     <string name="minimum_one_friend">Select at least one friend</string>
 
     <!-- Gestion Friend Activity -->
